@@ -9,19 +9,11 @@ namespace MvcApp.ViewModels
 {
     public class SkillsModel
     {
-        //public SkillsModel()
-        //{
-        //}
-
-        public SkillsModel(Dictionary<BllSkill, int> skills)
+        public SkillsModel(List<MvcSkill> skills)
         {
-            Skills = new Dictionary<MvcSkill, int>();
-            foreach (var item in skills)
-            {
-                Skills.Add(SkillMapper.Map(item.Key), item.Value);
-            }       
+            Skills = skills;      
         }
 
-        public Dictionary<MvcSkill, int> Skills { get; set; }
+        public List<MvcSkill> Skills { get; set; }
     }
 }

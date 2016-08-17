@@ -14,6 +14,8 @@ namespace MvcApp.ViewModels
         [Required(ErrorMessage = "Please enter your last name")]
         public string Name { get; set; }
 
+        public int Level { get; set; }
+
         [Required(ErrorMessage ="Choose skill category")]
         public string CategoryName { get; set; }
     }

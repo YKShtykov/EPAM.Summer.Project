@@ -1,15 +1,22 @@
 ﻿@using MvcApp.Infrastructure;
 @model MvcApp.ViewModels.MvcSkill
 
+<tr>
     <td>
         @Html.HiddenFor(x => x.Id)
     </td>
     <td>
+        @Html.HiddenFor(x => x.Name)
         @Html.DisplayFor(x => x.Name)
     </td>
     <td>
+        @Html.HiddenFor(x => x.CategoryName)
         @Html.DisplayFor(x => x.CategoryName)
     </td>
+    <td>
+        <input for="Level" id="@Model.Id" value="@Model.Level" name="Level" type="number" class="rating-loading" data-size="xs" data-min="0" data-max="5" data-step="1" data-show-clear="false">
+    </td>
+
     @{
         var identity = (CustomIdentity)User.Identity;
 
@@ -23,3 +30,4 @@
             </td>
         }
     }
+</tr>

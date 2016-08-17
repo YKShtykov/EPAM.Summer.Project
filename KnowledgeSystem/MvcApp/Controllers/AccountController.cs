@@ -44,26 +44,25 @@ namespace MvcApp.Controllers
                 try
                 {
                     user = UserMapper.MapUser(service.LoginUser(loginModel.EmailOrLogin, loginModel.Password));
+                    string userData = JsonConvert.SerializeObject(user);
+                    var ticket = new FormsAuthenticationTicket(1,
+                                                               user.Id.ToString(),
+                                                               DateTime.Now,
+                                                               DateTime.Now.AddMinutes(40),
+                                                               loginModel.IsRemember,
+                                                               userData);
+                    var encoded = FormsAuthentication.Encrypt(ticket);
+                    var coockie = new HttpCookie(FormsAuthentication.FormsCookieName, encoded);
+                    if (ticket.IsPersistent)
+                        coockie.Expires = ticket.Expiration;
+                    Response.Cookies.Add(coockie);
 
+                    return Redirect("~/Home/Index");
                 }
-                catch (Exception)
+                catch (Exception e)
                 {
-
-                    throw;
-                }
-                string userData = JsonConvert.SerializeObject(user);
-                var ticket = new FormsAuthenticationTicket(1,
-                                                           user.Id.ToString(),
-                                                           DateTime.Now,
-                                                           DateTime.Now.AddMinutes(40),
-                                                           loginModel.IsRemember,
-                                                           userData);
-                var encoded = FormsAuthentication.Encrypt(ticket);
-                var coockie = new HttpCookie(FormsAuthentication.FormsCookieName, encoded);
-                if (ticket.IsPersistent)
-                    coockie.Expires = ticket.Expiration;
-                Response.Cookies.Add(coockie);
-                return Redirect("~/Home/Index");
+                    ModelState.AddModelError("", e.Message);
+                }                
             }
             return View();
         }

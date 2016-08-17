@@ -84,6 +84,7 @@ namespace BLL
         {
             var user = UserMapper.MapUser(userRepository.LoginUser(emailOrLogin));
             if (PasswordService.VerifyPassword(password, user.PasswordSalt, user.Password)) return user;
+            else throw new Exception("check your data");
 
             return null;
         }

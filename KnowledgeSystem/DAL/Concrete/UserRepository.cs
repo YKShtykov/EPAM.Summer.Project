@@ -23,7 +23,7 @@ namespace DAL
         public void Create(DalUser e)
         {
             var user = UserMapper.MapUser(e);
-            
+
             foreach (var role in e.Roles)
             {
                 var userRole = context.Set<Role>().FirstOrDefault(r => r.Name == role);
@@ -31,7 +31,7 @@ namespace DAL
             }
 
             context.Set<User>().Add(user);
-            context.Set<Profile>().Add(new Profile() { Id = user.Id, BirthDate = default(DateTime).ToString()});
+            context.Set<Profile>().Add(new Profile() { Id = user.Id, BirthDate = default(DateTime).ToString() });
             context.SaveChanges();
         }
 
@@ -76,7 +76,8 @@ namespace DAL
         {
             User user = context.Set<User>().FirstOrDefault(u => u.Email == emailOrLogin);
 
-            if(user==null) user = context.Set<User>().FirstOrDefault(u => u.Login == emailOrLogin);
+            if (user == null) user = context.Set<User>().FirstOrDefault(u => u.Login == emailOrLogin);
+            if (user == null) throw new Exception("check your data");
 
             return UserMapper.MapUser(user);
         }
@@ -89,7 +90,7 @@ namespace DAL
         public Dictionary<DalSkill, int> GetAllSkillLevels(int userId)
         {
             var skills = new Dictionary<DalSkill, int>();
-            var categories = context.Set<Category>().Select(c => c).Include(c=>c.Skills);
+            var categories = context.Set<Category>().Select(c => c).Include(c => c.Skills);
             foreach (var item in categories)
             {
                 foreach (var skill in item.Skills)
@@ -106,13 +107,22 @@ namespace DAL
         public void UpdateSkillLevel(int userId, int skillId, int level)
         {
             var userSkill = context.Set<UserSkill>().FirstOrDefault(us => us.User.Id == userId && us.Skill.Id == skillId);
-            if (!ReferenceEquals(userSkill,null))
+            if (!ReferenceEquals(userSkill, null))
             {
                 userSkill.Level = level;
+                context.Entry(userSkill).State = EntityState.Modified;
             }
-            context.Entry(userSkill).State = EntityState.Modified;
+            else
+            {
+                userSkill = new UserSkill()
+                {
+                    User = context.Set<User>().FirstOrDefault(u => u.Id == userId),
+                    Skill = context.Set<Skill>().FirstOrDefault(s => s.Id == skillId),
+                    Level = level
+                };
+                context.Set<UserSkill>().Add(userSkill);
+            }            
             context.SaveChanges();
-
         }
 
         public void UpdateAllSkillLevels(int userId, IDictionary<int, int> skillLevel)

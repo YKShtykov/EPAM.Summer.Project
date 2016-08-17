@@ -16,3 +16,12 @@ C:\Users\Yakov\Desktop\EPAM.Project\KnowledgeSystem\BLL\bin\Debug\DALL.Interface
 C:\Users\Yakov\Desktop\EPAM.Project\KnowledgeSystem\BLL\obj\Debug\BLL.csprojResolveAssemblyReference.cache
 C:\Users\Yakov\Desktop\EPAM.Project\KnowledgeSystem\BLL\obj\Debug\BLL.dll
 C:\Users\Yakov\Desktop\EPAM.Project\KnowledgeSystem\BLL\obj\Debug\BLL.pdb
+C:\Users\Yakov\Desktop\EPAM.Summer.Project\KnowledgeSystem\BLL\bin\Debug\BLL.dll
+C:\Users\Yakov\Desktop\EPAM.Summer.Project\KnowledgeSystem\BLL\bin\Debug\BLL.pdb
+C:\Users\Yakov\Desktop\EPAM.Summer.Project\KnowledgeSystem\BLL\bin\Debug\BLL.Interface.dll
+C:\Users\Yakov\Desktop\EPAM.Summer.Project\KnowledgeSystem\BLL\bin\Debug\DALL.Interface.dll
+C:\Users\Yakov\Desktop\EPAM.Summer.Project\KnowledgeSystem\BLL\bin\Debug\BLL.Interface.pdb
+C:\Users\Yakov\Desktop\EPAM.Summer.Project\KnowledgeSystem\BLL\bin\Debug\DALL.Interface.pdb
+C:\Users\Yakov\Desktop\EPAM.Summer.Project\KnowledgeSystem\BLL\obj\Debug\BLL.csprojResolveAssemblyReference.cache
+C:\Users\Yakov\Desktop\EPAM.Summer.Project\KnowledgeSystem\BLL\obj\Debug\BLL.dll
+C:\Users\Yakov\Desktop\EPAM.Summer.Project\KnowledgeSystem\BLL\obj\Debug\BLL.pdb

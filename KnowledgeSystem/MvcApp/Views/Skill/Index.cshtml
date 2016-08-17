@@ -1,28 +1,55 @@
-﻿@model MvcApp.ViewModels.SkillsModel
+﻿
+@using MvcApp.Infrastructure;
+@model IList<MvcApp.ViewModels.MvcSkill>
 
 @{
     ViewBag.Title = "Skills";
 }
-@using (Html.BeginForm("Index","Skill", FormMethod.Post, Model))
+@using (Html.BeginForm("Index","Skill", Model))
 {
     <table>
-        @foreach (var p in Model.Skills)
+        @for (int i = 0; i < Model.ToArray().Length; i++)
         {
             <tr>
-                @Html.Partial("_Skill", p.Key)
                 <td>
-                    <input id="@p.Key.Id" value="@p.Value" name="@p.Key.Id" class="rating-loading" data-size="xs" data-min="0" data-max="5" data-step="1" data-show-clear="false" data->
+                    @Html.HiddenFor(Model => Model[i].Id)
                 </td>
+                <td>
+                    @Html.HiddenFor(Model => Model[i].Name)
+                    @Html.DisplayFor(Model => Model[i].Name)
+                </td>
+                <td>
+                    @Html.HiddenFor(Model => Model[i].CategoryName)
+                    @Html.DisplayFor(Model => Model[i].CategoryName)
+                </td>
+                <td>
+                    @{string name = "[" + i + "].Level";
+                    }
+                    <input for="Level" id="@Model[i].Id" value="@Model[i].Level" name="@name" class="rating-loading" data-size="xs" data-min="0" data-max="5" data-step="1" data-show-clear="false">
+                </td>
+
+                @{
+                    var identity = (CustomIdentity)User.Identity;
+
+                    if (identity.Roles.FirstOrDefault(r => r == "Administrator") != null)
+                    {
+                        <td>
+                            @Html.RouteLink("Edit", new { controller = "Administrator", action = "EditSkill", id = Model[i].Id })
+                        </td>
+                        <td>
+                            @Html.RouteLink("Remove", new { controller = "Administrator", action = "RemoveSkill", id = Model[i].Id })
+                        </td>
+                    }
+                }
             </tr>
-        }
+                    }
     </table>
 
     <div class="form-group">
         <div class="col-md-offset-2 col-md-10">
-            <input type="submit" value="Update" class="btn btn-default" />            
+            <input id="submit" type="submit" value="Update" class="btn btn-default" />
         </div>
     </div>
-
 }
 
 @section scripts{
@@ -30,9 +57,9 @@
     <link href="~/Content/star-rating.css" media="all" rel="stylesheet" type="text/css" />
     <script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.0/jquery.js"></script>
     <script src="~/Scripts/star-rating.js" type="text/javascript"></script>
-    @foreach (var item in Model.Skills)
+    @foreach (var item in Model)
     {
-        string id = item.Key.Id.ToString();
+        string id = item.Id.ToString();
         <script>
             $(document).on('ready', function () {
                 $('#@id').rating({
@@ -41,10 +68,9 @@
                     starCaptions: { 0: 'Unknown', 1: 'Beginner', 2: 'Elementary', 3: 'Intermediate', 4: 'Advanced', 5: 'Profi' },
                     starCaptionClasses: function (val) { return 'text-success'; }
                 }).on('rating.change', function (event, value, caption) {
-                    alert('Спасибо');
                     Model.Skills.FirstOrDefault(s => s.Key.Id.ToString() == id).Value = value;
                 });
-            });
+            });            
         </script>
     }
 }

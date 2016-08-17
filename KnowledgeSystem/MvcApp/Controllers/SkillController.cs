@@ -23,27 +23,34 @@ namespace MvcApp.Controllers
             this.service = service;
             this.skillService = skillService;
         }
+
         // GET: Skill
         public ActionResult Index()
         {
+            var userSkills = new List<MvcSkill>();
             var identity = (CustomIdentity)User.Identity;
-            SkillsModel userSkills = new SkillsModel(service.GetAllSkillLevels(identity.Id));
+            foreach (var item in service.GetAllSkillLevels(identity.Id))
+            {
+                var skill = SkillMapper.Map(item.Key);
+                skill.Level = item.Value;
+                userSkills.Add(skill);
+            } 
 
             return View(userSkills);
         }
 
         [HttpPost]
-        public ActionResult Index(SkillsModel model)
+        public ActionResult Index(List<MvcSkill> skillModel)
         {
             var skillLevel = new Dictionary<int, int>();
-            foreach (var item in model.Skills)
+            foreach (var item in skillModel)
             {
-                skillLevel.Add(item.Key.Id, item.Value);
+                skillLevel.Add(item.Id, item.Level);
             }
             var identity = (CustomIdentity)User.Identity;
             service.UpdateAllSkillLevels(identity.Id, skillLevel);
 
-            return View();
+            return Redirect("~/Skill/index");
         }
     }
 }
