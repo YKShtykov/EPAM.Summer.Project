@@ -1,0 +1,26 @@
+﻿@using MvcApp.Infrastructure;
+@{
+    if (Request.IsAuthenticated)
+    {
+        var identity = (CustomIdentity)User.Identity;
+        <ul class="nav navbar-nav">
+            <li>@Html.ActionLink("Profile", "UserProfile", "Profile")</li>
+            <li>@Html.ActionLink("Skills", "Index", "Skill")</li>
+            @if (identity.Roles.FirstOrDefault(r => r == "Administrator") != null)
+            {
+                <li>@Html.ActionLink("Administrator page", "Index", "Administrator")</li>
+            }
+        </ul>
+        <ul class="nav navbar-nav navbar-right">
+            <li>@Html.ActionLink("Logout", "Logout", "Account")</li>
+        </ul>
+    }
+    else
+    {
+        <ul class="nav navbar-nav navbar-right">
+            <li>@Html.ActionLink("Register", "Registration", "Account")</li>
+            <li>@Html.ActionLink("Log in", "Login", "Account")</li>
+        </ul>
+    }
+}
+

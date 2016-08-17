@@ -1,0 +1,50 @@
+﻿@model MvcApp.ViewModels.SkillsModel
+
+@{
+    ViewBag.Title = "Skills";
+}
+@using (Html.BeginForm("Index","Skill", FormMethod.Post, Model))
+{
+    <table>
+        @foreach (var p in Model.Skills)
+        {
+            <tr>
+                @Html.Partial("_Skill", p.Key)
+                <td>
+                    <input id="@p.Key.Id" value="@p.Value" name="@p.Key.Id" class="rating-loading" data-size="xs" data-min="0" data-max="5" data-step="1" data-show-clear="false" data->
+                </td>
+            </tr>
+        }
+    </table>
+
+    <div class="form-group">
+        <div class="col-md-offset-2 col-md-10">
+            <input type="submit" value="Update" class="btn btn-default" />            
+        </div>
+    </div>
+
+}
+
+@section scripts{
+    <link href="http://netdna.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.css" rel="stylesheet">
+    <link href="~/Content/star-rating.css" media="all" rel="stylesheet" type="text/css" />
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.0/jquery.js"></script>
+    <script src="~/Scripts/star-rating.js" type="text/javascript"></script>
+    @foreach (var item in Model.Skills)
+    {
+        string id = item.Key.Id.ToString();
+        <script>
+            $(document).on('ready', function () {
+                $('#@id').rating({
+                    step: 1,
+                    defaultCaption: 'Unknown',
+                    starCaptions: { 0: 'Unknown', 1: 'Beginner', 2: 'Elementary', 3: 'Intermediate', 4: 'Advanced', 5: 'Profi' },
+                    starCaptionClasses: function (val) { return 'text-success'; }
+                }).on('rating.change', function (event, value, caption) {
+                    alert('Спасибо');
+                    Model.Skills.FirstOrDefault(s => s.Key.Id.ToString() == id).Value = value;
+                });
+            });
+        </script>
+    }
+}

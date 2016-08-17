@@ -1,0 +1,28 @@
+C:\Users\Yakov\documents\visual studio 2015\Projects\KnowledgeSystem\DAL\obj\Debug\DAL.csprojResolveAssemblyReference.cache
+C:\Users\Yakov\documents\visual studio 2015\Projects\KnowledgeSystem\DAL\bin\Debug\DAL.dll.config
+C:\Users\Yakov\documents\visual studio 2015\Projects\KnowledgeSystem\DAL\bin\Debug\DAL.dll
+C:\Users\Yakov\documents\visual studio 2015\Projects\KnowledgeSystem\DAL\bin\Debug\DAL.pdb
+C:\Users\Yakov\documents\visual studio 2015\Projects\KnowledgeSystem\DAL\bin\Debug\DALL.Interface.dll
+C:\Users\Yakov\documents\visual studio 2015\Projects\KnowledgeSystem\DAL\bin\Debug\EntityFramework.dll
+C:\Users\Yakov\documents\visual studio 2015\Projects\KnowledgeSystem\DAL\bin\Debug\EntityFramework.SqlServer.dll
+C:\Users\Yakov\documents\visual studio 2015\Projects\KnowledgeSystem\DAL\bin\Debug\ORM.dll
+C:\Users\Yakov\documents\visual studio 2015\Projects\KnowledgeSystem\DAL\bin\Debug\DALL.Interface.pdb
+C:\Users\Yakov\documents\visual studio 2015\Projects\KnowledgeSystem\DAL\bin\Debug\ORM.pdb
+C:\Users\Yakov\documents\visual studio 2015\Projects\KnowledgeSystem\DAL\bin\Debug\EntityFramework.xml
+C:\Users\Yakov\documents\visual studio 2015\Projects\KnowledgeSystem\DAL\bin\Debug\EntityFramework.SqlServer.xml
+C:\Users\Yakov\documents\visual studio 2015\Projects\KnowledgeSystem\DAL\obj\Debug\DAL.dll
+C:\Users\Yakov\documents\visual studio 2015\Projects\KnowledgeSystem\DAL\obj\Debug\DAL.pdb
+C:\Users\Yakov\Desktop\EPAM.Project\KnowledgeSystem\DAL\bin\Debug\DAL.dll.config
+C:\Users\Yakov\Desktop\EPAM.Project\KnowledgeSystem\DAL\bin\Debug\DAL.dll
+C:\Users\Yakov\Desktop\EPAM.Project\KnowledgeSystem\DAL\bin\Debug\DAL.pdb
+C:\Users\Yakov\Desktop\EPAM.Project\KnowledgeSystem\DAL\bin\Debug\DALL.Interface.dll
+C:\Users\Yakov\Desktop\EPAM.Project\KnowledgeSystem\DAL\bin\Debug\EntityFramework.dll
+C:\Users\Yakov\Desktop\EPAM.Project\KnowledgeSystem\DAL\bin\Debug\EntityFramework.SqlServer.dll
+C:\Users\Yakov\Desktop\EPAM.Project\KnowledgeSystem\DAL\bin\Debug\ORM.dll
+C:\Users\Yakov\Desktop\EPAM.Project\KnowledgeSystem\DAL\bin\Debug\DALL.Interface.pdb
+C:\Users\Yakov\Desktop\EPAM.Project\KnowledgeSystem\DAL\bin\Debug\ORM.pdb
+C:\Users\Yakov\Desktop\EPAM.Project\KnowledgeSystem\DAL\bin\Debug\EntityFramework.xml
+C:\Users\Yakov\Desktop\EPAM.Project\KnowledgeSystem\DAL\bin\Debug\EntityFramework.SqlServer.xml
+C:\Users\Yakov\Desktop\EPAM.Project\KnowledgeSystem\DAL\obj\Debug\DAL.csprojResolveAssemblyReference.cache
+C:\Users\Yakov\Desktop\EPAM.Project\KnowledgeSystem\DAL\obj\Debug\DAL.dll
+C:\Users\Yakov\Desktop\EPAM.Project\KnowledgeSystem\DAL\obj\Debug\DAL.pdb

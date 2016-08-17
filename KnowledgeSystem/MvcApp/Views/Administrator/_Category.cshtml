@@ -1,0 +1,18 @@
+﻿@model MvcApp.ViewModels.MvcCategory
+<tr>
+    <td>
+        @Html.HiddenFor(x => x.Id)
+    </td>
+    <td>
+        @Html.DisplayFor(x => x.Name)
+    </td>
+    <td>
+        @Html.DisplayFor(x=> x.Skills)
+    </td>
+    <td>        
+        @Html.RouteLink("Edit", new { controller = "Administrator", action = "EditCategory", id = Model.Id })
+    </td>
+    <td>
+        @Html.RouteLink("Remove", new { controller = "Administrator", action = "RemoveCategory", id = Model.Id })
+    </td>
+</tr>

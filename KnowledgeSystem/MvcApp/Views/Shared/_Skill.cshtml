@@ -1,0 +1,25 @@
+﻿@using MvcApp.Infrastructure;
+@model MvcApp.ViewModels.MvcSkill
+
+    <td>
+        @Html.HiddenFor(x => x.Id)
+    </td>
+    <td>
+        @Html.DisplayFor(x => x.Name)
+    </td>
+    <td>
+        @Html.DisplayFor(x => x.CategoryName)
+    </td>
+    @{
+        var identity = (CustomIdentity)User.Identity;
+
+        if (identity.Roles.FirstOrDefault(r => r == "Administrator") != null)
+        {
+            <td>
+                @Html.RouteLink("Edit", new { controller = "Administrator", action = "EditSkill", id = Model.Id })
+            </td>
+            <td>
+                @Html.RouteLink("Remove", new { controller = "Administrator", action = "RemoveSkill", id = Model.Id })
+            </td>
+        }
+    }

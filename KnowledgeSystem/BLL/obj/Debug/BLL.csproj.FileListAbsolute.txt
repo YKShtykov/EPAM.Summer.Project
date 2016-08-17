@@ -1,0 +1,18 @@
+C:\Users\Yakov\documents\visual studio 2015\Projects\KnowledgeSystem\BLL\bin\Debug\BLL.dll
+C:\Users\Yakov\documents\visual studio 2015\Projects\KnowledgeSystem\BLL\bin\Debug\BLL.pdb
+C:\Users\Yakov\documents\visual studio 2015\Projects\KnowledgeSystem\BLL\bin\Debug\BLL.Interface.dll
+C:\Users\Yakov\documents\visual studio 2015\Projects\KnowledgeSystem\BLL\bin\Debug\DALL.Interface.dll
+C:\Users\Yakov\documents\visual studio 2015\Projects\KnowledgeSystem\BLL\bin\Debug\BLL.Interface.pdb
+C:\Users\Yakov\documents\visual studio 2015\Projects\KnowledgeSystem\BLL\bin\Debug\DALL.Interface.pdb
+C:\Users\Yakov\documents\visual studio 2015\Projects\KnowledgeSystem\BLL\obj\Debug\BLL.csprojResolveAssemblyReference.cache
+C:\Users\Yakov\documents\visual studio 2015\Projects\KnowledgeSystem\BLL\obj\Debug\BLL.dll
+C:\Users\Yakov\documents\visual studio 2015\Projects\KnowledgeSystem\BLL\obj\Debug\BLL.pdb
+C:\Users\Yakov\Desktop\EPAM.Project\KnowledgeSystem\BLL\bin\Debug\BLL.dll
+C:\Users\Yakov\Desktop\EPAM.Project\KnowledgeSystem\BLL\bin\Debug\BLL.pdb
+C:\Users\Yakov\Desktop\EPAM.Project\KnowledgeSystem\BLL\bin\Debug\BLL.Interface.dll
+C:\Users\Yakov\Desktop\EPAM.Project\KnowledgeSystem\BLL\bin\Debug\DALL.Interface.dll
+C:\Users\Yakov\Desktop\EPAM.Project\KnowledgeSystem\BLL\bin\Debug\BLL.Interface.pdb
+C:\Users\Yakov\Desktop\EPAM.Project\KnowledgeSystem\BLL\bin\Debug\DALL.Interface.pdb
+C:\Users\Yakov\Desktop\EPAM.Project\KnowledgeSystem\BLL\obj\Debug\BLL.csprojResolveAssemblyReference.cache
+C:\Users\Yakov\Desktop\EPAM.Project\KnowledgeSystem\BLL\obj\Debug\BLL.dll
+C:\Users\Yakov\Desktop\EPAM.Project\KnowledgeSystem\BLL\obj\Debug\BLL.pdb
