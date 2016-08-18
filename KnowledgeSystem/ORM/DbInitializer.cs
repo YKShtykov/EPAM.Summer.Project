@@ -18,7 +18,7 @@ namespace ORM
 
             context.SaveChanges();
 
-            var adminRole = context.Set<Role>().FirstOrDefault(r => r.Id==1);
+            var adminRoles = context.Set<Role>().Select(r=>r);
 
             User admin = new User()
             {
@@ -29,7 +29,10 @@ namespace ORM
                 PasswordSalt = AdminPasswordGenerator.Salt        
             };
 
-            admin.Roles.Add(adminRole);
+            foreach (var item in adminRoles)
+            {
+                admin.Roles.Add(item);
+            }            
 
             context.Set<User>().Add(admin);
             context.Set<Profile>().Add(new Profile() { Id = admin.Id, BirthDate = default(DateTime).ToString() });

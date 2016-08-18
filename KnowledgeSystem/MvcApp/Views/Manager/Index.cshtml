@@ -1,0 +1,96 @@
+﻿@model IList<MvcApp.ViewModels.SkillsModel>
+
+
+@{
+    ViewBag.Title = "Index";
+    int count = Model.Count / 10 + 1;
+    int skillsCount = ViewBag.Skills.Length;
+}
+
+<h2>Index</h2>
+@using (Html.BeginForm())
+{
+    <div id="content">
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>User Login</th>
+                    @for (int i = 0; i < ViewBag.Skills.Length; i++)
+                {
+                        <th>
+                            @{string id = "select" + i;
+                            }
+                            <select class="form-control" id="@id" name="selector">
+                                @for (int j = 0; j < ViewBag.AllSkills.Length; j++)
+                                {
+                                    if (ViewBag.Skills[i] == ViewBag.AllSkills[j])
+                                    {
+                                        <option selected>@ViewBag.AllSkills[j]</option>
+                                    }
+                                    else
+                                    {
+                                        <option>@ViewBag.AllSkills[j]</option>
+                                    }
+                                }
+                            </select>
+                        </th>
+                                }
+                    @if (skillsCount < 5)
+                {
+                    for (int i = 0; i < 5 - skillsCount; i++)
+                    {
+                            <th>
+                                <select class="form-control" name="selector">
+                                    <option data-hidden="true"></option>
+                                    @foreach (var option in ViewBag.AllSkills)
+                                    {
+                                        <option>@option</option>
+
+                                    }
+                                </select>
+                            </th>
+
+                        }
+                    }
+                </tr>
+
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>@item.UserLogin</td>
+                        @foreach (var item2 in item.Skills)
+                        {
+                            <td>@item2.Level</td>
+                        }
+                    </tr>
+
+                }
+            </tbody>
+        </table>
+    </div>
+    <div id="page-selection"></div>
+    <div class="form-group col-md-2">
+        <input type="submit" value="Save" class="btn btn-default" />
+    </div>
+                                }
+
+@section scripts{
+    <script src="//code.jquery.com/jquery-2.1.3.min.js"></script>
+    <script src="//netdna.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+    <script src="//raw.github.com/botmonster/jquery-bootpag/master/lib/jquery.bootpag.min.js"></script>
+    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
+    <script type="text/javascript" src="~/Scripts/jquery.bootpag.js"></script>
+
+    <script>
+        $(document).on('ready', function () {
+            var count = @count
+            $('#page-selection').bootpag({
+                total: count
+            }).on("page", function (event, /* page number here */ num) {
+                $("#content").html("Insert content"); // some ajax content loading...
+            });
+        });
+    </script>
+}

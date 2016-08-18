@@ -12,6 +12,7 @@ namespace BLL.Interface
         IEnumerable<BllSkill> GetAll();
         void Create(BllSkill skill);
         void Delete(int id);
-        void Update(BllSkill skill);       
+        void Update(BllSkill skill);
+        IEnumerable<BllUserSkills> RateUsers(IEnumerable<string> sortings);   
     }
 }

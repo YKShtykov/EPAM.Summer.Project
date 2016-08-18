@@ -42,5 +42,11 @@ namespace BLL
         {
             skillRepository.Update(SkillMapper.Map(skill));
         }
+
+        public IEnumerable<BllUserSkills> RateUsers(IEnumerable<string> sortings)
+        {
+            var dalUsersSkills = skillRepository.RateUsers(sortings);
+            return dalUsersSkills.Select(dus => SkillMapper.Map(dus));
+        }
     }
 }

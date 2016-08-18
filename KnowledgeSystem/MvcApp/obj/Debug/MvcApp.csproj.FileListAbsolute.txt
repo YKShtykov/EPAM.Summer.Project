@@ -226,3 +226,4 @@ C:\Users\Yakov\Desktop\EPAM.Summer.Project\KnowledgeSystem\MvcApp\bin\BLL.pdb
 C:\Users\Yakov\Desktop\EPAM.Summer.Project\KnowledgeSystem\MvcApp\obj\Debug\MvcApp.csprojResolveAssemblyReference.cache
 C:\Users\Yakov\Desktop\EPAM.Summer.Project\KnowledgeSystem\MvcApp\obj\Debug\MvcApp.dll
 C:\Users\Yakov\Desktop\EPAM.Summer.Project\KnowledgeSystem\MvcApp\obj\Debug\MvcApp.pdb
+C:\Users\Yakov\Desktop\EPAM.Summer.Project\KnowledgeSystem\MvcApp\bin\GridMvc.dll

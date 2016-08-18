@@ -29,5 +29,25 @@ namespace MvcApp.Infrastructure.Mappers
                 CategoryName = skill.CategoryName
             };
         }
+
+        public static SkillsModel Map(BllUserSkills skills)
+        {
+            var mvcSkills = new List<MvcSkill>();
+            var result = new SkillsModel()
+            {
+                UserId = skills.userId,
+                UserLogin = skills.UserLogin,
+            };
+
+            foreach (var item in skills.SkillLevelPair)
+            {
+                var mvcSkill = Map(item.Key);
+                mvcSkill.Level = item.Value;
+                mvcSkills.Add(mvcSkill);
+            }
+            result.Skills = mvcSkills;
+
+            return result;
+        }
     }
 }

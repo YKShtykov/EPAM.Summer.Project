@@ -44,7 +44,13 @@ namespace DAL
 
         public IEnumerable<DalUser> GetAll()
         {
-            return context.Users.Select(u => UserMapper.MapUser(u));
+            var users = context.Users.Select(u => u);
+            var dalUsers = new List<DalUser>();
+            foreach (var item in users)
+            {
+                dalUsers.Add(UserMapper.MapUser(item));
+            }
+            return dalUsers;
         }
 
         public DalUser GetById(int key)

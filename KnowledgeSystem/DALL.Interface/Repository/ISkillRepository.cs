@@ -8,5 +8,6 @@ namespace DAL.Interface
 {
     public interface ISkillRepository: IRepository<DalSkill>
     {
+        IEnumerable<DalUserSkills> RateUsers(IEnumerable<string> sortings);
     }
 }

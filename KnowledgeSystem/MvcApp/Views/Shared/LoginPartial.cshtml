@@ -2,14 +2,21 @@
 @{
     if (Request.IsAuthenticated)
     {
-        var identity = (CustomIdentity)User.Identity;
+        var roles = ((CustomIdentity)User.Identity).Roles;
         <ul class="nav navbar-nav">
             <li>@Html.ActionLink("Profile", "UserProfile", "Profile")</li>
             <li>@Html.ActionLink("Skills", "Index", "Skill")</li>
-            @if (identity.Roles.FirstOrDefault(r => r == "Administrator") != null)
+
+            @if (roles.Contains("Manager"))
+            {
+                <li>@Html.ActionLink("Manager page", "Index", "Manager")</li>
+            }
+
+            @if (roles.Contains("Administrator"))
             {
                 <li>@Html.ActionLink("Administrator page", "Index", "Administrator")</li>
             }
+
         </ul>
         <ul class="nav navbar-nav navbar-right">
             <li>@Html.ActionLink("Logout", "Logout", "Account")</li>

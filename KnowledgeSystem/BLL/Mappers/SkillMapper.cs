@@ -29,5 +29,22 @@ namespace BLL.Mappers
                 CategoryName = skill.CategoryName
             };
         }
+
+        public static BllUserSkills Map(DalUserSkills userSkills)
+        {
+            var skills = new Dictionary<BllSkill, int>();
+            var result= new BllUserSkills()
+            {
+                userId = userSkills.userId,
+                UserLogin = userSkills.UserLogin,
+            };
+            foreach (var item in userSkills.SkillLevelPair)
+            {
+                skills.Add(Map(item.Key), item.Value);
+            }
+            result.SkillLevelPair = skills;
+
+            return result;
+        }
     }
 }

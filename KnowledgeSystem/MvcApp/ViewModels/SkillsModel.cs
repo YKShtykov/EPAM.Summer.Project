@@ -9,10 +9,12 @@ namespace MvcApp.ViewModels
 {
     public class SkillsModel
     {
-        public SkillsModel(List<MvcSkill> skills)
+        public SkillsModel()
         {
-            Skills = skills;      
+            Skills = new List<MvcSkill>();      
         }
+        public int UserId { get; set; }
+        public string UserLogin { get; set; }
 
         public List<MvcSkill> Skills { get; set; }
     }
