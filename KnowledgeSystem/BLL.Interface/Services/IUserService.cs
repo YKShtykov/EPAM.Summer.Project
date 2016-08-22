@@ -13,6 +13,7 @@ namespace BLL.Interface
         void CreateUser(BllUser user);
         BllUser LoginUser(string emailOrLogin, string password);
         void DeleteUser(int id);
+        void UpdateUser(BllUser user);
         int GetSkillLevel(int userId, int skillId);
         void UpdateSkillLevel(int userId, int skillId, int level);
         void UpdateAllSkillLevels(int userId, IDictionary<int, int> skillLevel);

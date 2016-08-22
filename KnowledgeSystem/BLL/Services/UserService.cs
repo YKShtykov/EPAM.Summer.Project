@@ -98,5 +98,10 @@ namespace BLL
         {
             userRepository.UpdateSkillLevel(userId, skillId, level);
         }
+
+        public void UpdateUser(BllUser user)
+        {
+            userRepository.Update(UserMapper.MapUser(user));
+        }
     }
 }

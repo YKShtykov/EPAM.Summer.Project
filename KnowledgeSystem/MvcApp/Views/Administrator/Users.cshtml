@@ -1,0 +1,114 @@
+﻿@model MvcApp.ViewModels.MvcUsersPaging
+@using MvcApp.Infrastructure;
+
+@{
+    ViewBag.Title = "EditUsers";
+}
+
+<h2>EditUsers</h2>
+@using (Html.BeginForm("UpdateUsers", "Administrator", FormMethod.Post))
+{
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th></th>
+                <th>
+                    Login
+                </th>
+                <th>
+                    Email
+                </th>
+                <th></th>
+                <th></th>
+                <th>
+                    Roles
+                </th>
+            </tr>
+
+        </thead>
+        <tbody>
+            @for (int i = 0; i < Model.Users.Count(); i++)
+            {
+                <tr>
+                    <td>
+                        @Html.HiddenFor(m => m.Users[i].Id)
+                    </td>
+                    <td class="login">
+                        @Html.HiddenFor(m => m.Users[i].Login)
+                        @Html.ActionLink(Model.Users[i].Login,"UserDetails", new { id = Model.Users[i].Id })
+                    </td>
+                    <td>
+                        @Html.HiddenFor(m => m.Users[i].Email)
+                        @Html.DisplayFor(m => m.Users[i].Email)
+                    </td>
+                    <td>
+                        @Html.HiddenFor(m => m.Users[i].Password)
+                    </td>
+                    <td>
+                        @Html.HiddenFor(m => m.Users[i].PasswordSalt)
+                    </td>
+                    <td>
+                        @{
+                            string name = "Users[" + i + "].Roles";
+                        }
+                        <select multiple class="selectpicker" name="@name" id="@i">
+
+                            @for (int j= 0;j< ViewBag.Roles.Length; j++)
+                            {
+                                if (Model.Users[i].Roles.Contains(ViewBag.Roles[j]))
+                                {
+                                    <option selected name="optionName">@ViewBag.Roles[j]</option>
+                                }
+                                else
+                                {
+                                    <option name="optionName">@ViewBag.Roles[j]</option>
+                                }
+                            }
+                        </select>
+                    </td>
+                    <td>
+                        @Html.RouteLink("Remove", new { controller = "Administrator", action = "RemoveUser", id = Model.Users[i].Id })
+                    </td>
+                </tr>
+                            }
+        </tbody>
+    </table>
+    <br />
+    <div id="result"></div>
+    <div class="btn-group">
+        @Html.PageLinks(Model.Pagination, x => Url.Action("Users", new { page = x }))
+    </div>
+    <div class="form-group">
+        <div class="col-md-offset-2 col-md-10">
+            <input type="submit" value="Save" class="btn btn-default" />
+        </div>
+    </div>
+                            }
+@section scripts{
+    <link rel="stylesheet" href="~/Content/bootstrap-select.css">
+    <script src="~/Scripts/bootstrap-select.js"></script>
+    <script type="text/javascript" src="~/scripts/jsrender.js"></script>
+
+<script id="UserTemplate" type="text/x-jsrender">
+        <div>
+            <em>FName:</em> {{:FirstName}}
+            <em>MName:</em> {{:MiddleName}}
+            <em>LName:</em> {{:LastName}}
+            <em>BirthDate</em>{{:BirthDate}}
+        </div>
+    </script>
+
+    <script>
+            $(document).ready(function () {
+                $("td.login a").click(function (e) {
+                    e.preventDefault();
+                    var url = $(this).attr('href');
+                    $.getJSON(url, null, function (user) {
+                        var template = $.templates("#UserTemplate");
+                        var htmlOutput = template.render(user);
+                        $("#result").html(htmlOutput);
+                    });
+                });
+            });
+</script>
+}

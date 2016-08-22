@@ -1,9 +1,9 @@
-﻿@model IList<MvcApp.ViewModels.SkillsModel>
-
+﻿@model MvcApp.ViewModels.SkillModelPaging
+@using MvcApp.Infrastructure;
 
 @{
     ViewBag.Title = "Index";
-    int count = Model.Count / 10 + 1;
+    int count = Model.UsersSkills.Count / 10 + 1;
     int skillsCount = ViewBag.Skills.Length;
 }
 
@@ -56,7 +56,7 @@
 
             </thead>
             <tbody>
-                @foreach (var item in Model)
+                @foreach (var item in Model.UsersSkills)
                 {
                     <tr>
                         <td>@item.UserLogin</td>
@@ -70,6 +70,9 @@
             </tbody>
         </table>
     </div>
+    <div class="btn-group">
+        @Html.PageSubmit(Model.Pagination);
+    </div>
     <div id="page-selection"></div>
     <div class="form-group col-md-2">
         <input type="submit" value="Save" class="btn btn-default" />
@@ -77,19 +80,15 @@
                                 }
 
 @section scripts{
-    <script src="//code.jquery.com/jquery-2.1.3.min.js"></script>
-    <script src="//netdna.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
-    <script src="//raw.github.com/botmonster/jquery-bootpag/master/lib/jquery.bootpag.min.js"></script>
-    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
-    <script type="text/javascript" src="~/Scripts/jquery.bootpag.js"></script>
 
     <script>
-        $(document).on('ready', function () {
-            var count = @count
-            $('#page-selection').bootpag({
-                total: count
-            }).on("page", function (event, /* page number here */ num) {
-                $("#content").html("Insert content"); // some ajax content loading...
+        $(document).ready(function () {
+            $("input[name='page']").click(function (event) {
+                event.preventDefault();
+                url: '/Manager/Index'
+                $.post(url, $('form').serialize(), function (response) {
+                    $('table').replaceAll(response);
+                });
             });
         });
     </script>

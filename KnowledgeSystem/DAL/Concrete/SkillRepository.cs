@@ -75,10 +75,12 @@ namespace DAL
         {
             var skills = new List<Skill>();
             var usersRating = new List<DalUserSkills>();
-            var ormSkills = context.Set<Skill>().Select(s => s).Include(s => s.Category);
+
+            if (ReferenceEquals(sortings, null)) sortings = new string[] { (context.Set<Skill>().Include(s => s.Category).First()).Name };
+
             foreach (var item in sortings)
             {
-                skills.Add(ormSkills.FirstOrDefault(s => s.Name == item));
+                skills.Add(context.Set<Skill>().Include(s => s.Category).FirstOrDefault(s => s.Name == item));
             }
 
             skills.RemoveAll(item => item == null);
@@ -87,6 +89,7 @@ namespace DAL
             {
                 users = users.Intersect(GetUsersWithThatSkill(item));
             }
+
             foreach (var user in users)
             {
                 var userSkills = new DalUserSkills();
@@ -101,7 +104,7 @@ namespace DAL
                 usersRating.Add(userSkills);
             }
             var skillsArray = skills.ToArray();
-            
+
             return Sort(usersRating);
         }
 
@@ -119,13 +122,13 @@ namespace DAL
             }
             skills.ToArray();
             var sortingRating = usersRating.ToArray();
-            for(int i = 0; i < sortingRating.Length; i++)
+            for (int i = 0; i < sortingRating.Length; i++)
             {
                 for (int j = 1; j < sortingRating.Length; j++)
                 {
-                    int lhs = sortingRating[j-1].SkillLevelPair.FirstOrDefault(kvp => kvp.Key == skills[0]).Value;
+                    int lhs = sortingRating[j - 1].SkillLevelPair.FirstOrDefault(kvp => kvp.Key == skills[0]).Value;
                     int rhs = sortingRating[j].SkillLevelPair.FirstOrDefault(kvp => kvp.Key == skills[0]).Value;
-                    if (lhs>rhs)
+                    if (lhs > rhs)
                     {
                         var temp = sortingRating[i];
                         sortingRating[i] = sortingRating[j];

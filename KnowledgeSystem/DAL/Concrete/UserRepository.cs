@@ -37,7 +37,8 @@ namespace DAL
 
         public void Delete(int id)
         {
-            var user = context.Set<User>().FirstOrDefault(u => u.Id == id);
+            var user = context.Set<User>().Include(u=>u.Profile).FirstOrDefault(u => u.Id == id);
+            context.Set<Profile>().Remove(user.Profile);
             context.Set<User>().Remove(user);
             context.SaveChanges();
         }
@@ -65,7 +66,18 @@ namespace DAL
 
         public void Update(DalUser entity)
         {
-            throw new NotImplementedException();
+            var user = context.Set<User>().FirstOrDefault(u => u.Id == entity.Id);
+            if (!ReferenceEquals(user, null))
+            {
+                user.Roles.Clear();
+                foreach (var item in entity.Roles)
+                {
+                    user.Roles.Add(context.Set<Role>().FirstOrDefault(r => r.Name == item));
+                }
+                context.Entry(user).State = EntityState.Modified;
+                context.SaveChanges();
+            }
+
         }
 
         public bool ConsistEmail(string key)

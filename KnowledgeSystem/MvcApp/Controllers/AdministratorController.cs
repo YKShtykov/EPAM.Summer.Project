@@ -18,15 +18,18 @@ namespace MvcApp.Controllers
         private readonly IUserService users;
         private readonly ISkillService skills;
         private readonly ICategoryService categories;
+        private readonly IProfileService profiles;
 
 
         public AdministratorController(IUserService userService,
                                        ISkillService skillService,
-                                       ICategoryService categoryService)
+                                       ICategoryService categoryService,
+                                       IProfileService profileService)
         {
             users = userService;
             skills = skillService;
             categories = categoryService;
+            profiles = profileService;
         }
 
         // GET: Administrator
@@ -149,9 +152,44 @@ namespace MvcApp.Controllers
         }
 
 
-        public ActionResult EditUsers()
+        public ActionResult Users(int page=1)
         {
-            return View();
+            var MvcUserList = new List<MvcUser>();
+
+            foreach (var item in users.GetAllBllUsers())
+            {
+                MvcUserList.Add(UserMapper.MapUser(item));
+            }
+
+            int pageSize = 1;
+            List<MvcUser> usersPerPages = MvcUserList.Skip((page - 1) * pageSize).Take(pageSize).ToList();
+            Pagination pageInfo = new Pagination { PageNumber = page, PageSize = pageSize, TotalItems = MvcUserList.Count };
+            var viewModel = new MvcUsersPaging() { Pagination = pageInfo, Users = usersPerPages };
+
+            ViewBag.Roles = new string[]{ "Administrator", "Manager", "User"};
+            return View(viewModel);
+        }
+
+        [HttpPost]
+        public ActionResult UpdateUsers(MvcUsersPaging userCollection)
+        {
+            foreach (var item in userCollection.Users)
+            {
+                users.UpdateUser(UserMapper.MapUser(item));
+            }
+
+            return Redirect("~/Administrator/Users");
+        }
+
+        public ActionResult RemoveUser(int Id)
+        {
+            users.DeleteUser(Id);
+            return Redirect("~/Administrator/Users");
+        }
+
+        public ActionResult UserDetails(int id)
+        {
+            return Json(profiles.GetProfile(id), JsonRequestBehavior.AllowGet);
         }
     }
 }
