@@ -36,7 +36,7 @@ namespace DAL
         public IEnumerable<DalCategory> GetAll()
         {
             List<DalCategory> result = new List<DalCategory>();
-            foreach (Category item in context.Set<Category>().Select(u => u))
+            foreach (Category item in context.Set<Category>().Include(c=>c.Skills).Select(u => u))
             {
                 result.Add(CategoryMapper.Map(item));
             }
@@ -44,7 +44,7 @@ namespace DAL
             return result;
         }
 
-        public DalCategory GetById(int key)
+        public DalCategory Get(int key)
         {
             return CategoryMapper.Map(context.Set<Category>().FirstOrDefault(u => u.Id == key));
         }

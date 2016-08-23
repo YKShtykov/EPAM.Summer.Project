@@ -43,7 +43,7 @@ namespace MvcApp.Controllers
                 MvcUser user;
                 try
                 {
-                    user = UserMapper.MapUser(service.LoginUser(loginModel.EmailOrLogin, loginModel.Password));
+                    user = UserMapper.Map(service.Login(loginModel.EmailOrLogin, loginModel.Password));
                     string userData = JsonConvert.SerializeObject(user);
                     var ticket = new FormsAuthenticationTicket(1,
                                                                user.Id.ToString(),
@@ -75,7 +75,7 @@ namespace MvcApp.Controllers
             {
                 try
                 {
-                    service.CreateUser(UserMapper.MapUser(model));
+                    service.Create(UserMapper.Map(model));
                     return Redirect("~/Home/Index");
                 }
                 catch (Exception e)

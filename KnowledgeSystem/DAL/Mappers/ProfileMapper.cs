@@ -22,6 +22,8 @@ namespace DAL.Mappers
                 AdditionalInfo = profile.AdditionalInfo,
                 City = profile.City,
                 Gender = profile.Gender,
+                Image = profile.Image,
+                ImageMimeType = profile.ImageMimeType,
                 RelationshipStatus = profile.RelationshipStatus
             };
         }
@@ -38,6 +40,8 @@ namespace DAL.Mappers
                 AdditionalInfo = profile.AdditionalInfo,
                 City = profile.City,
                 Gender = profile.Gender,
+                Image = profile.Image,
+                ImageMimeType = profile.ImageMimeType,
                 RelationshipStatus = profile.RelationshipStatus
             };
         }

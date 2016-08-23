@@ -43,7 +43,7 @@ namespace BLL
 
         public BllCategory GetById(int id)
         {
-            return CategoryMapper.Map(categoryRepository.GetById(id));
+            return CategoryMapper.Map(categoryRepository.Get(id));
         }
 
         public void Update(BllCategory entity)

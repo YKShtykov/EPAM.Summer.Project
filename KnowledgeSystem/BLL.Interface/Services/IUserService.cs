@@ -8,16 +8,14 @@ namespace BLL.Interface
 {
     public interface IUserService
     {
-        BllUser GetBllUser(int id);
-        IEnumerable<BllUser> GetAllBllUsers();
-        void CreateUser(BllUser user);
-        BllUser LoginUser(string emailOrLogin, string password);
-        void DeleteUser(int id);
-        void UpdateUser(BllUser user);
-        int GetSkillLevel(int userId, int skillId);
-        void UpdateSkillLevel(int userId, int skillId, int level);
-        void UpdateAllSkillLevels(int userId, IDictionary<int, int> skillLevel);
+        void Create(BllUser user);
+        void Update(BllUser user);
+        BllUser Get(int id);
+        void Delete(int id);
+        IEnumerable<BllUser> GetAll();       
+        BllUser Login(string emailOrLogin, string password);        
 
-        Dictionary<BllSkill,int> GetAllSkillLevels(int userId);
+        void UpdateUserSkills(int userId, IDictionary<int, int> skillLevel);
+        Dictionary<BllSkill,int> GetUserSkills(int userId);
     }
 }

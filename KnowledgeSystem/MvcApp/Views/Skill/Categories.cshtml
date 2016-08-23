@@ -1,0 +1,57 @@
+﻿@using MvcApp.Infrastructure;
+@model MvcApp.ViewModels.GenericPaginationModel<MvcApp.ViewModels.MvcCategory>
+@{
+    ViewBag.Title = "Entities";
+}
+
+@using (Html.BeginForm())
+{
+    <h2>Entities</h2>
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th></th>
+                <th>
+                    Name
+                </th>
+                <th>
+                    Skills
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            @for (int i = 0; i < Model.Entities.Count; i++)
+            {
+                <tr>
+                    <td>
+                        @Html.HiddenFor(m => m.Entities[i].Id)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(m => m.Entities[i].Name)
+                    </td>
+                    <td>
+                        <ul class="list-group">
+                            @foreach (var item in Model.Entities[i].Skills)
+                            {
+                                <li class="list-group-item">@item.Name</li>
+                            }
+                            <li class="list-group-item">@Html.RouteLink("Add skill", new { controller = "Skill", action = "CreateSkill", category = Model.Entities[i].Name })</li>
+                        </ul>
+                    </td>
+                    <td>
+                        @Html.RouteLink("Edit", new { controller = "Skill", action = "EditCategory", id = Model.Entities[i].Id })
+                    </td>
+                    <td>
+                        @Html.RouteLink("Remove", new { controller = "Skill", action = "RemoveCategory", id = Model.Entities[i].Id })
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+    <div class="btn-group">
+        @Html.PageSubmit(Model.Pagination)
+    </div>
+    <div>
+        @Html.ActionLink("Create category", "CreateCategory", "Skill")
+    </div>
+}

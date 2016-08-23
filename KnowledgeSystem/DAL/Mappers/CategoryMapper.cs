@@ -17,10 +17,10 @@ namespace DAL.Mappers
                 Id = category.Id,
                 Name = category.Name
             };
-            //foreach (var skill in category.Skills)
-            //{
-            //    result.Skills.Add(SkillMapper.Map(skill));
-            //}
+            foreach (var skill in category.Skills)
+            {
+                result.Skills.Add(SkillMapper.Map(skill));
+            }
             return result;
         }
 
@@ -31,10 +31,10 @@ namespace DAL.Mappers
                 Id = category.Id,
                 Name = category.Name
             };
-            //foreach (var skill in category.Skills)
-            //{
-            //    result.Skills.Add(SkillMapper.Map(skill));
-            //}
+            foreach (var skill in category.Skills)
+            {
+                result.Skills.Add(SkillMapper.Map(skill));
+            }
             return result;
         }
     }

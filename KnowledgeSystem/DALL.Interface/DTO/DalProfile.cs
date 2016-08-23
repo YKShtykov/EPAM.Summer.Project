@@ -19,6 +19,7 @@ namespace DAL.Interface
         public string RelationshipStatus { get; set; }
         public string City { get; set; }
         public string AdditionalInfo { get; set; }
-        public string ImageLink { get; set; }
+        public byte[] Image { get; set; }
+        public string ImageMimeType { get; set; }
     }
 }

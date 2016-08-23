@@ -22,6 +22,8 @@ namespace MvcApp.Infrastructure.Mappers
                 Age = profile.Age,
                 AdditionalInfo = profile.AdditionalInfo,
                 City = profile.City,
+                Image = profile.Image,
+                ImageMimeType = profile.ImageMimeType,                
                 Gender = Enum.GetName(typeof(Gender), profile.Gender),
                 RelationshipStatus = Enum.GetName(typeof(RelationshipStatus), profile.RelationshipStatus)
             };
@@ -39,6 +41,8 @@ namespace MvcApp.Infrastructure.Mappers
                 Age = profile.Age,
                 AdditionalInfo = profile.AdditionalInfo,
                 City = profile.City,
+                Image = profile.Image,
+                ImageMimeType = profile.ImageMimeType,
                 //Gender = profile.Gender,
                 //RelationshipStatus = Enum.GetName(typeof(RelationshipStatus), profile.RelationshipStatus)
             };

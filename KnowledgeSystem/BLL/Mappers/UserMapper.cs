@@ -10,7 +10,7 @@ namespace BLL.Mappers
 {
     public static class UserMapper
     {
-        public static BllUser MapUser(DalUser user)
+        public static BllUser Map(DalUser user)
         {
             BllUser result = new BllUser
             {
@@ -25,7 +25,7 @@ namespace BLL.Mappers
             return result;
         }
 
-        public static DalUser MapUser(BllUser user)
+        public static DalUser Map(BllUser user)
         {
             DalUser result = new DalUser
             {
@@ -38,6 +38,16 @@ namespace BLL.Mappers
             };
 
             return result;
+        }
+
+        public static IEnumerable<BllUser> Map(IEnumerable<DalUser> users)
+        {
+            var bllUsers = new List<BllUser>();
+            foreach (var item in users)
+            {
+                bllUsers.Add(Map(item));
+            }
+            return bllUsers;
         }
     }
 }

@@ -49,5 +49,16 @@ namespace MvcApp.Infrastructure.Mappers
 
             return result;
         }
+
+        public static IEnumerable<SkillsModel> Map(IEnumerable<BllUserSkills> skills)
+        {
+            var result = new List<SkillsModel>();
+            foreach (var item in skills)
+            {
+                result.Add(Map(item));
+            }
+
+            return result;
+        }
     }
 }

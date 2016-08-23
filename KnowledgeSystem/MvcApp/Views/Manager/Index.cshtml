@@ -1,9 +1,9 @@
-﻿@model MvcApp.ViewModels.SkillModelPaging
-@using MvcApp.Infrastructure;
+﻿@using MvcApp.Infrastructure;
+@model MvcApp.ViewModels.GenericPaginationModel<MvcApp.ViewModels.SkillsModel>
+
 
 @{
     ViewBag.Title = "Index";
-    int count = Model.UsersSkills.Count / 10 + 1;
     int skillsCount = ViewBag.Skills.Length;
 }
 
@@ -56,7 +56,7 @@
 
             </thead>
             <tbody>
-                @foreach (var item in Model.UsersSkills)
+                @foreach (var item in Model.Entities)
                 {
                     <tr>
                         <td>@item.UserLogin</td>
@@ -71,25 +71,26 @@
         </table>
     </div>
     <div class="btn-group">
-        @Html.PageSubmit(Model.Pagination);
+        @Html.PageSubmit(Model.Pagination)
     </div>
+
     <div id="page-selection"></div>
     <div class="form-group col-md-2">
         <input type="submit" value="Save" class="btn btn-default" />
     </div>
-                                }
+}
 
 @section scripts{
 
     <script>
-        $(document).ready(function () {
-            $("input[name='page']").click(function (event) {
-                event.preventDefault();
-                url: '/Manager/Index'
-                $.post(url, $('form').serialize(), function (response) {
-                    $('table').replaceAll(response);
-                });
-            });
-        });
+        //$(document).ready(function () {
+        //    $("input[name='page']").click(function (event) {
+        //        event.preventDefault();
+        //        url: '/Manager/Index'
+        //        $.post(url, $('form').serialize(), function (response) {
+        //            $('table').replaceAll(response);
+        //        });
+        //    });
+        //});
     </script>
 }

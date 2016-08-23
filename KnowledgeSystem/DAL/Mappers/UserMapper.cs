@@ -10,7 +10,7 @@ namespace DAL.Mappers
 {
     public static class UserMapper
     {
-        public static User MapUser(DalUser user)
+        public static User Map(DalUser user)
         {
             User result = new User
             {
@@ -24,7 +24,7 @@ namespace DAL.Mappers
             return result;
         }
 
-        public static DalUser MapUser(User user)
+        public static DalUser Map(User user)
         {
             DalUser result = new DalUser
             {
@@ -41,6 +41,16 @@ namespace DAL.Mappers
             }
 
             return result;
+        }
+
+        public static IEnumerable<DalUser> Map(IQueryable<User> users)
+        {
+            var dalUsers = new List<DalUser>();
+            foreach (var item in users)
+            {
+                dalUsers.Add(Map(item));
+            }
+            return dalUsers;
         }
     }
 }

@@ -11,7 +11,7 @@ namespace ORM.Mappers
     {
         public ProfileMapper()
         {
-            ToTable("Profile", "UserData");
+            ToTable("Profile");
 
             HasKey(t => t.Id);
 
@@ -23,7 +23,6 @@ namespace ORM.Mappers
             Property(t => t.BirthDate);
             Property(t => t.Gender).HasMaxLength(16);
             Property(t => t.RelationshipStatus).HasMaxLength(16);
-            Property(t => t.ImageLink).HasMaxLength(200);
 
             HasRequired(t => t.User).WithOptional(u => u.Profile);
         }

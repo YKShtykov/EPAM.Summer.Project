@@ -35,7 +35,7 @@ namespace DAL
             throw new NotImplementedException();
         }
 
-        public DalProfile GetById(int key)
+        public DalProfile Get(int key)
         {
             return ProfileMapper.MapProfile(context.Set<Profile>().FirstOrDefault(u => u.Id == key));
         }

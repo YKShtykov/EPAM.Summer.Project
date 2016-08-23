@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using BLL.Interface;
 using DAL.Interface;
 using BLL.Mappers;
+using System.Linq.Expressions;
 
 namespace BLL
 {
@@ -13,56 +14,53 @@ namespace BLL
     {
         private readonly IUnitOfWork uow;
         private readonly IUserRepository userRepository;
+        private readonly ISkillRepository skillRepository;
 
-        public UserService(IUnitOfWork uow, IUserRepository repository)
+        public UserService(IUnitOfWork uow, IUserRepository repository, ISkillRepository skillRepository)
         {
             this.uow = uow;
             this.userRepository = repository;
+            this.skillRepository = skillRepository;
         }
 
-        public void CreateUser(BllUser user)
+        public void Create(BllUser user)
         {
-
-            if (userRepository.ConsistEmail(user.Email)) throw new Exception("User with such email is already exists");
-            if (userRepository.ConsistLogin(user.Login)) throw new Exception("User with such login is already exists");
+            DalUser dalUser = UserMapper.Map(user);
+            //if (IsEnabled(dalUser)) throw new Exception("User with such email is already exists");
 
             string passwordSalt = PasswordService.GenerateSalt();
             string encoded = PasswordService.GetHash(user.Password, passwordSalt);
-            user.Password = encoded;
-            user.PasswordSalt = passwordSalt;
+            dalUser.Password = encoded;
+            dalUser.PasswordSalt = passwordSalt;
 
-            userRepository.Create(UserMapper.MapUser(user));
+            userRepository.Create(dalUser);
         }
 
-        public void DeleteUser(int id)
+        public void Update(BllUser user)
         {
-            try
-            {
-                userRepository.Delete(id);
-                uow.Commit();
-            }
-            catch
-            {
-                throw;
-            }
-        }        
-
-        public IEnumerable<BllUser> GetAllBllUsers()
-        {
-            try
-            {
-                return userRepository.GetAll().Select(u => UserMapper.MapUser(u));
-            }
-            catch
-            {
-                throw;
-            }
+            userRepository.Update(UserMapper.Map(user));
         }
 
-        public Dictionary<BllSkill, int> GetAllSkillLevels(int userId)
+        public void Delete(int id)
+        {
+            userRepository.Delete(id);
+            uow.Commit();
+        }
+
+        public BllUser Get(int id)
+        {
+            return UserMapper.Map(userRepository.Get(id));
+        }
+
+        public IEnumerable<BllUser> GetAll()
+        {
+            return UserMapper.Map(userRepository.GetAll());
+        }
+
+        public Dictionary<BllSkill, int> GetUserSkills(int userId)
         {
             var result = new Dictionary<BllSkill, int>();
-            foreach (var item in userRepository.GetAllSkillLevels(userId))
+            foreach (var item in skillRepository.GetUserSkillLevels(userId))
             {
                 result.Add(SkillMapper.Map(item.Key), item.Value);
             }
@@ -70,38 +68,45 @@ namespace BLL
             return result;
         }
 
-        public BllUser GetBllUser(int id)
-        {
-            return UserMapper.MapUser(userRepository.GetById(id));
-        }
+        //public BllUser Login(string emailOrLogin, string password)
+        //{
+        //    DalUser user;
+        //    if (IsEnabled(emailOrLogin, out user))
+        //        if (PasswordService.VerifyPassword(password, user.PasswordSalt, user.Password)) return UserMapper.Map(user);
 
-        public int GetSkillLevel(int userId, int skillId)
-        {
-            return userRepository.GetSkillLevel(userId, skillId);
-        }
+        //    throw new Exception("check your data");
+        //}
 
-        public BllUser LoginUser(string emailOrLogin, string password)
+        public BllUser Login(string emailOrLogin, string password)
         {
-            var user = UserMapper.MapUser(userRepository.LoginUser(emailOrLogin));
+            var user = UserMapper.Map(userRepository.LoginUser(emailOrLogin));
             if (PasswordService.VerifyPassword(password, user.PasswordSalt, user.Password)) return user;
             else throw new Exception("check your data");
 
-            return null;
         }
 
-        public void UpdateAllSkillLevels(int userId, IDictionary<int, int> skillLevel)
+        public void UpdateUserSkills(int userId, IDictionary<int, int> skillLevel)
         {
-            userRepository.UpdateAllSkillLevels(userId, skillLevel);
+            skillRepository.UpdateUserSkillLevels(userId, skillLevel);
         }
 
-        public void UpdateSkillLevel(int userId, int skillId, int level)
+        private bool IsEnabled(DalUser user)
         {
-            userRepository.UpdateSkillLevel(userId, skillId, level);
+            Expression<Func<DalUser, bool>> expLogin = u => u.Login == user.Login;
+            Expression<Func<DalUser, bool>> expEmail = u => u.Email == user.Email;
+
+            return ReferenceEquals(userRepository.GetByPredicate(expLogin), null) && (ReferenceEquals(userRepository.GetByPredicate(expEmail), null));
         }
 
-        public void UpdateUser(BllUser user)
+        private bool IsEnabled(string userData, out DalUser dalUser)
         {
-            userRepository.Update(UserMapper.MapUser(user));
+            Expression<Func<DalUser, bool>> expLogin = u => u.Login == userData;
+            Expression<Func<DalUser, bool>> expEmail = u => u.Email == userData;
+
+            dalUser = (userRepository.GetByPredicate(expLogin));
+            if (ReferenceEquals(dalUser, null)) dalUser = userRepository.GetByPredicate(expEmail);
+
+            return ReferenceEquals(dalUser, null);
         }
     }
 }

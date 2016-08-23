@@ -13,6 +13,7 @@ using System.Security.Principal;
 
 namespace MvcApp.Controllers
 {
+    [Authorize(Roles="Manager")]
     public class ManagerController : Controller
     {
         private readonly IUserService users;
@@ -29,39 +30,11 @@ namespace MvcApp.Controllers
             categories = categoryService;
         }
 
-        //public ActionResult Index(int page=1)
-        //{
-        //    var userList = new List<SkillsModel>();
-        //    foreach (var item in skillService.RateUsers(null))
-        //    {
-        //        userList.Add(SkillMapper.Map(item));
-        //    }
-
-        //    int pageSize = 1;
-        //    List<SkillsModel> usersPerPages = userList.Skip((page - 1) * pageSize).Take(pageSize).ToList();
-        //    Pagination pageInfo = new Pagination { PageNumber = page, PageSize = pageSize, TotalItems = userList.Count };
-        //    var viewModel = new SkillModelPaging() { Pagination = pageInfo, UsersSkills = usersPerPages };
-
-        //    ViewBag.Skills = new string[] { skillService.GetAll().First().Name };
-        //    ViewBag.AllSkills = (skillService.GetAll().Select(s => s.Name)).ToArray();
-
-        //    return View(viewModel);
-        //}
-
-
-        //[HttpPost]
         public ActionResult Index(IList<string> selector=null, int page =1)
         {
-            var userList = new List<SkillsModel>();
-            foreach (var item in skillService.RateUsers(selector))
-            {
-                userList.Add(SkillMapper.Map(item));
-            }
+            var userList = SkillMapper.Map(skillService.RateUsers(selector)).ToList();
 
-            int pageSize = 1;
-            List<SkillsModel> usersPerPages = userList.Skip((page - 1) * pageSize).Take(pageSize).ToList();
-            Pagination pageInfo = new Pagination { PageNumber = page, PageSize = pageSize, TotalItems = userList.Count };
-            var viewModel = new SkillModelPaging() { Pagination = pageInfo, UsersSkills = usersPerPages };
+            var viewModel = new GenericPaginationModel<SkillsModel>(page, 2, userList);
 
             ViewBag.Skills = (userList.First().Skills.Select(s => s.Name)).ToArray();
             ViewBag.AllSkills = (skillService.GetAll().Select(s=>s.Name)).ToArray();

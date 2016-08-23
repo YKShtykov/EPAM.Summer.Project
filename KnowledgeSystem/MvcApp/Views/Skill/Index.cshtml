@@ -1,76 +1,80 @@
-﻿
-@using MvcApp.Infrastructure;
-@model IList<MvcApp.ViewModels.MvcSkill>
+﻿@using MvcApp.Infrastructure;
+@model MvcApp.ViewModels.GenericPaginationModel<MvcApp.ViewModels.MvcSkill>
 
 @{
     ViewBag.Title = "Skills";
 }
-@using (Html.BeginForm("Index","Skill", Model))
+
+@using (Html.BeginForm())
 {
-    <table>
-        @for (int i = 0; i < Model.ToArray().Length; i++)
-        {
+    <table class="table table-striped">
+        <thead>
             <tr>
-                <td>
-                    @Html.HiddenFor(Model => Model[i].Id)
-                </td>
-                <td>
-                    @Html.HiddenFor(Model => Model[i].Name)
-                    @Html.DisplayFor(Model => Model[i].Name)
-                </td>
-                <td>
-                    @Html.HiddenFor(Model => Model[i].CategoryName)
-                    @Html.DisplayFor(Model => Model[i].CategoryName)
-                </td>
-                <td>
-                    @{string name = "[" + i + "].Level";
-                    }
-                    <input for="Level" id="@Model[i].Id" value="@Model[i].Level" name="@name" class="rating-loading" data-size="xs" data-min="0" data-max="5" data-step="1" data-show-clear="false">
-                </td>
-
-                @{
-                    var identity = (CustomIdentity)User.Identity;
-
-                    if (identity.Roles.FirstOrDefault(r => r == "Administrator") != null)
-                    {
-                        <td>
-                            @Html.RouteLink("Edit", new { controller = "Administrator", action = "EditSkill", id = Model[i].Id })
-                        </td>
-                        <td>
-                            @Html.RouteLink("Remove", new { controller = "Administrator", action = "RemoveSkill", id = Model[i].Id })
-                        </td>
-                    }
-                }
+                <th></th>
+                <th>
+                    Skill
+                </th>
+                <th>
+                    Category
+                </th>
+                <th>
+                    Level
+                </th>
             </tr>
-                    }
-    </table>
-
-    <div class="form-group">
-        <div class="col-md-offset-2 col-md-10">
-            <input id="submit" type="submit" value="Update" class="btn btn-default" />
+        </thead>
+        <tbody>
+            @for (int i = 0; i < Model.Entities.ToArray().Length; i++)
+                {
+                <tr>
+                    <td>
+                        @Html.HiddenFor(Model => Model.Entities[i].Id)
+                    </td>
+                    <td>
+                        @Html.HiddenFor(Model => Model.Entities[i].Name)
+                        @Html.DisplayFor(Model => Model.Entities[i].Name)
+                    </td>
+                    <td>
+                        @Html.HiddenFor(Model => Model.Entities[i].CategoryName)
+                        @Html.DisplayFor(Model => Model.Entities[i].CategoryName)
+                    </td>
+                    <td>
+                        @{string name = "Entities[" + i + "].Level";
+                        }
+                        <input for="Level" id="@Model.Entities[i].Id" value="@Model.Entities[i].Level" name="@name" class="rating-loading" data-size="xs" data-min="0" data-max="5" data-step="1" data-show-clear="false">
+                    </td>
+                </tr>
+                            }
+        </tbody>
+        </table>
+        <div class="btn-group">
+            @Html.PageSubmit(Model.Pagination)
         </div>
-    </div>
-}
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input id="submit" type="submit" value="Update" class="btn btn-default" />
+            </div>
+        </div>
+                            }
 
 @section scripts{
     <link href="http://netdna.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.css" rel="stylesheet">
     <link href="~/Content/star-rating.css" media="all" rel="stylesheet" type="text/css" />
     <script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.0/jquery.js"></script>
     <script src="~/Scripts/star-rating.js" type="text/javascript"></script>
-    @foreach (var item in Model)
+    @foreach (var item in Model.Entities)
     {
         string id = item.Id.ToString();
         <script>
             $(document).on('ready', function () {
                 $('#@id').rating({
                     step: 1,
-                    defaultCaption: 'Unknown',
-                    starCaptions: { 0: 'Unknown', 1: 'Beginner', 2: 'Elementary', 3: 'Intermediate', 4: 'Advanced', 5: 'Profi' },
+                    defaultCaption: '',
+                    starCaptions: { 1: '', 2: '', 3: '', 4: '', 5: '' },
                     starCaptionClasses: function (val) { return 'text-success'; }
                 }).on('rating.change', function (event, value, caption) {
                     Model.Skills.FirstOrDefault(s => s.Key.Id.ToString() == id).Value = value;
                 });
-            });            
+            });
         </script>
     }
 }

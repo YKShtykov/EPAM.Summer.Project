@@ -22,7 +22,7 @@ namespace BLL
 
         public BllProfile GetProfile(int id)
         {
-            return ProfileMapper.MapProfile(profileRepository.GetById(id));
+            return ProfileMapper.MapProfile(profileRepository.Get(id));
         }
 
         public void EditProfile(BllProfile profile)

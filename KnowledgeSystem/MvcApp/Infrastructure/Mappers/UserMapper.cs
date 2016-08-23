@@ -11,7 +11,7 @@ namespace MvcApp.Infrastructure.Mappers
 {
     public static class UserMapper
     {
-        public static BllUser MapUser(MvcUser user)
+        public static BllUser Map(MvcUser user)
         {
             BllUser result = new BllUser
             {
@@ -26,7 +26,7 @@ namespace MvcApp.Infrastructure.Mappers
             return result;
         }
 
-        public static MvcUser MapUser(BllUser user)
+        public static MvcUser Map(BllUser user)
         {
             MvcUser result = new MvcUser
             {
@@ -41,7 +41,7 @@ namespace MvcApp.Infrastructure.Mappers
             return result;
         }
 
-        public static BllUser MapUser(RegisterModel user)
+        public static BllUser Map(RegisterModel user)
         {
             
 

@@ -46,6 +46,12 @@ namespace MvcApp.ViewModels
         [Display(Name = "AdditionalInfo")]
         [StringLength(500, ErrorMessage = "Max length - {0} symbols")]
         public string AdditionalInfo { get; set; }
+
+        [Display(Name = "Photo")]
+        public byte[] Image { get; set; }
+
+        [HiddenInput(DisplayValue = false)]
+        public string ImageMimeType { get; set; }
     }
 
     public enum Gender

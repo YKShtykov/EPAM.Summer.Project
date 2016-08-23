@@ -39,7 +39,7 @@ namespace DAL
         public IEnumerable<DalSkill> GetAll()
         {
             List<DalSkill> result = new List<DalSkill>();
-            foreach (Skill item in context.Set<Skill>().Select(s => s).Include(s => s.Category))
+            foreach (Skill item in context.Set<Skill>().Include(s => s.Category).Select(s => s))
             {
                 result.Add(SkillMapper.Map(item));
             }
@@ -47,9 +47,9 @@ namespace DAL
             return result;
         }
 
-        public DalSkill GetById(int key)
+        public DalSkill Get(int id)
         {
-            return SkillMapper.Map(context.Set<Skill>().Select(s => s).Include(s => s.Category).FirstOrDefault(u => u.Id == key));
+            return SkillMapper.Map(context.Set<Skill>().Select(s => s).Include(s => s.Category).FirstOrDefault(u => u.Id == id));
         }
 
         public void Update(DalSkill entity)
@@ -71,72 +71,61 @@ namespace DAL
             throw new NotImplementedException();
         }
 
-        public IEnumerable<DalUserSkills> RateUsers(IEnumerable<string> sortings)
+        public IEnumerable<DalUser> GetUsersWithThatSkill(DalSkill skill)
         {
-            var skills = new List<Skill>();
-            var usersRating = new List<DalUserSkills>();
-
-            if (ReferenceEquals(sortings, null)) sortings = new string[] { (context.Set<Skill>().Include(s => s.Category).First()).Name };
-
-            foreach (var item in sortings)
-            {
-                skills.Add(context.Set<Skill>().Include(s => s.Category).FirstOrDefault(s => s.Name == item));
-            }
-
-            skills.RemoveAll(item => item == null);
-            var users = GetUsersWithThatSkill(skills.First());
-            foreach (var item in skills)
-            {
-                users = users.Intersect(GetUsersWithThatSkill(item));
-            }
-
-            foreach (var user in users)
-            {
-                var userSkills = new DalUserSkills();
-                userSkills.userId = user.Id;
-                userSkills.UserLogin = user.Login;
-
-                foreach (var skill in skills)
-                {
-                    int level = context.Set<UserSkill>().FirstOrDefault(us => us.Skill.Id == skill.Id && us.User.Id == user.Id).Level;
-                    userSkills.SkillLevelPair.Add(SkillMapper.Map(skill), level);
-                }
-                usersRating.Add(userSkills);
-            }
-            var skillsArray = skills.ToArray();
-
-            return Sort(usersRating);
+            return UserMapper.Map(context.Set<UserSkill>().Where(us => us.Skill.Id == skill.Id).OrderBy(us => us.Level).Select(us => us.User));
         }
 
-        private IEnumerable<User> GetUsersWithThatSkill(Skill skill)
+        public Dictionary<DalSkill, int> GetUserSkillLevels(int userId)
         {
-            return context.Set<UserSkill>().Where(us => us.Skill.Id == skill.Id).OrderBy(us => us.Level).Select(us => us.User);
-        }
-
-        private IEnumerable<DalUserSkills> Sort(IEnumerable<DalUserSkills> usersRating)
-        {
-            var skills = new List<DalSkill>();
-            foreach (var item in usersRating.First().SkillLevelPair)
+            var skills = new Dictionary<DalSkill, int>();
+            var categories = context.Set<Category>().Select(c => c).Include(c => c.Skills);
+            foreach (var item in categories)
             {
-                skills.Add(item.Key);
-            }
-            skills.ToArray();
-            var sortingRating = usersRating.ToArray();
-            for (int i = 0; i < sortingRating.Length; i++)
-            {
-                for (int j = 1; j < sortingRating.Length; j++)
+                foreach (var skill in item.Skills)
                 {
-                    int lhs = sortingRating[j - 1].SkillLevelPair.FirstOrDefault(kvp => kvp.Key == skills[0]).Value;
-                    int rhs = sortingRating[j].SkillLevelPair.FirstOrDefault(kvp => kvp.Key == skills[0]).Value;
-                    if (lhs > rhs)
-                    {
-                        var temp = sortingRating[i];
-                        sortingRating[i] = sortingRating[j];
-                        sortingRating[j] = temp;
-                    }
+                    var entity = context.Set<UserSkill>().FirstOrDefault(us => us.User.Id == userId && us.Skill.Id == skill.Id);
+                    int level = (!ReferenceEquals(entity, null)) ? entity.Level : 0;
+                    skills.Add(SkillMapper.Map(skill), level);
                 }
             }
-            return sortingRating.ToList();
+
+            return skills;
+        }
+
+        public void UpdateUserSkillLevels(int userId, IDictionary<int, int> skillLevel)
+        {
+            foreach (var item in skillLevel)
+            {
+                UpdateSkillLevel(userId, item.Key, item.Value);
+            };
+        }
+
+        public void UpdateSkillLevel(int userId, int skillId, int level)
+        {
+            var userSkill = context.Set<UserSkill>().FirstOrDefault(us => us.User.Id == userId && us.Skill.Id == skillId);
+            if (!ReferenceEquals(userSkill, null))
+            {
+                userSkill.Level = level;
+                context.Entry(userSkill).State = EntityState.Modified;
+            }
+            else
+            {
+                userSkill = new UserSkill()
+                {
+                    User = context.Set<User>().FirstOrDefault(u => u.Id == userId),
+                    Skill = context.Set<Skill>().FirstOrDefault(s => s.Id == skillId),
+                    Level = level
+                };
+                context.Set<UserSkill>().Add(userSkill);
+            }
+            context.SaveChanges();
+        }
+
+        public int GetLevelOfSkill(int userId, int skillId)
+        {
+            return context.Set<UserSkill>().FirstOrDefault(us => us.Skill.Id == skillId && us.User.Id == userId).Level;
         }
     }
 }
+
