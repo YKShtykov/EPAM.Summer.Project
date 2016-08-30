@@ -12,22 +12,64 @@ namespace BLL
     public class ProfileService : IProfileService
     {
         private readonly IUnitOfWork uow;
-        private readonly IProfileRepository profileRepository;
 
-        public ProfileService(IUnitOfWork uow, IProfileRepository repository)
+        public ProfileService(IUnitOfWork uow)
         {
             this.uow = uow;
-            this.profileRepository = repository;
         }
 
-        public BllProfile GetProfile(int id)
+        public BllProfile Get(int id)
         {
-            return ProfileMapper.MapProfile(profileRepository.Get(id));
+            var profile = uow.Profiles.Get(id);
+            profile.Age = GetAge(profile.BirthDate);
+
+            return ProfileMapper.Map(profile);
         }
 
-        public void EditProfile(BllProfile profile)
+        public void Update(BllProfile profile)
         {
-            profileRepository.Update(ProfileMapper.MapProfile(profile));
+            uow.Profiles.Update(ProfileMapper.Map(profile));
+            uow.Commit();
+        }
+
+        public IEnumerable<BllProfile> Search(BllSearchModel model)
+        {
+            var result = new List<BllProfile>();
+
+            var profiles = uow.Profiles.GetAll();
+            foreach (var item in profiles)
+            {
+                if (!ReferenceEquals(model.StringKey,null))
+                {
+                    string fullName = item.FirstName + " " + item.LastName;
+                    if (!fullName.Contains(model.StringKey)) break;
+                }
+                item.Age = GetAge(item.BirthDate);
+                if (model.Age!=0)
+                {                    
+                    if (item.Age > model.Age) break;
+                }
+                if (!ReferenceEquals(model.City,null))
+                {
+                    if (item.City != model.City) break;
+                }
+                if (model.Gender!= "Unspecified")
+                {
+                    if (item.Gender != model.Gender) break;
+                }
+                result.Add(ProfileMapper.Map(item));
+            }
+
+            return result;
+        }
+
+        private int GetAge(DateTime birthDate)
+        {
+            DateTime today = DateTime.Today;
+            int age = today.Year - birthDate.Year;
+            if (birthDate > today.AddYears(-age)) age--;
+
+            return age;
         }
     }
 }

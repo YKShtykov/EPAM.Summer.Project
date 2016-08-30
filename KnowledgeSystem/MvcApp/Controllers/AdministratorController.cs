@@ -32,20 +32,7 @@ namespace MvcApp.Controllers
             profiles = profileService;
         }
 
-        // GET: Administrator
-        public ActionResult Index()
-        {
-            return View();
-        }
-
-        
-
-
-
-        
-
-
-        public ActionResult Users(int page=1)
+        public ActionResult Users(int page = 1)
         {
             var MvcUserList = new List<MvcUser>();
 
@@ -56,7 +43,7 @@ namespace MvcApp.Controllers
 
             var viewModel = new GenericPaginationModel<MvcUser>(page, 2, MvcUserList);
 
-            ViewBag.Roles = new string[]{ "Administrator", "Manager", "User"};
+            ViewBag.Roles = new string[] { "Administrator", "Manager", "User" };
             return View(viewModel);
         }
 
@@ -65,21 +52,37 @@ namespace MvcApp.Controllers
         {
             foreach (var item in Entities)
             {
-                users.Update(UserMapper.Map(item));
+                try
+                {                    
+                    users.Update(UserMapper.Map(item));
+                    Logger.LogInfo("User: Id=" + item.Id + "Name=" + item.Login + "was changed");
+                }
+                catch (Exception e)
+                {
+                    Logger.LogError(e);
+                }
             }
 
-            return Redirect("~/Administrator/Users/?page="+page);
+            return Redirect("~/Administrator/Users/?page=" + page);
         }
 
         public ActionResult RemoveUser(int Id)
         {
-            users.Delete(Id);
+            try
+            {
+                users.Delete(Id);
+                Logger.LogInfo("User: Id=" + Id +  "was removed");
+            }
+            catch (Exception e)
+            {
+                Logger.LogError(e);
+            }
             return Redirect("~/Administrator/Users");
         }
 
         public ActionResult UserDetails(int id)
         {
-            return Json(profiles.GetProfile(id), JsonRequestBehavior.AllowGet);
+            return Json(profiles.Get(id), JsonRequestBehavior.AllowGet);
         }
     }
 }

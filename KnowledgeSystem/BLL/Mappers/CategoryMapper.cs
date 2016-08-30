@@ -37,5 +37,16 @@ namespace BLL.Mappers
             }
             return result;
         }
+
+        public static IEnumerable<BllCategory> Map(IEnumerable<DalCategory> categories)
+        {
+            List<BllCategory> result = new List<BllCategory>();
+            foreach (var item in categories)
+            {
+                result.Add(Map(item));
+            }
+
+            return result;
+        }
     }
 }

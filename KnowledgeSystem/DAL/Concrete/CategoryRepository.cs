@@ -2,8 +2,6 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
-using System.Text;
-using System.Threading.Tasks;
 using DAL.Interface;
 using DAL.Mappers;
 using ORM;
@@ -20,48 +18,19 @@ namespace DAL
             context = knowledgeContext;
         }
 
-        public void Create(DalCategory e)
+        public void Create(DalCategory category)
         {
-            context.Set<Category>().Add(CategoryMapper.Map(e));
-            context.SaveChanges();
+            context.Set<Category>().Add(CategoryMapper.Map(category));
         }
 
-        public void Delete(int id)
+        public void Update(DalCategory category)
         {
-            var category = context.Set<Category>().FirstOrDefault(c=>c.Id==id);
-            context.Set<Category>().Remove(category);
-            context.SaveChanges();
-        }
-
-        public IEnumerable<DalCategory> GetAll()
-        {
-            List<DalCategory> result = new List<DalCategory>();
-            foreach (Category item in context.Set<Category>().Include(c=>c.Skills).Select(u => u))
-            {
-                result.Add(CategoryMapper.Map(item));
-            }
-
-            return result;
-        }
-
-        public DalCategory Get(int key)
-        {
-            return CategoryMapper.Map(context.Set<Category>().FirstOrDefault(u => u.Id == key));
-        }
-
-        public DalCategory GetByPredicate(Expression<Func<DalCategory, bool>> f)
-        {
-            throw new NotImplementedException();
-        }
-
-        public void Update(DalCategory entity)
-        {
-            var ormCategory = context.Set<Category>().FirstOrDefault(p => p.Id == entity.Id);
+            var ormCategory = context.Set<Category>().FirstOrDefault(p => p.Id == category.Id);
             if (ormCategory != null)
             {
-                ormCategory.Name = entity.Name;
+                ormCategory.Name = category.Name;
                 ormCategory.Skills.Clear();
-                foreach (var item in entity.Skills)
+                foreach (var item in category.Skills)
                 {
                     var skill = context.Set<Skill>().FirstOrDefault(s => s.Id == item.Id);
                     ormCategory.Skills.Add(skill);
@@ -71,5 +40,36 @@ namespace DAL
                 context.SaveChanges();
             }
         }
+
+        public void Delete(int id)
+        {
+            var category = context.Set<Category>().Include(c => c.Skills).FirstOrDefault(c => c.Id == id);
+            context.Set<Skill>().RemoveRange(category.Skills);
+            context.Set<Category>().Remove(category);
+        }
+
+        public DalCategory Get(int id)
+        {
+            return CategoryMapper.Map(context.Set<Category>().FirstOrDefault(u => u.Id == id));
+        }
+
+        public IEnumerable<DalCategory> GetAll()
+        {
+            List<DalCategory> result = new List<DalCategory>();
+            foreach (Category item in context.Set<Category>().Include(c => c.Skills).Select(u => u))
+            {
+                result.Add(CategoryMapper.Map(item));
+            }
+
+            return result;
+        }        
+
+        public DalCategory GetByPredicate(Expression<Func<DalCategory, bool>> f)
+        {
+            var expr = ExpressionTransformer<DalCategory, Category>.Tranform(f);
+            var func = expr.Compile();
+
+            return CategoryMapper.Map(context.Set<Category>().FirstOrDefault(func));
+        }        
     }
 }

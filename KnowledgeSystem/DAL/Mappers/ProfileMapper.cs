@@ -10,7 +10,7 @@ namespace DAL.Mappers
 {
     public static class ProfileMapper
     {
-        public static Profile MapProfile(DalProfile profile)
+        public static Profile Map(DalProfile profile)
         {
             return new Profile()
             {
@@ -28,7 +28,7 @@ namespace DAL.Mappers
             };
         }
 
-        public static DalProfile MapProfile(Profile profile)
+        public static DalProfile Map(Profile profile)
         {
             return new DalProfile()
             {
@@ -44,6 +44,17 @@ namespace DAL.Mappers
                 ImageMimeType = profile.ImageMimeType,
                 RelationshipStatus = profile.RelationshipStatus
             };
+        }
+
+        public static IEnumerable<DalProfile> Map(IQueryable<Profile> profiles)
+        {
+            var result = new List<DalProfile>();
+            foreach (var item in profiles)
+            {
+                result.Add(Map(item));
+            }
+
+            return result;
         }
     }
 }

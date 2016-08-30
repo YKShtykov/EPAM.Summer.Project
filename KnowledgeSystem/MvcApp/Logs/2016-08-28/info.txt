@@ -1,0 +1,5 @@
+2016-08-28 22:47:26.3505|INFO|MvcApp.Infrastructure.Logger|Login errorСвойство "System.String Login" не определено для типа "ORM.User"
+2016-08-28 22:47:56.9951|INFO|MvcApp.Infrastructure.Logger|Login errorСвойство "System.String Login" не определено для типа "ORM.User"
+2016-08-28 23:23:06.5607|INFO|MvcApp.Infrastructure.Logger|Login errorCannot create file 'C:\Users\Yakov\Desktop\EPAM.Summer.Project\KnowledgeSystem\MvcApp\App_Data\KnowledgeSystemDB.mdf' because it already exists. Change the file path or the file name, and retry the operation.
+CREATE DATABASE failed. Some file names listed could not be created. Check related errors.
+2016-08-28 23:39:47.0341|INFO|MvcApp.Infrastructure.Logger|Login errorНа переменную "u" типа "DAL.Interface.DalUser" имеется ссылка из области "", но она не определена

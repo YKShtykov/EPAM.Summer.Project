@@ -54,6 +54,7 @@
     <Compile Include="Concrete\SkillRepository.cs" />
     <Compile Include="Concrete\UnitOfWork.cs" />
     <Compile Include="Concrete\UserRepository.cs" />
+    <Compile Include="ExpressionTransformer.cs" />
     <Compile Include="Mappers\CategoryMapper.cs" />
     <Compile Include="Mappers\ProfileMapper.cs" />
     <Compile Include="Mappers\RoleMapper.cs" />

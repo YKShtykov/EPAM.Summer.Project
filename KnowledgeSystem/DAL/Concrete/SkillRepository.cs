@@ -2,8 +2,6 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
-using System.Text;
-using System.Threading.Tasks;
 using DAL.Interface;
 using DAL.Mappers;
 using ORM;
@@ -20,20 +18,36 @@ namespace DAL
             context = knowledgeContext;
         }
 
-        public void Create(DalSkill e)
+        public void Create(DalSkill skill)
         {
-            var skill = SkillMapper.Map(e);
-            context.Set<Skill>().Add(skill);
+            var ormSkill = SkillMapper.Map(skill);
+            context.Set<Skill>().Add(ormSkill);
 
-            context.Set<Category>().FirstOrDefault(c => c.Name == e.CategoryName).Skills.Add(skill);
-            context.SaveChanges();
+            context.Set<Category>().FirstOrDefault(c => c.Name == skill.CategoryName).Skills.Add(ormSkill);
+        }
+
+        public void Update(DalSkill skill)
+        {
+            var ormSkill = context.Set<Skill>().FirstOrDefault(s => s.Id == skill.Id);
+            if (ormSkill != null)
+            {
+                ormSkill.Name = skill.Name;
+                var category = context.Set<Category>().FirstOrDefault(c => c.Name == skill.CategoryName);
+                ormSkill.Category = category;
+
+                context.Entry(ormSkill).State = EntityState.Modified;
+            }
         }
 
         public void Delete(int id)
         {
             var skill = context.Set<Skill>().FirstOrDefault(s => s.Id == id);
             context.Set<Skill>().Remove(skill);
-            context.SaveChanges();
+        }
+
+        public DalSkill Get(int id)
+        {
+            return SkillMapper.Map(context.Set<Skill>().Select(s => s).Include(s => s.Category).FirstOrDefault(u => u.Id == id));
         }
 
         public IEnumerable<DalSkill> GetAll()
@@ -45,30 +59,14 @@ namespace DAL
             }
 
             return result;
-        }
-
-        public DalSkill Get(int id)
-        {
-            return SkillMapper.Map(context.Set<Skill>().Select(s => s).Include(s => s.Category).FirstOrDefault(u => u.Id == id));
-        }
-
-        public void Update(DalSkill entity)
-        {
-            var ormSkill = context.Set<Skill>().FirstOrDefault(s => s.Id == entity.Id);
-            if (ormSkill != null)
-            {
-                ormSkill.Name = entity.Name;
-                var category = context.Set<Category>().FirstOrDefault(c => c.Name == entity.CategoryName);
-                ormSkill.Category = category;
-
-                context.Entry(ormSkill).State = EntityState.Modified;
-                context.SaveChanges();
-            }
-        }
+        }        
 
         public DalSkill GetByPredicate(Expression<Func<DalSkill, bool>> f)
         {
-            throw new NotImplementedException();
+            var expr = ExpressionTransformer<DalSkill, Skill>.Tranform(f);
+            var func = expr.Compile();
+
+            return SkillMapper.Map(context.Set<Skill>().FirstOrDefault(func));
         }
 
         public IEnumerable<DalUser> GetUsersWithThatSkill(DalSkill skill)
@@ -76,7 +74,7 @@ namespace DAL
             return UserMapper.Map(context.Set<UserSkill>().Where(us => us.Skill.Id == skill.Id).OrderBy(us => us.Level).Select(us => us.User));
         }
 
-        public Dictionary<DalSkill, int> GetUserSkillLevels(int userId)
+        public Dictionary<DalSkill, int> GetUserSkills(int userId)
         {
             var skills = new Dictionary<DalSkill, int>();
             var categories = context.Set<Category>().Select(c => c).Include(c => c.Skills);
@@ -93,7 +91,7 @@ namespace DAL
             return skills;
         }
 
-        public void UpdateUserSkillLevels(int userId, IDictionary<int, int> skillLevel)
+        public void UpdateUserSkills(int userId, IDictionary<int, int> skillLevel)
         {
             foreach (var item in skillLevel)
             {
@@ -119,7 +117,6 @@ namespace DAL
                 };
                 context.Set<UserSkill>().Add(userSkill);
             }
-            context.SaveChanges();
         }
 
         public int GetLevelOfSkill(int userId, int skillId)

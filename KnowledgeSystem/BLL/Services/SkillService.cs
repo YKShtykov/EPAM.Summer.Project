@@ -3,57 +3,55 @@ using System.Linq;
 using BLL.Interface;
 using DAL.Interface;
 using BLL.Mappers;
-using System;
 
 namespace BLL
 {
     public class SkillService : ISkillService
     {
         private readonly IUnitOfWork uow;
-        private readonly ISkillRepository skillRepository;
-        private readonly IUserRepository userRepository;
 
-        public SkillService(IUnitOfWork uow, ISkillRepository repository, IUserRepository userRepository)
+        public SkillService(IUnitOfWork uow)
         {
             this.uow = uow;
-            this.skillRepository = repository;
-            this.userRepository = userRepository;
         }
 
         public void Create(BllSkill skill)
         {
-            skillRepository.Create(SkillMapper.Map(skill));
-        }
-
-        public void Delete(int id)
-        {
-            skillRepository.Delete(id);
-        }
-
-        public IEnumerable<BllSkill> GetAll()
-        {
-            return skillRepository.GetAll().Select(u => SkillMapper.Map(u));
-        }
-
-        public BllSkill GetById(int id)
-        {
-            return SkillMapper.Map(skillRepository.Get(id));
+            uow.Skills.Create(SkillMapper.Map(skill));
+            uow.Commit();
         }
 
         public void Update(BllSkill skill)
         {
-            skillRepository.Update(SkillMapper.Map(skill));
+            uow.Skills.Update(SkillMapper.Map(skill));
+            uow.Commit();
         }
+
+        public void Delete(int id)
+        {
+            uow.Skills.Delete(id);
+            uow.Commit();
+        }
+
+        public BllSkill Get(int id)
+        {
+            return SkillMapper.Map(uow.Skills.Get(id));
+        }
+
+        public IEnumerable<BllSkill> GetAll()
+        {
+            return uow.Skills.GetAll().Select(u => SkillMapper.Map(u));
+        }        
 
         public IEnumerable<BllUserSkills> RateUsers(IEnumerable<string> sortings)
         {
             var result = new List<BllUserSkills>();
             var skills = GetSkills(sortings);
 
-            var users = userRepository.GetAll();
+            var users = uow.Users.GetAll();
             foreach (var item in skills)
             {
-                users = users.Intersect(skillRepository.GetUsersWithThatSkill(item), new UserComparer());
+                users = users.Intersect(uow.Skills.GetUsersWithThatSkill(item), new UserComparer());
             }
             
             foreach (var user in users)
@@ -64,7 +62,7 @@ namespace BLL
 
                 foreach (var skill in skills)
                 {
-                    int level = skillRepository.GetLevelOfSkill(user.Id, skill.Id);
+                    int level = uow.Skills.GetLevelOfSkill(user.Id, skill.Id);
                     userSkills.SkillLevelPair.Add(SkillMapper.Map(skill), level);
                 }
                 result.Add(userSkills);
@@ -114,12 +112,12 @@ namespace BLL
 
         internal IEnumerable<DalSkill> GetSkills(IEnumerable<string> names)
         {
-            if (ReferenceEquals(names, null)) return new List<DalSkill>(){ skillRepository.GetAll().First()};
+            if (ReferenceEquals(names, null)) return new List<DalSkill>(){ uow.Skills.GetAll().First()};
 
             var result = new List<DalSkill>();
             foreach (var item in names)
             {
-                result.Add(skillRepository.GetAll().FirstOrDefault(s => s.Name == item));
+                result.Add(uow.Skills.GetAll().FirstOrDefault(s => s.Name == item));
             }
             result.RemoveAll(item => item == null);
 

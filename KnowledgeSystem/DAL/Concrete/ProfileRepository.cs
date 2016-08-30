@@ -20,29 +20,9 @@ namespace DAL
             context = knowledgeContext;
         }
 
-        public void Create(DalProfile e)
+        public void Create(int id)
         {
-            throw new NotImplementedException();
-        }
-
-        public void Delete(int id)
-        {
-            throw new NotImplementedException();
-        }
-
-        public IEnumerable<DalProfile> GetAll()
-        {
-            throw new NotImplementedException();
-        }
-
-        public DalProfile Get(int key)
-        {
-            return ProfileMapper.MapProfile(context.Set<Profile>().FirstOrDefault(u => u.Id == key));
-        }
-
-        public DalProfile GetByPredicate(Expression<Func<DalProfile, bool>> f)
-        {
-            throw new NotImplementedException();
+            context.Set<Profile>().Add(new Profile() { Id = id, BirthDate = default(DateTime).ToString() });
         }
 
         public void Update(DalProfile profile)
@@ -58,10 +38,34 @@ namespace DAL
                 ormProfile.City = profile.City;
                 ormProfile.Gender = profile.Gender;
                 ormProfile.RelationshipStatus = profile.RelationshipStatus;
-
+                ormProfile.Image = profile.Image;
+                ormProfile.ImageMimeType = profile.ImageMimeType;
                 context.Entry(ormProfile).State = EntityState.Modified;
                 context.SaveChanges();
             }
         }
+
+        public void Delete(int id)
+        {
+            context.Set<Profile>().Remove(context.Set<Profile>().FirstOrDefault(p => p.Id == id));
+        }
+
+        public DalProfile Get(int key)
+        {
+            return ProfileMapper.Map(context.Set<Profile>().FirstOrDefault(u => u.Id == key));
+        }
+
+        public IEnumerable<DalProfile> GetAll()
+        {
+            return ProfileMapper.Map(context.Set<Profile>().Select(p=>p));
+        }
+
+        public DalProfile GetByPredicate(Expression<Func<DalProfile, bool>> f)
+        {
+            var expr = ExpressionTransformer<DalProfile, Profile>.Tranform(f);
+            var func = expr.Compile();
+
+            return ProfileMapper.Map(context.Set<Profile>().FirstOrDefault(func));
+        }        
     }
 }

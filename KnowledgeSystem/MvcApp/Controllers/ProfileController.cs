@@ -27,7 +27,7 @@ namespace MvcApp.Controllers
         public ActionResult UserProfile(int? id)
         {
             var identity = (CustomIdentity)User.Identity;
-            MvcProfile profile = ProfileMapper.MapProfile(service.GetProfile(id ?? identity.Id));
+            MvcProfile profile = ProfileMapper.Map(service.Get(id ?? identity.Id));
             return View(profile);
         }
 
@@ -35,18 +35,46 @@ namespace MvcApp.Controllers
         public ActionResult Edit()
         {
             var identity = (CustomIdentity)User.Identity;
-            MvcProfile profile = ProfileMapper.MapProfile(service.GetProfile(identity.Id));
+            MvcProfile profile = ProfileMapper.Map(service.Get(identity.Id));
+
             return View(profile);
         }
 
         [HttpPost]
-        public ActionResult Edit(MvcProfile model)
+        public ActionResult Edit(MvcProfile model, HttpPostedFileBase fileUpload)
         {
             if (ModelState.IsValid)
             {
-                service.EditProfile(ProfileMapper.MapProfile(model));
+                if (!ReferenceEquals(fileUpload,null))
+                {
+                    model.Image = new byte[fileUpload.ContentLength];
+                    fileUpload.InputStream.Read(model.Image, 0, fileUpload.ContentLength);
+                    model.ImageMimeType = fileUpload.ContentType; 
+                }
+
+                try
+                {
+                    service.Update(ProfileMapper.Map(model));
+                    Logger.LogInfo("Profile( Id=" + model.Id + "was changed");
+                }
+                catch (Exception e)
+                {
+                    Logger.LogError(e);
+                }
             }
             return Redirect("~/Profile/UserProfile");
+        }
+
+        public FileContentResult GetImage(int id)
+        {
+            var profile = service.Get(id);
+            if (profile != null)
+            {
+                var photo = profile.Image;
+                if (photo != null)
+                    return File(photo, profile.ImageMimeType);
+            }
+            return null;
         }
     }
 }

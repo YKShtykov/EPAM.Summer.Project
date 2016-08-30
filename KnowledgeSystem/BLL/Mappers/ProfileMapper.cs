@@ -10,7 +10,7 @@ namespace BLL.Mappers
 {
     public static class ProfileMapper
     {
-        public static BllProfile MapProfile(DalProfile profile)
+        public static BllProfile Map(DalProfile profile)
         {
             return new BllProfile()
             {
@@ -23,11 +23,13 @@ namespace BLL.Mappers
                 AdditionalInfo = profile.AdditionalInfo,
                 City = profile.City,
                 Gender = profile.Gender,
-                RelationshipStatus = profile.RelationshipStatus
+                RelationshipStatus = profile.RelationshipStatus,
+                Image = profile.Image,
+                ImageMimeType=profile.ImageMimeType                
             };
         }
 
-        public static DalProfile MapProfile(BllProfile profile)
+        public static DalProfile Map(BllProfile profile)
         {
             return new DalProfile()
             {
@@ -40,7 +42,9 @@ namespace BLL.Mappers
                 AdditionalInfo = profile.AdditionalInfo,
                 City = profile.City,
                 Gender = profile.Gender,
-                RelationshipStatus = profile.RelationshipStatus
+                RelationshipStatus = profile.RelationshipStatus,
+                Image = profile.Image,
+                ImageMimeType = profile.ImageMimeType
             };
         }
     }

@@ -4,7 +4,15 @@
 @{
     ViewBag.Title = "EditEntities";
 }
-
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-body">
+                <div id="result"></div>
+            </div>
+        </div>
+    </div>
+</div>
 <h2>EditEntities</h2>
 @using (Html.BeginForm())
 {
@@ -31,11 +39,11 @@
             {
                 <tr>
                     <td>
-                        @Html.HiddenFor(m=>Model.Entities[i].Id)
+                        @Html.HiddenFor(m => Model.Entities[i].Id)
                     </td>
                     <td class="login">
                         @Html.HiddenFor(m => Model.Entities[i].Login)
-                        @Html.ActionLink(Model.Entities[i].Login,"UserDetails", new { id = Model.Entities[i].Id })
+                        @Html.ActionLink(Model.Entities[i].Login, "UserDetails", new { id = Model.Entities[i].Id })
                     </td>
                     <td>
                         @Html.HiddenFor(m => Model.Entities[i].Email)
@@ -53,7 +61,7 @@
                         }
                         <select multiple class="selectpicker" name="@name" id="@i">
 
-                            @for (int j= 0;j< ViewBag.Roles.Length; j++)
+                            @for (int j = 0; j < ViewBag.Roles.Length; j++)
                             {
                                 if (Model.Entities[i].Roles.Contains(ViewBag.Roles[j]))
                                 {
@@ -89,26 +97,27 @@
     <script src="~/Scripts/bootstrap-select.js"></script>
     <script type="text/javascript" src="~/scripts/jsrender.js"></script>
 
-@*<script id="UserTemplate" type="text/x-jsrender">
-        <div>
-            <em>FName:</em> {{:FirstName}}
-            <em>MName:</em> {{:MiddleName}}
-            <em>LName:</em> {{:LastName}}
-            <em>BirthDate</em>{{:BirthDate}}
+<script id="UserTemplate" type="text/x-jsrender">
+        <div class="row">
+            <p><em>FName:</em> {{:FirstName}}</p>
+            <p><em>MName:</em> {{:MiddleName}}</p>
+            <p><em>LName:</em> {{:LastName}}</p>
+            <p><em>Age</em>{{:Age}}</p>            
         </div>
     </script>
 
     <script>
             $(document).ready(function () {
                 $("td.login a").click(function (e) {
-                    e.preventDefault();
-                    var url = $(this).attr('href');
+                        e.preventDefault();
+                        var url = $(this).attr('href');
                     $.getJSON(url, null, function (user) {
-                        var template = $.templates("#UserTemplate");
-                        var htmlOutput = template.render(user);
+                            var template = $.templates("#UserTemplate");
+                            var htmlOutput = template.render(user);
+                        $('#myModal').modal('show');
                         $("#result").html(htmlOutput);
+                        });
                     });
                 });
-            });
-</script>*@
+</script>
 }

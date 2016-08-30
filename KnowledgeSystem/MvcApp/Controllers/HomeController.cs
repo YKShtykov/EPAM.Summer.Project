@@ -15,7 +15,6 @@ namespace MvcApp.Controllers
     {
         public ActionResult Index()
         {
-            throw new HttpException(403, "Доступ запрещён!");
             return View();
         }        
     }

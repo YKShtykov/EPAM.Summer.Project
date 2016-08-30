@@ -1,15 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Web;
 using System.Web.Mvc;
 using MvcApp.ViewModels;
 using BLL.Interface;
 using MvcApp.Infrastructure.Mappers;
 using MvcApp.Infrastructure;
-using Newtonsoft.Json;
-using System.Web.Security;
-using System.Security.Principal;
 
 namespace MvcApp.Controllers
 {
@@ -48,23 +44,47 @@ namespace MvcApp.Controllers
         [Authorize(Roles = "User")]
         public ActionResult Index(List<MvcSkill> Entities, int page=1)
         {
-            var skillLevel = new Dictionary<int, int>();
-            foreach (var item in Entities)
+            try
             {
-                skillLevel.Add(item.Id, item.Level);
+                var skillLevel = new Dictionary<int, int>();
+                foreach (var item in Entities)
+                {
+                    skillLevel.Add(item.Id, item.Level);
+                }
+                var id = ((CustomIdentity)User.Identity).Id;
+                service.UpdateUserSkills(id, skillLevel);
+                Logger.LogInfo("Skills of user(id=" + id + ") was changed");
             }
-            var id = ((CustomIdentity)User.Identity).Id;
-            service.UpdateUserSkills(id, skillLevel);
+            catch (Exception e)
+            {
+                Logger.LogError(e);
+            }
 
             return Redirect("~/Skill/index/?page="+page);
         }
 
-        public ActionResult Skills(int page = 1)
+        public ActionResult Skills(string SearchString, string AdditionalSearchString, int page = 1)
         {
             IEnumerable<BllSkill> allSkills = skills.GetAll();
             List<MvcSkill> mvcSkills = allSkills.Select(s => SkillMapper.Map(s)).ToList();
+            if (!ReferenceEquals(SearchString,null)&&SearchString!="")
+            {
+                mvcSkills = mvcSkills.Where(s => s.Name.Contains(SearchString)).ToList();
+            }
+            if (!ReferenceEquals(AdditionalSearchString, null)&&AdditionalSearchString!="")
+            {
+                mvcSkills = mvcSkills.Where(s => s.CategoryName == AdditionalSearchString).ToList();
+            }
 
             var viewModel = new GenericPaginationModel<MvcSkill>(page, 2, mvcSkills);
+            var categoryNames = new List<string>();
+            foreach (var item in categories.GetAll())
+            {
+                categoryNames.Add(item.Name);
+            }
+            ViewBag.Categories = categoryNames;
+            ViewBag.SearchString = SearchString;
+            ViewBag.AdditionalSearchString = AdditionalSearchString;
 
             return View(viewModel);
         }
@@ -84,8 +104,15 @@ namespace MvcApp.Controllers
         {
             if (ModelState.IsValid)
             {
-                skills.Create(SkillMapper.Map(skill));
-                return Redirect("~/Skill/Skills");
+                try
+                {
+                    skills.Create(SkillMapper.Map(skill));
+                    return Redirect("~/Skill/Skills");
+                }
+                catch (Exception e)
+                {
+                    Logger.LogError(e);
+                }
             }
             return View();
         }
@@ -93,7 +120,7 @@ namespace MvcApp.Controllers
         [HttpGet]
         public ActionResult EditSkill(int id)
         {
-            MvcSkill skill = SkillMapper.Map(skills.GetById(id));
+            MvcSkill skill = SkillMapper.Map(skills.Get(id));
 
             IEnumerable<BllCategory> allCategories = categories.GetAll();
             List<string> mvcCategories = allCategories.Select(c => c.Name).ToList();
@@ -107,27 +134,45 @@ namespace MvcApp.Controllers
         {
             if (ModelState.IsValid)
             {
-                skills.Update(SkillMapper.Map(skill));
-                return Redirect("~/Skill/Skills");
+                try
+                {
+                    skills.Update(SkillMapper.Map(skill));
+                    return Redirect("~/Skill/Skills");
+                }
+                catch (Exception e)
+                {
+                    Logger.LogError(e);
+                }
             }
             return View();
         }
 
-        [HttpGet]
         public ActionResult RemoveSkill(int id)
         {
             if (ModelState.IsValid)
             {
-                skills.Delete(id);
+                try
+                {
+                    skills.Delete(id);
+                }
+                catch (Exception e)
+                {
+                    Logger.LogError(e);
+                }
             }
             return Redirect("~/Skill/Skills");
         }
 
-        public ActionResult Categories(int page = 1)
+        public ActionResult Categories(string SearchString, int page = 1)
         {
             IEnumerable<BllCategory> allCategories = categories.GetAll();
             List<MvcCategory> mvcCategories = allCategories.Select(c => CategoryMapper.Map(c)).ToList();
 
+            if (!ReferenceEquals(SearchString, null) && SearchString != "")
+            {
+                mvcCategories = mvcCategories.Where(s => s.Name.Contains(SearchString)).ToList();
+            }
+            ViewBag.SearchString = SearchString;
             var viewModel = new GenericPaginationModel<MvcCategory>(page, 2, mvcCategories);
 
             return View(viewModel);
@@ -144,8 +189,15 @@ namespace MvcApp.Controllers
         {
             if (ModelState.IsValid)
             {
-                categories.Create(CategoryMapper.Map(category));
-                return Redirect("~/Skill/Categories");
+                try
+                {
+                    categories.Create(CategoryMapper.Map(category));
+                    return Redirect("~/Skill/Categories");
+                }
+                catch (Exception e)
+                {
+                    Logger.LogError(e);
+                }
             }
             return View();
         }
@@ -153,7 +205,7 @@ namespace MvcApp.Controllers
         [HttpGet]
         public ActionResult EditCategory(int id)
         {
-            MvcCategory category = CategoryMapper.Map(categories.GetById(id));
+            MvcCategory category = CategoryMapper.Map(categories.Get(id));
             return View(category);
         }
 
@@ -162,8 +214,15 @@ namespace MvcApp.Controllers
         {
             if (ModelState.IsValid)
             {
-                categories.Update(CategoryMapper.Map(category));
-                return Redirect("~/Skill/Categories");
+                try
+                {
+                    categories.Update(CategoryMapper.Map(category));
+                    return Redirect("~/Skill/Categories");
+                }
+                catch (Exception e)
+                {
+                    Logger.LogError(e);
+                }
             }
             return View();
         }
@@ -173,9 +232,24 @@ namespace MvcApp.Controllers
         {
             if (ModelState.IsValid)
             {
-                categories.Delete(id);
+                try
+                {
+                    categories.Delete(id);
+                }
+                catch (Exception e)
+                {
+                    Logger.LogError(e);
+                }
             }
             return Redirect("~/Skill/Categories");
+        }
+
+        [HttpGet]
+        public ActionResult UserSkills(int id)
+        {
+            var userSkills = SkillMapper.Map(service.GetUserSkills(id));
+
+            return View(userSkills);
         }
     }
 }

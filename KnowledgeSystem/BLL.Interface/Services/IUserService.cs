@@ -10,11 +10,10 @@ namespace BLL.Interface
     {
         void Create(BllUser user);
         void Update(BllUser user);
-        BllUser Get(int id);
         void Delete(int id);
+        BllUser Get(int id);
         IEnumerable<BllUser> GetAll();       
-        BllUser Login(string emailOrLogin, string password);        
-
+        BllUser Login(string emailOrLogin, string password);    
         void UpdateUserSkills(int userId, IDictionary<int, int> skillLevel);
         Dictionary<BllSkill,int> GetUserSkills(int userId);
     }

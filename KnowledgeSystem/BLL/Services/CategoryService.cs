@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 using BLL.Interface;
 using DAL.Interface;
 using BLL.Mappers;
@@ -12,43 +8,38 @@ namespace BLL
     public class CategoryService : ICategoryService
     {
         private readonly IUnitOfWork uow;
-        private readonly ICategoryRepository categoryRepository;
 
-        public CategoryService(IUnitOfWork uow, ICategoryRepository repository)
+        public CategoryService(IUnitOfWork uow)
         {
             this.uow = uow;
-            this.categoryRepository = repository;
         }
 
         public void Create(BllCategory category)
         {
-            categoryRepository.Create(CategoryMapper.Map(category));
+            uow.Categories.Create(CategoryMapper.Map(category));
+            uow.Commit();
+        }
+
+        public void Update(BllCategory category)
+        {
+            uow.Categories.Update(CategoryMapper.Map(category));
+            uow.Commit();
         }
 
         public void Delete(int id)
         {
-            categoryRepository.Delete(id);
+            uow.Categories.Delete(id);
+            uow.Commit();
+        }
+
+        public BllCategory Get(int id)
+        {
+            return CategoryMapper.Map(uow.Categories.Get(id));
         }
 
         public IEnumerable<BllCategory> GetAll()
-        {
-            List<BllCategory> result = new List<BllCategory>();
-            foreach (var item in categoryRepository.GetAll())
-            {
-                result.Add(CategoryMapper.Map(item));
-            }
-
-            return result;
-        }
-
-        public BllCategory GetById(int id)
-        {
-            return CategoryMapper.Map(categoryRepository.Get(id));
-        }
-
-        public void Update(BllCategory entity)
-        {
-            categoryRepository.Update(CategoryMapper.Map(entity));
-        }
+        {            
+            return CategoryMapper.Map(uow.Categories.GetAll());
+        }              
     }
 }

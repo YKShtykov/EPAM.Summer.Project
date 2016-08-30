@@ -60,5 +60,18 @@ namespace MvcApp.Infrastructure.Mappers
 
             return result;
         }
+
+        public static IEnumerable<MvcSkill> Map(Dictionary<BllSkill, int> skills)
+        {
+            var result = new List<MvcSkill>();
+            foreach (var item in skills)
+            {
+                var skill = Map(item.Key);
+                skill.Level = item.Value;
+                result.Add(skill);
+            }
+
+            return result;
+        }
     }
 }

@@ -167,7 +167,6 @@ C:\Users\Yakov\Desktop\EPAM.Summer.Project\KnowledgeSystem\MvcApp\bin\MvcApp.dll
 C:\Users\Yakov\Desktop\EPAM.Summer.Project\KnowledgeSystem\MvcApp\bin\MvcApp.dll
 C:\Users\Yakov\Desktop\EPAM.Summer.Project\KnowledgeSystem\MvcApp\bin\MvcApp.pdb
 C:\Users\Yakov\Desktop\EPAM.Summer.Project\KnowledgeSystem\MvcApp\bin\Antlr3.Runtime.dll
-C:\Users\Yakov\Desktop\EPAM.Summer.Project\KnowledgeSystem\MvcApp\bin\AutoMapper.dll
 C:\Users\Yakov\Desktop\EPAM.Summer.Project\KnowledgeSystem\MvcApp\bin\BLL.Interface.dll
 C:\Users\Yakov\Desktop\EPAM.Summer.Project\KnowledgeSystem\MvcApp\bin\DependencyResolver.dll
 C:\Users\Yakov\Desktop\EPAM.Summer.Project\KnowledgeSystem\MvcApp\bin\EntityFramework.dll
@@ -199,7 +198,6 @@ C:\Users\Yakov\Desktop\EPAM.Summer.Project\KnowledgeSystem\MvcApp\bin\ORM.dll
 C:\Users\Yakov\Desktop\EPAM.Summer.Project\KnowledgeSystem\MvcApp\bin\BLL.dll
 C:\Users\Yakov\Desktop\EPAM.Summer.Project\KnowledgeSystem\MvcApp\bin\BLL.Interface.pdb
 C:\Users\Yakov\Desktop\EPAM.Summer.Project\KnowledgeSystem\MvcApp\bin\DependencyResolver.pdb
-C:\Users\Yakov\Desktop\EPAM.Summer.Project\KnowledgeSystem\MvcApp\bin\AutoMapper.xml
 C:\Users\Yakov\Desktop\EPAM.Summer.Project\KnowledgeSystem\MvcApp\bin\EntityFramework.xml
 C:\Users\Yakov\Desktop\EPAM.Summer.Project\KnowledgeSystem\MvcApp\bin\EntityFramework.SqlServer.xml
 C:\Users\Yakov\Desktop\EPAM.Summer.Project\KnowledgeSystem\MvcApp\bin\Microsoft.AI.DependencyCollector.xml
@@ -226,4 +224,8 @@ C:\Users\Yakov\Desktop\EPAM.Summer.Project\KnowledgeSystem\MvcApp\bin\BLL.pdb
 C:\Users\Yakov\Desktop\EPAM.Summer.Project\KnowledgeSystem\MvcApp\obj\Debug\MvcApp.csprojResolveAssemblyReference.cache
 C:\Users\Yakov\Desktop\EPAM.Summer.Project\KnowledgeSystem\MvcApp\obj\Debug\MvcApp.dll
 C:\Users\Yakov\Desktop\EPAM.Summer.Project\KnowledgeSystem\MvcApp\obj\Debug\MvcApp.pdb
-C:\Users\Yakov\Desktop\EPAM.Summer.Project\KnowledgeSystem\MvcApp\bin\GridMvc.dll
+C:\Users\Yakov\Desktop\EPAM.Summer.Project\KnowledgeSystem\MvcApp\bin\LogentriesCore.dll
+C:\Users\Yakov\Desktop\EPAM.Summer.Project\KnowledgeSystem\MvcApp\bin\LogentriesNLog.dll
+C:\Users\Yakov\Desktop\EPAM.Summer.Project\KnowledgeSystem\MvcApp\bin\Microsoft.WindowsAzure.Configuration.dll
+C:\Users\Yakov\Desktop\EPAM.Summer.Project\KnowledgeSystem\MvcApp\bin\NLog.dll
+C:\Users\Yakov\Desktop\EPAM.Summer.Project\KnowledgeSystem\MvcApp\bin\Microsoft.WindowsAzure.Configuration.xml

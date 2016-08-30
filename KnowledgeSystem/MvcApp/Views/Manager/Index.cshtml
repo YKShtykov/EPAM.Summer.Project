@@ -6,6 +6,15 @@
     ViewBag.Title = "Index";
     int skillsCount = ViewBag.Skills.Length;
 }
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-body">
+                <div id="result"></div>
+            </div>
+        </div>
+    </div>
+</div>
 
 <h2>Index</h2>
 @using (Html.BeginForm())
@@ -59,7 +68,7 @@
                 @foreach (var item in Model.Entities)
                 {
                     <tr>
-                        <td>@item.UserLogin</td>
+                        <td>@Html.ActionLink(item.UserLogin, "UserDetails","Administrator", new { id = item.UserId }, null)</td>
                         @foreach (var item2 in item.Skills)
                         {
                             <td>@item2.Level</td>
@@ -81,16 +90,33 @@
 }
 
 @section scripts{
+<link rel="stylesheet" href="~/Content/bootstrap-select.css">
+<script src="~/Scripts/bootstrap-select.js"></script>
+<script type="text/javascript" src="~/scripts/jsrender.js"></script>
 
-    <script>
-        //$(document).ready(function () {
-        //    $("input[name='page']").click(function (event) {
-        //        event.preventDefault();
-        //        url: '/Manager/Index'
-        //        $.post(url, $('form').serialize(), function (response) {
-        //            $('table').replaceAll(response);
-        //        });
-        //    });
-        //});
-    </script>
+<script id="UserTemplate" type="text/x-jsrender">
+    <div class="row">
+        <p><em>FName:</em> {{:FirstName}}</p>
+        <p><em>MName:</em> {{:MiddleName}}</p>
+        <p><em>LName:</em> {{:LastName}}</p>
+        <p><em>Age</em>{{:Age}}</p>
+        <a href="~/Controllers/SkillController.cs">Profile</a>
+        Html.RouteLink("Skills", new { controller = "Skill", action = "UserSkills", id = Id })
+    </div>
+</script>
+
+<script>
+            $(document).ready(function () {
+                $("td a").click(function (e) {
+                        e.preventDefault();
+                        var url = $(this).attr('href');
+                    $.getJSON(url, null, function (user) {
+                            var template = $.templates("#UserTemplate");
+                            var htmlOutput = template.render(user);
+                        $('#myModal').modal('show');
+                        $("#result").html(htmlOutput);
+                        });
+                    });
+            });
+</script>
 }

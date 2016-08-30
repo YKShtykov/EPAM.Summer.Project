@@ -61,6 +61,7 @@ namespace MvcApp.Controllers
                 }
                 catch (Exception e)
                 {
+                    Logger.LogInfo("Login error" + e.Message);
                     ModelState.AddModelError("", e.Message);
                 }                
             }
@@ -76,10 +77,12 @@ namespace MvcApp.Controllers
                 try
                 {
                     service.Create(UserMapper.Map(model));
+                    Logger.LogInfo("User (Login=" + model.Login + "was created");
                     return Redirect("~/Home/Index");
                 }
                 catch (Exception e)
                 {
+                    Logger.LogInfo("Registration error"+e.Message);
                     ModelState.AddModelError("", e.Message);
                 }
             }

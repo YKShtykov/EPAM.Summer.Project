@@ -10,7 +10,7 @@ namespace MvcApp.Infrastructure.Mappers
 {
     public static class ProfileMapper
     {
-        public static BllProfile MapProfile(MvcProfile profile)
+        public static BllProfile Map(MvcProfile profile)
         {
             return new BllProfile()
             {
@@ -24,12 +24,12 @@ namespace MvcApp.Infrastructure.Mappers
                 City = profile.City,
                 Image = profile.Image,
                 ImageMimeType = profile.ImageMimeType,                
-                Gender = Enum.GetName(typeof(Gender), profile.Gender),
-                RelationshipStatus = Enum.GetName(typeof(RelationshipStatus), profile.RelationshipStatus)
+                Gender = profile.Gender,
+                RelationshipStatus = profile.RelationshipStatus
             };
         }
 
-        public static MvcProfile MapProfile(BllProfile profile)
+        public static MvcProfile Map(BllProfile profile)
         {
             return new MvcProfile()
             {
@@ -43,9 +43,20 @@ namespace MvcApp.Infrastructure.Mappers
                 City = profile.City,
                 Image = profile.Image,
                 ImageMimeType = profile.ImageMimeType,
-                //Gender = profile.Gender,
-                //RelationshipStatus = Enum.GetName(typeof(RelationshipStatus), profile.RelationshipStatus)
+                Gender = profile.Gender,
+                RelationshipStatus =profile.RelationshipStatus
             };
+        }
+
+        public static IEnumerable<MvcProfile> Map(IEnumerable<BllProfile> profiles)
+        {
+            var result = new List<MvcProfile>();
+            foreach (var item in profiles)
+            {
+                result.Add(Map(item));
+            }
+
+            return result;
         }
     }
 }

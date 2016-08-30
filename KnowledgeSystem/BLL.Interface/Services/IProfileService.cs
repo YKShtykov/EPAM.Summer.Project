@@ -8,7 +8,8 @@ namespace BLL.Interface
 {
     public interface IProfileService
     {
-        BllProfile GetProfile(int id);
-        void EditProfile(BllProfile profile);
+        BllProfile Get(int id);
+        void Update(BllProfile profile);
+        IEnumerable<BllProfile> Search(BllSearchModel model);
     }
 }

@@ -6,6 +6,7 @@
         <ul class="nav navbar-nav">
             <li>@Html.ActionLink("Profile", "UserProfile", "Profile")</li>
             <li>@Html.ActionLink("Skills", "Index", "Skill")</li>
+            <li>@Html.ActionLink("Search", "Index", "Search")</li>
 
             @if (roles.Contains("Manager"))
             {
@@ -14,10 +15,17 @@
 
             @if (roles.Contains("Administrator"))
             {
-                <li>@Html.ActionLink("Administrator page", "Index", "Administrator")</li>
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Administrator pages <span class="caret"></span></a>
+                    <ul class="dropdown-menu">
+                        <li>@Html.ActionLink("Categories", "Categories", "Skill")</li>
+                        <li>@Html.ActionLink("Skills", "Skills", "Skill")</li>
+                        <li>@Html.ActionLink("Users", "Users", "Administrator")</li>
+                    </ul>
+                </li>
             }
-
         </ul>
+
         <ul class="nav navbar-nav navbar-right">
             <li>@Html.ActionLink("Logout", "Logout", "Account")</li>
         </ul>

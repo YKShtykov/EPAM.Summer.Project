@@ -25,3 +25,5 @@ C:\Users\Yakov\Desktop\EPAM.Summer.Project\KnowledgeSystem\BLL\bin\Debug\DALL.In
 C:\Users\Yakov\Desktop\EPAM.Summer.Project\KnowledgeSystem\BLL\obj\Debug\BLL.csprojResolveAssemblyReference.cache
 C:\Users\Yakov\Desktop\EPAM.Summer.Project\KnowledgeSystem\BLL\obj\Debug\BLL.dll
 C:\Users\Yakov\Desktop\EPAM.Summer.Project\KnowledgeSystem\BLL\obj\Debug\BLL.pdb
+C:\Users\Yakov\Desktop\EPAM.Summer.Project\KnowledgeSystem\BLL\bin\Debug\NLog.dll
+C:\Users\Yakov\Desktop\EPAM.Summer.Project\KnowledgeSystem\BLL\bin\Debug\NLog.xml

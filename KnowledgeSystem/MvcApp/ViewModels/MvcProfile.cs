@@ -34,10 +34,10 @@ namespace MvcApp.ViewModels
         public int Age { get; set; }
 
         [Display(Name = "Gender")]
-        public Gender Gender { get; set; }
+        public string Gender { get; set; }
 
         [Display(Name = "Relationship status")]
-        public RelationshipStatus RelationshipStatus { get; set; }
+        public string RelationshipStatus { get; set; }
 
         [Display(Name = "City")]
         [StringLength(128, ErrorMessage = "Max length - {0} symbols")]
@@ -47,26 +47,10 @@ namespace MvcApp.ViewModels
         [StringLength(500, ErrorMessage = "Max length - {0} symbols")]
         public string AdditionalInfo { get; set; }
 
-        [Display(Name = "Photo")]
+        [Display(Name = "Avatar")]
         public byte[] Image { get; set; }
 
         [HiddenInput(DisplayValue = false)]
         public string ImageMimeType { get; set; }
-    }
-
-    public enum Gender
-    {
-        Unspecified,
-        Male,
-        Female
-    }
-
-    public enum RelationshipStatus
-    {
-        Unspecified,
-        Single,
-        Engaged,
-        Married,
-        Enamored
     }
 }

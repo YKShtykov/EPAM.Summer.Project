@@ -13,54 +13,54 @@ namespace BLL
     public class UserService : IUserService
     {
         private readonly IUnitOfWork uow;
-        private readonly IUserRepository userRepository;
-        private readonly ISkillRepository skillRepository;
 
-        public UserService(IUnitOfWork uow, IUserRepository repository, ISkillRepository skillRepository)
+        public UserService(IUnitOfWork uow)
         {
             this.uow = uow;
-            this.userRepository = repository;
-            this.skillRepository = skillRepository;
         }
 
         public void Create(BllUser user)
         {
             DalUser dalUser = UserMapper.Map(user);
-            //if (IsEnabled(dalUser)) throw new Exception("User with such email is already exists");
+            if (IsEnabled(dalUser)) throw new Exception("User with such email is already exists");
 
             string passwordSalt = PasswordService.GenerateSalt();
             string encoded = PasswordService.GetHash(user.Password, passwordSalt);
             dalUser.Password = encoded;
             dalUser.PasswordSalt = passwordSalt;
 
-            userRepository.Create(dalUser);
+            uow.Users.Create(dalUser);
+            uow.Profiles.Create(dalUser.Id);
+            uow.Commit();
         }
 
         public void Update(BllUser user)
         {
-            userRepository.Update(UserMapper.Map(user));
+            uow.Users.Update(UserMapper.Map(user));
+            uow.Commit();
         }
 
         public void Delete(int id)
         {
-            userRepository.Delete(id);
+            uow.Profiles.Delete(id);
+            uow.Users.Delete(id);
             uow.Commit();
         }
 
         public BllUser Get(int id)
         {
-            return UserMapper.Map(userRepository.Get(id));
+            return UserMapper.Map(uow.Users.Get(id));
         }
 
         public IEnumerable<BllUser> GetAll()
         {
-            return UserMapper.Map(userRepository.GetAll());
+            return UserMapper.Map(uow.Users.GetAll());
         }
 
         public Dictionary<BllSkill, int> GetUserSkills(int userId)
         {
             var result = new Dictionary<BllSkill, int>();
-            foreach (var item in skillRepository.GetUserSkillLevels(userId))
+            foreach (var item in uow.Skills.GetUserSkills(userId))
             {
                 result.Add(SkillMapper.Map(item.Key), item.Value);
             }
@@ -68,26 +68,19 @@ namespace BLL
             return result;
         }
 
-        //public BllUser Login(string emailOrLogin, string password)
-        //{
-        //    DalUser user;
-        //    if (IsEnabled(emailOrLogin, out user))
-        //        if (PasswordService.VerifyPassword(password, user.PasswordSalt, user.Password)) return UserMapper.Map(user);
-
-        //    throw new Exception("check your data");
-        //}
-
         public BllUser Login(string emailOrLogin, string password)
         {
-            var user = UserMapper.Map(userRepository.LoginUser(emailOrLogin));
-            if (PasswordService.VerifyPassword(password, user.PasswordSalt, user.Password)) return user;
-            else throw new Exception("check your data");
+            DalUser user;
+            if (IsEnabled(emailOrLogin, out user))
+                if (PasswordService.VerifyPassword(password, user.PasswordSalt, user.Password)) return UserMapper.Map(user);
 
+            throw new Exception("check your data");
         }
 
         public void UpdateUserSkills(int userId, IDictionary<int, int> skillLevel)
         {
-            skillRepository.UpdateUserSkillLevels(userId, skillLevel);
+            uow.Skills.UpdateUserSkills(userId, skillLevel);
+            uow.Commit();
         }
 
         private bool IsEnabled(DalUser user)
@@ -95,7 +88,7 @@ namespace BLL
             Expression<Func<DalUser, bool>> expLogin = u => u.Login == user.Login;
             Expression<Func<DalUser, bool>> expEmail = u => u.Email == user.Email;
 
-            return ReferenceEquals(userRepository.GetByPredicate(expLogin), null) && (ReferenceEquals(userRepository.GetByPredicate(expEmail), null));
+            return ReferenceEquals(uow.Users.GetByPredicate(expLogin), null) && (ReferenceEquals(uow.Users.GetByPredicate(expEmail), null));
         }
 
         private bool IsEnabled(string userData, out DalUser dalUser)
@@ -103,10 +96,10 @@ namespace BLL
             Expression<Func<DalUser, bool>> expLogin = u => u.Login == userData;
             Expression<Func<DalUser, bool>> expEmail = u => u.Email == userData;
 
-            dalUser = (userRepository.GetByPredicate(expLogin));
-            if (ReferenceEquals(dalUser, null)) dalUser = userRepository.GetByPredicate(expEmail);
+            dalUser = (uow.Users.GetByPredicate(expLogin));
+            if (ReferenceEquals(dalUser, null)) dalUser = uow.Users.GetByPredicate(expEmail);
 
-            return ReferenceEquals(dalUser, null);
+            return !ReferenceEquals(dalUser, null);
         }
     }
 }

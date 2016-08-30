@@ -6,7 +6,7 @@ using ORM;
 using Ninject;
 using Ninject.Web.Common;
 using System.Data.Entity;
-
+using Ninject.Modules;
 
 namespace DependencyResolver
 {
@@ -31,7 +31,6 @@ namespace DependencyResolver
             kernel.Bind<ISkillRepository>().To<SkillRepository>();
             kernel.Bind<IProfileRepository>().To<ProfileRepository>();
             kernel.Bind<ICategoryRepository>().To<CategoryRepository>();
-
         }
     }
 }
