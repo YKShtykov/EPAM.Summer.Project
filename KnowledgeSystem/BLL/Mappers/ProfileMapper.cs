@@ -1,15 +1,19 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 using BLL.Interface;
 using DAL.Interface;
 
 namespace BLL.Mappers
 {
+    /// <summary>
+    /// Service class for mapping BllProfile and DalProfile
+    /// </summary>
     public static class ProfileMapper
     {
+        /// <summary>
+        /// Map Profile
+        /// </summary>
+        /// <param name="profile"></param>
+        /// <returns>new BllProfile same as profile</returns>
         public static BllProfile Map(DalProfile profile)
         {
             return new BllProfile()
@@ -19,7 +23,6 @@ namespace BLL.Mappers
                 FirstName = profile.FirstName,
                 MiddleName = profile.MiddleName,
                 BirthDate = profile.BirthDate,
-                Age = profile.Age,
                 AdditionalInfo = profile.AdditionalInfo,
                 City = profile.City,
                 Gender = profile.Gender,
@@ -29,6 +32,11 @@ namespace BLL.Mappers
             };
         }
 
+        /// <summary>
+        /// Map profile
+        /// </summary>
+        /// <param name="profile"></param>
+        /// <returns>new DalProfile same as profile</returns>
         public static DalProfile Map(BllProfile profile)
         {
             return new DalProfile()
@@ -38,7 +46,6 @@ namespace BLL.Mappers
                 FirstName = profile.FirstName,
                 MiddleName = profile.MiddleName,
                 BirthDate = profile.BirthDate,
-                Age = profile.Age,
                 AdditionalInfo = profile.AdditionalInfo,
                 City = profile.City,
                 Gender = profile.Gender,
@@ -46,6 +53,22 @@ namespace BLL.Mappers
                 Image = profile.Image,
                 ImageMimeType = profile.ImageMimeType
             };
+        }
+
+        /// <summary>
+        /// Map profiles
+        /// </summary>
+        /// <param name="profiles"></param>
+        /// <returns>BllProfiles collection same as profiles</returns>
+        public static IEnumerable<BllProfile> Map(IEnumerable<DalProfile> profiles)
+        {
+            var result = new List<BllProfile>();
+            foreach (var item in profiles)
+            {
+                result.Add(Map(item));
+            }
+
+            return result;
         }
     }
 }

@@ -1,13 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Data.Entity.ModelConfiguration;
+﻿using System.Data.Entity.ModelConfiguration;
 
 namespace ORM.Mappers
 {
-    class RoleMapper: EntityTypeConfiguration<Role>
+    /// <summary>
+    /// Service class for configurating Role table
+    /// </summary>
+    class RoleMapper : EntityTypeConfiguration<Role>
     {
         public RoleMapper()
         {

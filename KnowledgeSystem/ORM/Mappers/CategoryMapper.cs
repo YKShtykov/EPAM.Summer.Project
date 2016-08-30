@@ -1,12 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Data.Entity.ModelConfiguration;
+﻿using System.Data.Entity.ModelConfiguration;
 
 namespace ORM.Mappers
 {
+    /// <summary>
+    /// Service class for configurating Category table
+    /// </summary>
     class CategoryMapper: EntityTypeConfiguration<Category>
     {
         public CategoryMapper()

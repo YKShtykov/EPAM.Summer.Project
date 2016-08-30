@@ -1,8 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using BLL.Interface;
 using DAL.Interface;
 using BLL.Mappers;
@@ -10,15 +7,26 @@ using System.Linq.Expressions;
 
 namespace BLL
 {
+    /// <summary>
+    /// Service for fork with Users
+    /// </summary>
     public class UserService : IUserService
     {
         private readonly IUnitOfWork uow;
 
+        /// <summary>
+        /// Create UserService instance
+        /// </summary>
+        /// <param name="uow"></param>
         public UserService(IUnitOfWork uow)
         {
             this.uow = uow;
         }
 
+        /// <summary>
+        /// The method for creating new user
+        /// </summary>
+        /// <param name="user"></param>
         public void Create(BllUser user)
         {
             DalUser dalUser = UserMapper.Map(user);
@@ -34,12 +42,20 @@ namespace BLL
             uow.Commit();
         }
 
+        /// <summary>
+        /// The method for updating existing user
+        /// </summary>
+        /// <param name="user"></param>
         public void Update(BllUser user)
         {
             uow.Users.Update(UserMapper.Map(user));
             uow.Commit();
         }
 
+        /// <summary>
+        /// The method for deleting user
+        /// </summary>
+        /// <param name="id"></param>
         public void Delete(int id)
         {
             uow.Profiles.Delete(id);
@@ -47,16 +63,30 @@ namespace BLL
             uow.Commit();
         }
 
+        /// <summary>
+        /// The method for getting user by Id
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         public BllUser Get(int id)
         {
             return UserMapper.Map(uow.Users.Get(id));
         }
 
+        /// <summary>
+        /// The method for getting all users
+        /// </summary>
+        /// <returns></returns>
         public IEnumerable<BllUser> GetAll()
         {
             return UserMapper.Map(uow.Users.GetAll());
         }
 
+        /// <summary>
+        /// The method for getting user skills
+        /// </summary>
+        /// <param name="userId"></param>
+        /// <returns></returns>
         public Dictionary<BllSkill, int> GetUserSkills(int userId)
         {
             var result = new Dictionary<BllSkill, int>();
@@ -68,6 +98,12 @@ namespace BLL
             return result;
         }
 
+        /// <summary>
+        /// The method for user logining
+        /// </summary>
+        /// <param name="emailOrLogin"></param>
+        /// <param name="password"></param>
+        /// <returns></returns>
         public BllUser Login(string emailOrLogin, string password)
         {
             DalUser user;
@@ -77,12 +113,22 @@ namespace BLL
             throw new Exception("check your data");
         }
 
+        /// <summary>
+        /// The method for updating users skills
+        /// </summary>
+        /// <param name="userId"></param>
+        /// <param name="skillLevel"></param>
         public void UpdateUserSkills(int userId, IDictionary<int, int> skillLevel)
         {
             uow.Skills.UpdateUserSkills(userId, skillLevel);
             uow.Commit();
         }
 
+        /// <summary>
+        /// The method for checking if the user is enabled
+        /// </summary>
+        /// <param name="user"></param>
+        /// <returns></returns>
         private bool IsEnabled(DalUser user)
         {
             Expression<Func<DalUser, bool>> expLogin = u => u.Login == user.Login;
@@ -91,6 +137,12 @@ namespace BLL
             return ReferenceEquals(uow.Users.GetByPredicate(expLogin), null) && (ReferenceEquals(uow.Users.GetByPredicate(expEmail), null));
         }
 
+        /// <summary>
+        /// The method for checking if the user is enabled and out parameter for the User
+        /// </summary>
+        /// <param name="userData"></param>
+        /// <param name="dalUser"></param>
+        /// <returns></returns>
         private bool IsEnabled(string userData, out DalUser dalUser)
         {
             Expression<Func<DalUser, bool>> expLogin = u => u.Login == userData;

@@ -1,16 +1,22 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace DAL.Interface
+﻿namespace DAL.Interface
 {
+    /// <summary>
+    /// DAL Layout Skill class
+    /// </summary>
     public class DalSkill: IEntity
     {
+        /// <summary>
+        /// DAL Skill identify number
+        /// </summary>
         public int Id { get; set; }
+        /// <summary>
+        /// DAL Skill name
+        /// </summary>
         public string Name { get; set; }
 
+        /// <summary>
+        /// Category, wich has the skill
+        /// </summary>
         public string CategoryName { get; set; }
     }
 }

@@ -6,43 +6,76 @@ using BLL.Mappers;
 
 namespace BLL
 {
+    /// <summary>
+    /// Service for fork with Skills
+    /// </summary>
     public class SkillService : ISkillService
     {
         private readonly IUnitOfWork uow;
 
+        /// <summary>
+        /// Create SkillService instance
+        /// </summary>
+        /// <param name="uow"></param>
         public SkillService(IUnitOfWork uow)
         {
             this.uow = uow;
         }
 
+        /// <summary>
+        /// The method for creating new skill
+        /// </summary>
+        /// <param name="skill"></param>
         public void Create(BllSkill skill)
         {
             uow.Skills.Create(SkillMapper.Map(skill));
             uow.Commit();
         }
 
+        /// <summary>
+        /// The method for updating existing skill
+        /// </summary>
+        /// <param name="skill"></param>
         public void Update(BllSkill skill)
         {
             uow.Skills.Update(SkillMapper.Map(skill));
             uow.Commit();
         }
 
+        /// <summary>
+        /// The method for deleting skill
+        /// </summary>
+        /// <param name="id"></param>
         public void Delete(int id)
         {
             uow.Skills.Delete(id);
             uow.Commit();
         }
 
+        /// <summary>
+        /// The method for getting skill by Id
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         public BllSkill Get(int id)
         {
             return SkillMapper.Map(uow.Skills.Get(id));
         }
 
+        /// <summary>
+        /// The method for getting all skills
+        /// </summary>
+        /// <returns></returns>
         public IEnumerable<BllSkill> GetAll()
         {
             return uow.Skills.GetAll().Select(u => SkillMapper.Map(u));
-        }        
+        }
 
+        /// <summary>
+        /// The method for construct rating of users
+        /// </summary>
+        /// <param name="sortings"></param>
+        /// <returns></returns>
         public IEnumerable<BllUserSkills> RateUsers(IEnumerable<string> sortings)
         {
             var result = new List<BllUserSkills>();
@@ -71,6 +104,9 @@ namespace BLL
             return SortBySkill(result);
         }
 
+        /// <summary>
+        /// User EqualityComparer
+        /// </summary>
         private class UserComparer : IEqualityComparer<DalUser>
         {
             public bool Equals(DalUser x, DalUser y)
@@ -84,6 +120,11 @@ namespace BLL
             }
         }
 
+        /// <summary>
+        /// The method for sorting users by skills
+        /// </summary>
+        /// <param name="users"></param>
+        /// <returns></returns>
         internal List<BllUserSkills> SortBySkill(List<BllUserSkills> users)
         {
             int count = users.First().SkillLevelPair.Count;
@@ -110,6 +151,11 @@ namespace BLL
             return users;
         }
 
+        /// <summary>
+        /// the method for getting skills by names
+        /// </summary>
+        /// <param name="names"></param>
+        /// <returns></returns>
         internal IEnumerable<DalSkill> GetSkills(IEnumerable<string> names)
         {
             if (ReferenceEquals(names, null)) return new List<DalSkill>(){ uow.Skills.GetAll().First()};

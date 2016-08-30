@@ -1,15 +1,20 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
 using System.Security.Cryptography;
 using System.Text;
-using System.Threading.Tasks;
 
 namespace ORM
 {
+    /// <summary>
+    /// Service class for actions, when DataBase is created
+    /// </summary>
     class DbInitializer : CreateDatabaseIfNotExists<KnowledgeSystemContext>
     {
+        /// <summary>
+        /// Method creates all Roles, and initial Administrator
+        /// </summary>
+        /// <param name="context">DbContext</param>
         protected override void Seed(KnowledgeSystemContext context)
         {
             context.Roles.AddRange(new Role[] { new Role() { Id=1, Name = "Administrator" },
@@ -36,31 +41,12 @@ namespace ORM
 
             context.Set<User>().Add(admin);
             context.Set<Profile>().Add(new Profile() { Id = admin.Id, BirthDate = default(DateTime).ToString() });
-
-            //context.Categories.Add(new Category() { Id = 1, Name = "Programming Languages"} );
-            //context.Categories.Add(new Category() { Id = 2, Name = ".NET Frameworks"});
-            //context.Categories.Add(new Category() { Id = 3, Name = "Additional Skills"});
-
-            //var programingCategory = context.Categories.FirstOrDefault(c => c.Id == 1);
-            //var frameworkCategory = context.Categories.FirstOrDefault(c => c.Id == 2);
-            //var additionalCategory = context.Categories.FirstOrDefault(c => c.Id == 3);
-
-            //context.Skills.AddRange(new Skill[] { new Skill() { Id=1, Name = "C", Category = programingCategory},
-            //                                      new Skill() { Id=2, Name = "C++", Category = programingCategory },
-            //                                      new Skill() { Id=3, Name = "C#", Category = programingCategory },
-            //                                      new Skill() { Id=4, Name = "Java", Category = programingCategory },
-            //                                      new Skill() { Id=5, Name = "PHP", Category = programingCategory },
-            //                                      new Skill() { Id=6, Name = "Python", Category = programingCategory },
-            //                                      new Skill() { Id=7, Name = "Entity Framework", Category= frameworkCategory },
-            //                                      new Skill() { Id=8, Name = "ASP .NET", Category= frameworkCategory },
-            //                                      new Skill() { Id=9, Name = "English Level", Category = additionalCategory },
-            //                                      new Skill() { Id=10, Name = "Object Oriented Programming", Category = additionalCategory },
-            //                                      new Skill() { Id=11, Name = "Information Security", Category = additionalCategory },
-            //                                      new Skill() { Id=12, Name = "Computer Networks", Category = additionalCategory }});
-
             context.SaveChanges();
         }
 
+        /// <summary>
+        /// The mehod for creating hashed administrator password
+        /// </summary>
         internal static class AdminPasswordGenerator
         {
             internal static string Salt { get; }

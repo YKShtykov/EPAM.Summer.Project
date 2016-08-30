@@ -6,12 +6,18 @@ using ORM;
 using Ninject;
 using Ninject.Web.Common;
 using System.Data.Entity;
-using Ninject.Modules;
 
 namespace DependencyResolver
 {
+    /// <summary>
+    /// Service class for DI and IoC implemetnation
+    /// </summary>
     public static class DependencyResolver
     {
+        /// <summary>
+        /// The method for Kernel configuration
+        /// </summary>
+        /// <param name="kernel">this IKernel parameter</param>
         public static void ConfigurateResolver(this IKernel kernel)
         {
             Configure(kernel);

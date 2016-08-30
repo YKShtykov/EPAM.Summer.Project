@@ -1,15 +1,21 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using DAL.Interface;
 using ORM;
 
 namespace DAL.Mappers
 {
+    /// <summary>
+    /// Service class for mapping DalProfile and ORM Profile entities
+    /// </summary>
     public static class ProfileMapper
     {
+        /// <summary>
+        /// Map Profile
+        /// </summary>
+        /// <param name="profile"></param>
+        /// <returns>new ORM Profile same as profile</returns>
         public static Profile Map(DalProfile profile)
         {
             return new Profile()
@@ -28,6 +34,11 @@ namespace DAL.Mappers
             };
         }
 
+        /// <summary>
+        /// Map profile
+        /// </summary>
+        /// <param name="profile"></param>
+        /// <returns>new DalProfile same as profile</returns>
         public static DalProfile Map(Profile profile)
         {
             return new DalProfile()
@@ -46,6 +57,11 @@ namespace DAL.Mappers
             };
         }
 
+        /// <summary>
+        /// Map profiles
+        /// </summary>
+        /// <param name="profiles"></param>
+        /// <returns>new collection of DalProffiles sames as profiles</returns>
         public static IEnumerable<DalProfile> Map(IQueryable<Profile> profiles)
         {
             var result = new List<DalProfile>();

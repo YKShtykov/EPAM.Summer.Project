@@ -28,3 +28,4 @@ C:\Users\Yakov\Desktop\EPAM.Summer.Project\KnowledgeSystem\ORM\bin\Debug\EntityF
 C:\Users\Yakov\Desktop\EPAM.Summer.Project\KnowledgeSystem\ORM\obj\Debug\ORM.csprojResolveAssemblyReference.cache
 C:\Users\Yakov\Desktop\EPAM.Summer.Project\KnowledgeSystem\ORM\obj\Debug\ORM.dll
 C:\Users\Yakov\Desktop\EPAM.Summer.Project\KnowledgeSystem\ORM\obj\Debug\ORM.pdb
+C:\Users\Yakov\Desktop\EPAM.Summer.Project\KnowledgeSystem\ORM\bin\Debug\ORM.XML

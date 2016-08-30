@@ -1,15 +1,20 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using DAL.Interface;
 using ORM;
 
 namespace DAL.Mappers
 {
+    /// <summary>
+    /// Service class for mapping DalUser and ORM User entities
+    /// </summary>
     public static class UserMapper
     {
+        /// <summary>
+        /// Map User
+        /// </summary>
+        /// <param name="user"></param>
+        /// <returns>new ORM User entity same as user</returns>
         public static User Map(DalUser user)
         {
             User result = new User
@@ -24,6 +29,11 @@ namespace DAL.Mappers
             return result;
         }
 
+        /// <summary>
+        /// Map User
+        /// </summary>
+        /// <param name="user"></param>
+        /// <returns>new DalUser entity same as user</returns>
         public static DalUser Map(User user)
         {
             DalUser result = new DalUser

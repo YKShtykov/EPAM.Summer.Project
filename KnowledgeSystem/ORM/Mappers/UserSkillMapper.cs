@@ -1,13 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Data.Entity.ModelConfiguration;
+﻿using System.Data.Entity.ModelConfiguration;
 
 namespace ORM.Mappers
 {
-    class UserSkillMapper: EntityTypeConfiguration<UserSkill>
+    /// <summary>
+    /// Service class for configurating UserSkill table
+    /// </summary>
+    class UserSkillMapper : EntityTypeConfiguration<UserSkill>
     {
         public UserSkillMapper()
         {

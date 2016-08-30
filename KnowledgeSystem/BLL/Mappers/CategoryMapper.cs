@@ -1,15 +1,19 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 using BLL.Interface;
 using DAL.Interface;
 
 namespace BLL.Mappers
 {
+    /// <summary>
+    /// Service class for mapping DalCategory and BllCategory entities
+    /// </summary>
     public static class CategoryMapper
     {
+        /// <summary>
+        /// Map category
+        /// </summary>
+        /// <param name="category"></param>
+        /// <returns>new Bll category same as category</returns>
         public static BllCategory Map(DalCategory category)
         {
             BllCategory result = new BllCategory()
@@ -24,6 +28,11 @@ namespace BLL.Mappers
             return result;
         }
 
+        /// <summary>
+        /// Mapcategory
+        /// </summary>
+        /// <param name="category"></param>
+        /// <returns>new DalCategory same as category</returns>
         public static DalCategory Map(BllCategory category)
         {
             DalCategory result = new DalCategory()
@@ -38,6 +47,11 @@ namespace BLL.Mappers
             return result;
         }
 
+        /// <summary>
+        /// Map categories
+        /// </summary>
+        /// <param name="categories"></param>
+        /// <returns>BllCategories collection same as categories</returns>
         public static IEnumerable<BllCategory> Map(IEnumerable<DalCategory> categories)
         {
             List<BllCategory> result = new List<BllCategory>();

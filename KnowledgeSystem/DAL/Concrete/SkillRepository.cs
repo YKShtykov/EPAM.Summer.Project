@@ -9,15 +9,26 @@ using System.Data.Entity;
 
 namespace DAL
 {
+    /// <summary>
+    /// Skill repository class implements Repository pattern for skill collection
+    /// </summary>
     public class SkillRepository : ISkillRepository
     {
         private readonly KnowledgeSystemContext context;
 
+        /// <summary>
+        /// Create SkillRepository instance
+        /// </summary>
+        /// <param name="knowledgeContext"></param>
         public SkillRepository(KnowledgeSystemContext knowledgeContext)
         {
             context = knowledgeContext;
         }
 
+        /// <summary>
+        /// The method for creating new skill entity in collection
+        /// </summary>
+        /// <param name="skill"></param>
         public void Create(DalSkill skill)
         {
             var ormSkill = SkillMapper.Map(skill);
@@ -26,6 +37,10 @@ namespace DAL
             context.Set<Category>().FirstOrDefault(c => c.Name == skill.CategoryName).Skills.Add(ormSkill);
         }
 
+        /// <summary>
+        /// The method for updating exsisting skill in collection
+        /// </summary>
+        /// <param name="skill"></param>
         public void Update(DalSkill skill)
         {
             var ormSkill = context.Set<Skill>().FirstOrDefault(s => s.Id == skill.Id);
@@ -39,17 +54,30 @@ namespace DAL
             }
         }
 
+        /// <summary>
+        /// The method for deleting skill entity from collection
+        /// </summary>
+        /// <param name="id"></param>
         public void Delete(int id)
         {
             var skill = context.Set<Skill>().FirstOrDefault(s => s.Id == id);
             context.Set<Skill>().Remove(skill);
         }
 
+        /// <summary>
+        /// The method for getting skill entity by Id
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         public DalSkill Get(int id)
         {
             return SkillMapper.Map(context.Set<Skill>().Select(s => s).Include(s => s.Category).FirstOrDefault(u => u.Id == id));
         }
 
+        /// <summary>
+        /// The method for getting all skills
+        /// </summary>
+        /// <returns></returns>
         public IEnumerable<DalSkill> GetAll()
         {
             List<DalSkill> result = new List<DalSkill>();
@@ -59,8 +87,13 @@ namespace DAL
             }
 
             return result;
-        }        
+        }
 
+        /// <summary>
+        /// The method for getting skill entity by predicate
+        /// </summary>
+        /// <param name="f"></param>
+        /// <returns></returns>
         public DalSkill GetByPredicate(Expression<Func<DalSkill, bool>> f)
         {
             var expr = ExpressionTransformer<DalSkill, Skill>.Tranform(f);
@@ -69,11 +102,21 @@ namespace DAL
             return SkillMapper.Map(context.Set<Skill>().FirstOrDefault(func));
         }
 
+        /// <summary>
+        /// The method for getting all users with that skill
+        /// </summary>
+        /// <param name="skill"></param>
+        /// <returns> DalUser collection </returns>
         public IEnumerable<DalUser> GetUsersWithThatSkill(DalSkill skill)
         {
             return UserMapper.Map(context.Set<UserSkill>().Where(us => us.Skill.Id == skill.Id).OrderBy(us => us.Level).Select(us => us.User));
         }
 
+        /// <summary>
+        /// The method for getting all user skills by user Id
+        /// </summary>
+        /// <param name="userId"></param>
+        /// <returns>Dictionary DalSkill-level</returns>
         public Dictionary<DalSkill, int> GetUserSkills(int userId)
         {
             var skills = new Dictionary<DalSkill, int>();
@@ -91,6 +134,11 @@ namespace DAL
             return skills;
         }
 
+        /// <summary>
+        /// The method for updating all user skills
+        /// </summary>
+        /// <param name="userId"></param>
+        /// <param name="skillLevel"></param>
         public void UpdateUserSkills(int userId, IDictionary<int, int> skillLevel)
         {
             foreach (var item in skillLevel)
@@ -99,6 +147,12 @@ namespace DAL
             };
         }
 
+        /// <summary>
+        /// The method for updating level of skill
+        /// </summary>
+        /// <param name="userId"></param>
+        /// <param name="skillId"></param>
+        /// <param name="level"></param>
         public void UpdateSkillLevel(int userId, int skillId, int level)
         {
             var userSkill = context.Set<UserSkill>().FirstOrDefault(us => us.User.Id == userId && us.Skill.Id == skillId);
@@ -119,6 +173,12 @@ namespace DAL
             }
         }
 
+        /// <summary>
+        /// The method for getting user level in that skill by user Id and skill Id
+        /// </summary>
+        /// <param name="userId"></param>
+        /// <param name="skillId"></param>
+        /// <returns>Level of skill</returns>
         public int GetLevelOfSkill(int userId, int skillId)
         {
             return context.Set<UserSkill>().FirstOrDefault(us => us.Skill.Id == skillId && us.User.Id == userId).Level;

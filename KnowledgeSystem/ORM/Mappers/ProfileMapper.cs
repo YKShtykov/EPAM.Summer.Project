@@ -1,13 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Data.Entity.ModelConfiguration;
+﻿using System.Data.Entity.ModelConfiguration;
 
 namespace ORM.Mappers
 {
-    class ProfileMapper: EntityTypeConfiguration<Profile>
+    /// <summary>
+    /// Service class for configurating Profile table
+    /// </summary>
+    class ProfileMapper : EntityTypeConfiguration<Profile>
     {
         public ProfileMapper()
         {
@@ -18,6 +16,7 @@ namespace ORM.Mappers
             Property(t => t.FirstName).HasMaxLength(128);
             Property(t => t.MiddleName).HasMaxLength(128);
             Property(t => t.LastName).HasMaxLength(128);
+            Property(t => t.ContactEmail).HasMaxLength(128);
             Property(t => t.City).HasMaxLength(128);
             Property(t => t.AdditionalInfo).HasMaxLength(1000);
             Property(t => t.BirthDate);

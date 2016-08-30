@@ -1,14 +1,15 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Data.Entity.ModelConfiguration;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Data.Entity.ModelConfiguration;
 
 namespace ORM.Mappers
 {
+    /// <summary>
+    /// Service class for configurating User table
+    /// </summary>
     public class UserMapper: EntityTypeConfiguration<User>
     {
+        /// <summary>
+        /// Create UserMapper entity
+        /// </summary>
         public UserMapper()
         {
             ToTable("User");

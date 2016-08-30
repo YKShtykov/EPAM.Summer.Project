@@ -1,20 +1,56 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 
 namespace BLL.Interface
 {
+    /// <summary>
+    /// Interface for work with users 
+    /// </summary>
     public interface IUserService
     {
+        /// <summary>
+        /// The method for creating new BllUser
+        /// </summary>
+        /// <param name="user"></param>
         void Create(BllUser user);
+        /// <summary>
+        /// The method for updating exsisting BllUser
+        /// </summary>
+        /// <param name="user"></param>
         void Update(BllUser user);
+        /// <summary>
+        /// The method for deleting BllUser
+        /// </summary>
+        /// <param name="id"></param>
         void Delete(int id);
+        /// <summary>
+        /// The method for getting BllUser by Id
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns>BllUser</returns>
         BllUser Get(int id);
+        /// <summary>
+        /// The method for getting all BllUsers
+        /// </summary>
+        /// <returns>BllUser collection</returns>
         IEnumerable<BllUser> GetAll();       
+        /// <summary>
+        /// The method for user logining
+        /// </summary>
+        /// <param name="emailOrLogin"></param>
+        /// <param name="password"></param>
+        /// <returns>BllUser</returns>
         BllUser Login(string emailOrLogin, string password);    
+        /// <summary>
+        /// The method for updating users skills
+        /// </summary>
+        /// <param name="userId"></param>
+        /// <param name="skillLevel"></param>
         void UpdateUserSkills(int userId, IDictionary<int, int> skillLevel);
+        /// <summary>
+        /// The method for getting user skills
+        /// </summary>
+        /// <param name="userId"></param>
+        /// <returns>dictionary BllSkill-level</returns>
         Dictionary<BllSkill,int> GetUserSkills(int userId);
     }
 }

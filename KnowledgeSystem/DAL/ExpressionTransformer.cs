@@ -5,6 +5,11 @@ using System.Reflection;
 
 namespace DAL
 {
+    /// <summary>
+    /// Service class for expression tree transformation for GetByPredicate metods of Repositories
+    /// </summary>
+    /// <typeparam name="TFrom"></typeparam>
+    /// <typeparam name="TTo"></typeparam>
     internal static class ExpressionTransformer<TFrom, TTo>
     {
         public class Visitor : ExpressionVisitor

@@ -229,3 +229,9 @@ C:\Users\Yakov\Desktop\EPAM.Summer.Project\KnowledgeSystem\MvcApp\bin\Logentries
 C:\Users\Yakov\Desktop\EPAM.Summer.Project\KnowledgeSystem\MvcApp\bin\Microsoft.WindowsAzure.Configuration.dll
 C:\Users\Yakov\Desktop\EPAM.Summer.Project\KnowledgeSystem\MvcApp\bin\NLog.dll
 C:\Users\Yakov\Desktop\EPAM.Summer.Project\KnowledgeSystem\MvcApp\bin\Microsoft.WindowsAzure.Configuration.xml
+C:\Users\Yakov\Desktop\EPAM.Summer.Project\KnowledgeSystem\MvcApp\bin\DependencyResolver.xml
+C:\Users\Yakov\Desktop\EPAM.Summer.Project\KnowledgeSystem\MvcApp\bin\DALL.Interface.xml
+C:\Users\Yakov\Desktop\EPAM.Summer.Project\KnowledgeSystem\MvcApp\bin\ORM.xml
+C:\Users\Yakov\Desktop\EPAM.Summer.Project\KnowledgeSystem\MvcApp\bin\DAL.xml
+C:\Users\Yakov\Desktop\EPAM.Summer.Project\KnowledgeSystem\MvcApp\bin\BLL.Interface.xml
+C:\Users\Yakov\Desktop\EPAM.Summer.Project\KnowledgeSystem\MvcApp\bin\BLL.xml

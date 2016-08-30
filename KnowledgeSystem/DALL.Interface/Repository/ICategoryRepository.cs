@@ -1,11 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace DAL.Interface
+﻿namespace DAL.Interface
 {
+    /// <summary>
+    /// Interface for IRepository addons for Category collection
+    /// </summary>
     public interface ICategoryRepository: IRepository<DalCategory>
     {
     }

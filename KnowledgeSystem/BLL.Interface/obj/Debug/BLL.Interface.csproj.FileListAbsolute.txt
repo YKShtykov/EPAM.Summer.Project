@@ -13,3 +13,4 @@ C:\Users\Yakov\Desktop\EPAM.Summer.Project\KnowledgeSystem\BLL.Interface\bin\Deb
 C:\Users\Yakov\Desktop\EPAM.Summer.Project\KnowledgeSystem\BLL.Interface\obj\Debug\BLL.Interface.csprojResolveAssemblyReference.cache
 C:\Users\Yakov\Desktop\EPAM.Summer.Project\KnowledgeSystem\BLL.Interface\obj\Debug\BLL.Interface.dll
 C:\Users\Yakov\Desktop\EPAM.Summer.Project\KnowledgeSystem\BLL.Interface\obj\Debug\BLL.Interface.pdb
+C:\Users\Yakov\Desktop\EPAM.Summer.Project\KnowledgeSystem\BLL.Interface\bin\Debug\BLL.Interface.XML

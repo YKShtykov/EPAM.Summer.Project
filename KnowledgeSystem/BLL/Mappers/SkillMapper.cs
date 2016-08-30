@@ -1,15 +1,19 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 using BLL.Interface;
 using DAL.Interface;
 
 namespace BLL.Mappers
 {
+    /// <summary>
+    /// Service class for mapping BllSkill and DalSkill entities, BllUserSkills and DalUserSkills
+    /// </summary>
     public static class SkillMapper
     {
+        /// <summary>
+        /// Map Skill
+        /// </summary>
+        /// <param name="skill"></param>
+        /// <returns>new BllSkill same as skill</returns>
         public static BllSkill Map(DalSkill skill)
         {
             return new BllSkill()
@@ -20,6 +24,11 @@ namespace BLL.Mappers
             };
         }
 
+        /// <summary>
+        /// Map skill
+        /// </summary>
+        /// <param name="skill"></param>
+        /// <returns>new DalSkill same as skill</returns>
         public static DalSkill Map(BllSkill skill)
         {
             return new DalSkill()
@@ -30,6 +39,11 @@ namespace BLL.Mappers
             };
         }
 
+        /// <summary>
+        /// Map Skills
+        /// </summary>
+        /// <param name="userSkills"></param>
+        /// <returns>new BllUserSkills same as userSkills</returns>
         public static BllUserSkills Map(DalUserSkills userSkills)
         {
             var skills = new Dictionary<BllSkill, int>();

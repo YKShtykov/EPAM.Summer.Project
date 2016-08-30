@@ -1,14 +1,17 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace BLL.Interface
+﻿namespace BLL.Interface
 {
+    /// <summary>
+    /// BLL Layout Role class
+    /// </summary>
     public class BllRole
     {
+        /// <summary>
+        /// BLL Role identify number
+        /// </summary>
         public int Id { get; set; }
+        /// <summary>
+        /// BLL Role name
+        /// </summary>
         public string Name { get; set; }
     }
 }

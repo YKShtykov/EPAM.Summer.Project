@@ -1,15 +1,18 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using DAL.Interface;
+﻿using DAL.Interface;
 using ORM;
 
 namespace DAL.Mappers
 {
+    /// <summary>
+    /// Service class for mapping DalCategory and ORM Category entities
+    /// </summary>
     public static class CategoryMapper
     {
+        /// <summary>
+        /// Map Categories
+        /// </summary>
+        /// <param name="category"></param>
+        /// <returns>new ORM Category same as category</returns>
         public static Category Map(DalCategory category)
         {
             Category result = new Category()
@@ -24,6 +27,11 @@ namespace DAL.Mappers
             return result;
         }
 
+        /// <summary>
+        /// Map Categories
+        /// </summary>
+        /// <param name="category"></param>
+        /// <returns>new DalCategory same as category</returns>
         public static DalCategory Map(Category category)
         {
             DalCategory result = new DalCategory()

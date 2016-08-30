@@ -1,15 +1,18 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using DAL.Interface;
+﻿using DAL.Interface;
 using ORM;
 
 namespace DAL.Mappers
 {
+    /// <summary>
+    /// Service class for mapping DalRole and ORM Role entities
+    /// </summary>
     public static class RoleMapper
     {
+        /// <summary>
+        /// Map Role
+        /// </summary>
+        /// <param name="role"></param>
+        /// <returns>new ORM Role same as role</returns>
         public static Role MapRole(DalRole role)
         {
             return new Role()
@@ -19,6 +22,11 @@ namespace DAL.Mappers
             };
         }
 
+        /// <summary>
+        /// Map Role
+        /// </summary>
+        /// <param name="role"></param>
+        /// <returns>new DalRole same as role</returns>
         public static DalRole MapRole(Role role)
         {
             return new DalRole()

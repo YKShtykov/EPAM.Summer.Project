@@ -40,3 +40,6 @@ C:\Users\Yakov\Desktop\EPAM.Summer.Project\KnowledgeSystem\DAL\bin\Debug\EntityF
 C:\Users\Yakov\Desktop\EPAM.Summer.Project\KnowledgeSystem\DAL\obj\Debug\DAL.csprojResolveAssemblyReference.cache
 C:\Users\Yakov\Desktop\EPAM.Summer.Project\KnowledgeSystem\DAL\obj\Debug\DAL.dll
 C:\Users\Yakov\Desktop\EPAM.Summer.Project\KnowledgeSystem\DAL\obj\Debug\DAL.pdb
+C:\Users\Yakov\Desktop\EPAM.Summer.Project\KnowledgeSystem\DAL\bin\Debug\DALL.Interface.xml
+C:\Users\Yakov\Desktop\EPAM.Summer.Project\KnowledgeSystem\DAL\bin\Debug\ORM.xml
+C:\Users\Yakov\Desktop\EPAM.Summer.Project\KnowledgeSystem\DAL\bin\Debug\DAL.XML

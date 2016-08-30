@@ -12,3 +12,4 @@ C:\Users\Yakov\Desktop\EPAM.Summer.Project\KnowledgeSystem\DALL.Interface\bin\De
 C:\Users\Yakov\Desktop\EPAM.Summer.Project\KnowledgeSystem\DALL.Interface\obj\Debug\DAL.Interface.csprojResolveAssemblyReference.cache
 C:\Users\Yakov\Desktop\EPAM.Summer.Project\KnowledgeSystem\DALL.Interface\obj\Debug\DALL.Interface.dll
 C:\Users\Yakov\Desktop\EPAM.Summer.Project\KnowledgeSystem\DALL.Interface\obj\Debug\DALL.Interface.pdb
+C:\Users\Yakov\Desktop\EPAM.Summer.Project\KnowledgeSystem\DALL.Interface\bin\Debug\DALL.Interface.XML

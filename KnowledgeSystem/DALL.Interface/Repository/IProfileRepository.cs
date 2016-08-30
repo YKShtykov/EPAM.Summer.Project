@@ -1,17 +1,14 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace DAL.Interface
+﻿namespace DAL.Interface
 {
-    public interface IProfileRepository
+    /// <summary>
+    /// Interface for IRepository addons for Profile collection
+    /// </summary>
+    public interface IProfileRepository: IRepository<DalProfile>
     {
+        /// <summary>
+        /// The method for creating profile by User Id
+        /// </summary>
+        /// <param name="id"></param>
         void Create(int id);
-        void Update(DalProfile profile);
-        void Delete(int id);
-        DalProfile Get(int key);
-        IEnumerable<DalProfile> GetAll();
     }
 }
