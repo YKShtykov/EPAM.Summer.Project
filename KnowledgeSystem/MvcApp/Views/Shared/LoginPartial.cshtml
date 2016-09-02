@@ -4,9 +4,9 @@
     {
         var roles = ((CustomIdentity)User.Identity).Roles;
         <ul class="nav navbar-nav">
-            <li>@Html.ActionLink("Profile", "UserProfile", "Profile")</li>
-            <li>@Html.ActionLink("Skills", "Index", "Skill")</li>
+            <li>@Html.ActionLink("Profile", "UserProfile", "Profile")</li>            
             <li>@Html.ActionLink("Search", "Index", "Search")</li>
+            <li>@Html.ActionLink("Skills", "Index", "Skill")</li>
 
             @if (roles.Contains("Manager"))
             {

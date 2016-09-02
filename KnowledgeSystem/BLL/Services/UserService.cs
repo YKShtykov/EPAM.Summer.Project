@@ -30,7 +30,8 @@ namespace BLL
         public void Create(BllUser user)
         {
             DalUser dalUser = UserMapper.Map(user);
-            if (IsEnabled(dalUser)) throw new Exception("User with such email is already exists");
+            if (!IsEmailEnabled(dalUser.Email)) throw new Exception("User with such email is already exists");
+            if (!IsLoginEnabled(dalUser.Login)) throw new Exception("User with such login is already exists");
 
             string passwordSalt = PasswordService.GenerateSalt();
             string encoded = PasswordService.GetHash(user.Password, passwordSalt);
@@ -125,16 +126,27 @@ namespace BLL
         }
 
         /// <summary>
-        /// The method for checking if the user is enabled
+        /// The method for checking email
         /// </summary>
-        /// <param name="user"></param>
+        /// <param name="email"></param>
         /// <returns></returns>
-        private bool IsEnabled(DalUser user)
+        private bool IsEmailEnabled(string email)
         {
-            Expression<Func<DalUser, bool>> expLogin = u => u.Login == user.Login;
-            Expression<Func<DalUser, bool>> expEmail = u => u.Email == user.Email;
+            Expression<Func<DalUser, bool>> expEmail = u => u.Email == email;
 
-            return ReferenceEquals(uow.Users.GetByPredicate(expLogin), null) && (ReferenceEquals(uow.Users.GetByPredicate(expEmail), null));
+            return (ReferenceEquals(uow.Users.GetByPredicate(expEmail), null));
+        }
+
+        /// <summary>
+        /// The method for checking login
+        /// </summary>
+        /// <param name="login"></param>
+        /// <returns></returns>
+        private bool IsLoginEnabled(string login)
+        {
+            Expression<Func<DalUser, bool>> expEmail = u => u.Login == login;
+
+            return (ReferenceEquals(uow.Users.GetByPredicate(expEmail), null));
         }
 
         /// <summary>

@@ -35,7 +35,7 @@ namespace BLL.Interface
         /// <summary>
         /// User contact phone
         /// </summary>
-        public int ContactPhone { get; set; }
+        public string ContactPhone { get; set; }
 
         /// <summary>
         /// User birth date

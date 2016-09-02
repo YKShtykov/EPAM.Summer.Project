@@ -1,0 +1,12 @@
+2016-08-31 00:55:40.6689|INFO|MvcApp.Infrastructure.Logger|Skills of user(id=1) was changed
+2016-08-31 01:05:25.1018|INFO|MvcApp.Infrastructure.Logger|Profile( Id=1was changed
+2016-08-31 01:09:32.0177|INFO|MvcApp.Infrastructure.Logger|Profile( Id=1was changed
+2016-08-31 01:16:34.1477|INFO|MvcApp.Infrastructure.Logger|Profile( Id=1was changed
+2016-08-31 01:19:15.9629|INFO|MvcApp.Infrastructure.Logger|Profile( Id=1was changed
+2016-08-31 01:19:59.3186|INFO|MvcApp.Infrastructure.Logger|Profile( Id=1was changed
+2016-08-31 01:20:13.5502|INFO|MvcApp.Infrastructure.Logger|Profile( Id=1was changed
+2016-08-31 01:23:54.6826|INFO|MvcApp.Infrastructure.Logger|Profile( Id=1was changed
+2016-08-31 01:24:07.4047|INFO|MvcApp.Infrastructure.Logger|Profile( Id=1was changed
+2016-08-31 01:39:35.4013|INFO|MvcApp.Infrastructure.Logger|Login errorcheck your data
+2016-08-31 01:40:07.2794|INFO|MvcApp.Infrastructure.Logger|Profile( Id=2was changed
+2016-08-31 01:40:37.7857|INFO|MvcApp.Infrastructure.Logger|Profile( Id=2was changed

@@ -46,13 +46,18 @@ namespace DAL
                 ormProfile.LastName = profile.LastName;
                 ormProfile.FirstName = profile.FirstName;
                 ormProfile.MiddleName = profile.MiddleName;
+                ormProfile.ContactEmail = profile.ContactEmail;
+                ormProfile.ContactPhone = profile.ContactPhone;
                 ormProfile.AdditionalInfo = profile.AdditionalInfo;
                 ormProfile.BirthDate = profile.BirthDate.ToString();
                 ormProfile.City = profile.City;
                 ormProfile.Gender = profile.Gender;
                 ormProfile.RelationshipStatus = profile.RelationshipStatus;
-                ormProfile.Image = profile.Image;
-                ormProfile.ImageMimeType = profile.ImageMimeType;
+                if (!ReferenceEquals(profile.Image,null))
+                {
+                    ormProfile.Image = profile.Image;
+                    ormProfile.ImageMimeType = profile.ImageMimeType;
+                }                
                 context.Entry(ormProfile).State = EntityState.Modified;
                 context.SaveChanges();
             }

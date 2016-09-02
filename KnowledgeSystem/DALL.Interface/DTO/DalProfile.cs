@@ -35,7 +35,7 @@ namespace DAL.Interface
         /// <summary>
         /// User contact phone
         /// </summary>
-        public int ContactPhone { get; set; }
+        public string ContactPhone { get; set; }
 
         /// <summary>
         /// User dirth date

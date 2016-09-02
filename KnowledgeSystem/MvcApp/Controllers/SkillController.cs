@@ -9,7 +9,7 @@ using MvcApp.Infrastructure;
 
 namespace MvcApp.Controllers
 {
-    [Authorize(Roles="Administrator")]
+    [Authorize]
     public class SkillController : Controller
     {
         private readonly IUserService service;
@@ -23,7 +23,7 @@ namespace MvcApp.Controllers
             this.categories = categories;
         }
 
-        [Authorize(Roles ="User")]
+        //[Authorize(Roles ="User")]
         public ActionResult Index(int page =1)
         {
             var userSkills = new List<MvcSkill>();
@@ -35,13 +35,13 @@ namespace MvcApp.Controllers
                 userSkills.Add(skill);
             }
 
-            var viewModel = new GenericPaginationModel<MvcSkill>(page, 1, userSkills);            
+            var viewModel = new GenericPaginationModel<MvcSkill>(page, 5, userSkills);            
 
             return View(viewModel);
         }
 
         [HttpPost]
-        [Authorize(Roles = "User")]
+        //[Authorize(Roles = "User")]
         public ActionResult Index(List<MvcSkill> Entities, int page=1)
         {
             try
@@ -63,6 +63,7 @@ namespace MvcApp.Controllers
             return Redirect("~/Skill/index/?page="+page);
         }
 
+        [Authorize(Roles = "Administrator")]
         public ActionResult Skills(string SearchString, string AdditionalSearchString, int page = 1)
         {
             IEnumerable<BllSkill> allSkills = skills.GetAll();
@@ -90,6 +91,7 @@ namespace MvcApp.Controllers
         }
 
         [HttpGet]
+        [Authorize(Roles = "Administrator")]
         public ActionResult CreateSkill(string category = "")
         {
             IEnumerable<BllCategory> allCategories = categories.GetAll();
@@ -100,6 +102,7 @@ namespace MvcApp.Controllers
         }
 
         [HttpPost]
+        [Authorize(Roles = "Administrator")]
         public ActionResult CreateSkill(MvcSkill skill)
         {
             if (ModelState.IsValid)
@@ -118,6 +121,7 @@ namespace MvcApp.Controllers
         }
 
         [HttpGet]
+        [Authorize(Roles = "Administrator")]
         public ActionResult EditSkill(int id)
         {
             MvcSkill skill = SkillMapper.Map(skills.Get(id));
@@ -130,6 +134,7 @@ namespace MvcApp.Controllers
         }
 
         [HttpPost]
+        [Authorize(Roles = "Administrator")]
         public ActionResult EditSkill(MvcSkill skill)
         {
             if (ModelState.IsValid)
@@ -147,6 +152,7 @@ namespace MvcApp.Controllers
             return View();
         }
 
+        [Authorize(Roles = "Administrator")]
         public ActionResult RemoveSkill(int id)
         {
             if (ModelState.IsValid)
@@ -163,6 +169,7 @@ namespace MvcApp.Controllers
             return Redirect("~/Skill/Skills");
         }
 
+        [Authorize(Roles = "Administrator")]
         public ActionResult Categories(string SearchString, int page = 1)
         {
             IEnumerable<BllCategory> allCategories = categories.GetAll();
@@ -179,12 +186,14 @@ namespace MvcApp.Controllers
         }
 
         [HttpGet]
+        [Authorize(Roles = "Administrator")]
         public ActionResult CreateCategory()
         {
             return View();
         }
 
         [HttpPost]
+        [Authorize(Roles = "Administrator")]
         public ActionResult CreateCategory(MvcCategory category)
         {
             if (ModelState.IsValid)
@@ -203,6 +212,7 @@ namespace MvcApp.Controllers
         }
 
         [HttpGet]
+        [Authorize(Roles = "Administrator")]
         public ActionResult EditCategory(int id)
         {
             MvcCategory category = CategoryMapper.Map(categories.Get(id));
@@ -210,6 +220,7 @@ namespace MvcApp.Controllers
         }
 
         [HttpPost]
+        [Authorize(Roles = "Administrator")]
         public ActionResult EditCategory(MvcCategory category)
         {
             if (ModelState.IsValid)
@@ -228,6 +239,7 @@ namespace MvcApp.Controllers
         }
 
         [HttpGet]
+        [Authorize(Roles = "Administrator")]
         public ActionResult RemoveCategory(int id)
         {
             if (ModelState.IsValid)
@@ -245,6 +257,7 @@ namespace MvcApp.Controllers
         }
 
         [HttpGet]
+        [Authorize(Roles = "Administrator")]
         public ActionResult UserSkills(int id)
         {
             var userSkills = SkillMapper.Map(service.GetUserSkills(id));

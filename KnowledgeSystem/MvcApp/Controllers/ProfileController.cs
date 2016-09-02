@@ -13,7 +13,7 @@ using System.Security.Principal;
 
 namespace MvcApp.Controllers
 {
-    //[Authorize]
+    [Authorize]
     public class ProfileController : Controller
     {
         private readonly IProfileService service;
@@ -65,6 +65,7 @@ namespace MvcApp.Controllers
             return Redirect("~/Profile/UserProfile");
         }
 
+        [AllowAnonymous]
         public FileContentResult GetImage(int id)
         {
             var profile = service.Get(id);
@@ -72,7 +73,16 @@ namespace MvcApp.Controllers
             {
                 var photo = profile.Image;
                 if (photo != null)
+                {
                     return File(photo, profile.ImageMimeType);
+                }
+                else
+                {
+                    string path = System.Web.HttpContext.Current.Server.MapPath("~/Content/identicon.png");
+                    byte[] fileBytes = System.IO.File.ReadAllBytes(path);
+                    return File( fileBytes, "image/png");
+                }
+                    
             }
             return null;
         }

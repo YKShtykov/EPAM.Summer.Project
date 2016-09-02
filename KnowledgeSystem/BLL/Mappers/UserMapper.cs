@@ -16,6 +16,7 @@ namespace BLL.Mappers
         /// <returns>new BllUser same as user</returns>
         public static BllUser Map(DalUser user)
         {
+            if (ReferenceEquals(user, null)) return null;
             BllUser result = new BllUser
             {
                 Id = user.Id,
@@ -36,6 +37,7 @@ namespace BLL.Mappers
         /// <returns>new DalUser same as user</returns>
         public static DalUser Map(BllUser user)
         {
+            if (ReferenceEquals(user, null)) return null;
             DalUser result = new DalUser
             {
                 Id = user.Id,

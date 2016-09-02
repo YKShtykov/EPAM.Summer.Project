@@ -24,11 +24,11 @@ namespace MvcApp.Controllers
         }
 
         [HttpPost]
-        public ActionResult Index(SearchModel model)
+        public ActionResult Index(SearchModel model, int page =1)
         {
             var bllProfiles = service.Search(SearchModelMapper.Map(model));
             var result = ProfileMapper.Map(bllProfiles);
-            model.Profiles = result.ToList();
+            model.Profiles = new GenericPaginationModel<MvcProfile>(page,2,result.ToList());
 
             return View(model);
 

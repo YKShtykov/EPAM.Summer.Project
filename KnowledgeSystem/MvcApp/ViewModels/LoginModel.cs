@@ -10,6 +10,7 @@ namespace MvcApp.ViewModels
         public string EmailOrLogin { get; set; }
 
         [Display(Name = "Password")]
+        [DataType(DataType.Password)]
         [StringLength(128, ErrorMessage = "Minimum lengt - 6 symbols, maximum length - 128 symbols", MinimumLength = 6)]
         [Required(ErrorMessage = "Please enter your password")]
         public string Password { get; set; }

@@ -1,8 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Web;
 using System.Web.Mvc;
 
 namespace MvcApp.ViewModels
@@ -25,6 +22,14 @@ namespace MvcApp.ViewModels
         [Display(Name = "Middle Name")]
         [StringLength(128, ErrorMessage = "Max length - {0} symbols")]
         public string MiddleName { get; set; }
+
+        [Display(Name ="Contact Email")]
+        [RegularExpression(@"[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,4}", ErrorMessage = "Enter correct email, please")]
+        public string ContactEmail { get; set; }
+
+        [Display(Name = "Contact Phone")]
+        [RegularExpression(@"\x2B(?<AreaCode>\d{3})\s*(?<Number>\d{2})\s*(?<Number>\d{7})", ErrorMessage = "Enter correct phone in format +--- -- -------, please")]
+        public string ContactPhone { get; set; }
 
         [Display(Name = "Birth Date")]
         [DataType(DataType.Date, ErrorMessage = "Please enter a valid date")]

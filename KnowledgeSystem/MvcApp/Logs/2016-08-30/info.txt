@@ -1,0 +1,12 @@
+2016-08-30 20:53:43.4174|INFO|MvcApp.Infrastructure.Logger|Registration errorThe model backing the 'KnowledgeSystemContext' context has changed since the database was created. Consider using Code First Migrations to update the database (http://go.microsoft.com/fwlink/?LinkId=238269).
+2016-08-30 21:17:48.0158|INFO|MvcApp.Infrastructure.Logger|Registration errorСсылка на объект не указывает на экземпляр объекта.
+2016-08-30 21:19:51.3047|INFO|MvcApp.Infrastructure.Logger|Registration errorСсылка на объект не указывает на экземпляр объекта.
+2016-08-30 21:27:04.1979|INFO|MvcApp.Infrastructure.Logger|Registration errorUser with such email is already exists
+2016-08-30 21:38:10.1010|INFO|MvcApp.Infrastructure.Logger|User (Login=ifrit91was created
+2016-08-30 21:38:19.6975|INFO|MvcApp.Infrastructure.Logger|Login errorcheck your data
+2016-08-30 21:55:10.6909|INFO|MvcApp.Infrastructure.Logger|User (Login=ifrit91was created
+2016-08-30 22:14:36.3214|INFO|MvcApp.Infrastructure.Logger|Login errorcheck your data
+2016-08-30 22:29:42.6517|INFO|MvcApp.Infrastructure.Logger|Skills of user(id=1) was changed
+2016-08-30 22:30:21.8227|INFO|MvcApp.Infrastructure.Logger|Skills of user(id=2) was changed
+2016-08-30 22:31:21.6641|INFO|MvcApp.Infrastructure.Logger|Profile( Id=2was changed
+2016-08-30 22:49:43.3935|INFO|MvcApp.Infrastructure.Logger|User (Login=Maksimushka3000was created

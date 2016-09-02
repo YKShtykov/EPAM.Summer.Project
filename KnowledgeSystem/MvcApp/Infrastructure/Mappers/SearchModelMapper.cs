@@ -11,13 +11,21 @@ namespace MvcApp.Infrastructure.Mappers
     {
         public static BllSearchModel Map(SearchModel model)
         {
-            return new BllSearchModel()
+            var result = new BllSearchModel()
             {
                 StringKey = model.StringKey,
-                Age = model.Age,
                 City = model.City,
                 Gender = model.Gender
             };
+            if (ReferenceEquals(model.Age,null))
+            {
+                result.Age = 10000;
+            }
+            else
+            {
+                result.Age = int.Parse(model.Age);
+            }
+            return result;
         }
     }
 }
