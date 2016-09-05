@@ -1,0 +1,9 @@
+﻿@model int
+@using (Html.BeginForm("EditPhoto", "Profile", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+<input type="file" name="fileUpload" /><br />
+
+<div class="col-md-offset-2 col-md-10">
+    <input type="submit" value="Save" class="btn btn-default" />
+</div>
+}

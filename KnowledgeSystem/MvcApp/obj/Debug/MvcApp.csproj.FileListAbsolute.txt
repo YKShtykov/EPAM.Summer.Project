@@ -235,3 +235,5 @@ C:\Users\Yakov\Desktop\EPAM.Summer.Project\KnowledgeSystem\MvcApp\bin\ORM.xml
 C:\Users\Yakov\Desktop\EPAM.Summer.Project\KnowledgeSystem\MvcApp\bin\DAL.xml
 C:\Users\Yakov\Desktop\EPAM.Summer.Project\KnowledgeSystem\MvcApp\bin\BLL.Interface.xml
 C:\Users\Yakov\Desktop\EPAM.Summer.Project\KnowledgeSystem\MvcApp\bin\BLL.xml
+C:\Users\Yakov\Desktop\EPAM.Summer.Project\KnowledgeSystem\MvcApp\bin\itextsharp.dll
+C:\Users\Yakov\Desktop\EPAM.Summer.Project\KnowledgeSystem\MvcApp\bin\itextsharp.xml

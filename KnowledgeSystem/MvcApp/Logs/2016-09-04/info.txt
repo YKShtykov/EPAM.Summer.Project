@@ -1,0 +1,14 @@
+2016-09-04 16:48:06.5120|INFO|MvcApp.Infrastructure.Logger|Skills of user(id=1) was changed
+2016-09-04 16:48:44.6285|INFO|MvcApp.Infrastructure.Logger|Skills of user(id=1) was changed
+2016-09-04 16:49:53.6854|INFO|MvcApp.Infrastructure.Logger|Skills of user(id=1) was changed
+2016-09-04 16:50:34.0018|INFO|MvcApp.Infrastructure.Logger|Skills of user(id=1) was changed
+2016-09-04 16:50:55.4137|INFO|MvcApp.Infrastructure.Logger|Skills of user(id=1) was changed
+2016-09-04 16:52:05.2057|INFO|MvcApp.Infrastructure.Logger|Skills of user(id=1) was changed
+2016-09-04 16:52:05.2218|INFO|MvcApp.Infrastructure.Logger|Skills of user(id=1) was changed
+2016-09-04 16:54:00.3013|INFO|MvcApp.Infrastructure.Logger|Skills of user(id=1) was changed
+2016-09-04 16:54:30.1938|INFO|MvcApp.Infrastructure.Logger|Skills of user(id=1) was changed
+2016-09-04 16:55:33.9552|INFO|MvcApp.Infrastructure.Logger|Skills of user(id=1) was changed
+2016-09-04 16:55:52.6418|INFO|MvcApp.Infrastructure.Logger|Skills of user(id=1) was changed
+2016-09-04 16:56:45.1246|INFO|MvcApp.Infrastructure.Logger|Skills of user(id=1) was changed
+2016-09-04 16:58:22.0491|INFO|MvcApp.Infrastructure.Logger|Skills of user(id=1) was changed
+2016-09-04 17:11:39.5286|INFO|MvcApp.Infrastructure.Logger|Skills of user(id=1) was changed

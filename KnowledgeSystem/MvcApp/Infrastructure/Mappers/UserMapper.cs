@@ -1,10 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
+﻿using System.Collections.Generic;
 using MvcApp.ViewModels;
 using BLL.Interface;
-using MvcApp.Infrastructure.Mappers;
 
 
 namespace MvcApp.Infrastructure.Mappers
@@ -56,6 +52,18 @@ namespace MvcApp.Infrastructure.Mappers
             };
 
             return result;
+        }
+
+        public static IEnumerable<MvcUser> Map(IEnumerable<BllUser> users)
+        {
+            var MvcUserList = new List<MvcUser>();
+
+            foreach (var item in users)
+            {
+                MvcUserList.Add(Map(item));
+            }
+
+            return MvcUserList;
         }
     }
 }

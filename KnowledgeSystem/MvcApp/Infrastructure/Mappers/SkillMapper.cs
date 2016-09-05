@@ -16,6 +16,7 @@ namespace MvcApp.Infrastructure.Mappers
             {
                 Id = skill.Id,
                 Name = skill.Name,
+                Level = skill.Level,
                 CategoryName = skill.CategoryName
             };
         }
@@ -26,26 +27,26 @@ namespace MvcApp.Infrastructure.Mappers
             {
                 Id = skill.Id,
                 Name = skill.Name,
+                Level = skill.Level,
                 CategoryName = skill.CategoryName
             };
         }
 
-        public static SkillsModel Map(BllUserSkills skills)
+        public static SkillsModel Map(BllUserSkills userSkills)
         {
             var mvcSkills = new List<MvcSkill>();
             var result = new SkillsModel()
             {
-                UserId = skills.userId,
-                UserLogin = skills.UserLogin,
+                UserId = userSkills.userId,
+                FirstName = userSkills.FirstName,
+                LastName = userSkills.LastName,
+                Photo = userSkills.Photo
             };
 
-            foreach (var item in skills.SkillLevelPair)
+            foreach (var item in userSkills.Skills)
             {
-                var mvcSkill = Map(item.Key);
-                mvcSkill.Level = item.Value;
-                mvcSkills.Add(mvcSkill);
+                result.Skills.Add(Map(item));
             }
-            result.Skills = mvcSkills;
 
             return result;
         }

@@ -39,18 +39,20 @@ namespace BLL.Interface
         /// <param name="emailOrLogin"></param>
         /// <param name="password"></param>
         /// <returns>BllUser</returns>
-        BllUser Login(string emailOrLogin, string password);    
+        BllUser Login(string emailOrLogin, string password);
         /// <summary>
         /// The method for updating users skills
         /// </summary>
         /// <param name="userId"></param>
-        /// <param name="skillLevel"></param>
-        void UpdateUserSkills(int userId, IDictionary<int, int> skillLevel);
+        /// <param name="categories"></param>
+        void UpdateUserSkills(int userId, IEnumerable<BllCategory> categories);
         /// <summary>
         /// The method for getting user skills
         /// </summary>
         /// <param name="userId"></param>
         /// <returns>dictionary BllSkill-level</returns>
-        Dictionary<BllSkill,int> GetUserSkills(int userId);
+        IEnumerable<BllSkill> GetUserSkills(int userId);
+
+        IEnumerable<BllCategory> GetSortedUserSkills(int userId, bool skillsWithNullLevel);
     }
 }

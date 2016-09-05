@@ -14,7 +14,9 @@ namespace MvcApp.ViewModels
             Skills = new List<MvcSkill>();      
         }
         public int UserId { get; set; }
-        public string UserLogin { get; set; }
+        public string FirstName { get; set; }
+        public string LastName { get; set; }
+        public byte[] Photo { get; set; }
 
         public List<MvcSkill> Skills { get; set; }
     }

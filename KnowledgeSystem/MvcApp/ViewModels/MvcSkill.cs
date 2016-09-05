@@ -35,6 +35,6 @@ namespace MvcApp.ViewModels
         [Required(ErrorMessage = "Please enter your last name")]
         public string Name { get; set; }
 
-        public ICollection<MvcSkill> Skills { get; set; }
+        public List<MvcSkill> Skills { get; set; }
     }
 }

@@ -20,6 +20,7 @@ namespace BLL.Mappers
             {
                 Id = skill.Id,
                 Name = skill.Name,
+                Level =skill.Level,
                 CategoryName = skill.CategoryName
             };
         }
@@ -35,6 +36,7 @@ namespace BLL.Mappers
             {
                 Id = skill.Id,
                 Name = skill.Name,
+                Level = skill.Level,
                 CategoryName = skill.CategoryName
             };
         }
@@ -46,17 +48,28 @@ namespace BLL.Mappers
         /// <returns>new BllUserSkills same as userSkills</returns>
         public static BllUserSkills Map(DalUserSkills userSkills)
         {
-            var skills = new Dictionary<BllSkill, int>();
             var result= new BllUserSkills()
             {
                 userId = userSkills.userId,
-                UserLogin = userSkills.UserLogin,
+                FirstName = userSkills.FirstName,
+                LastName = userSkills.LastName,
+                Photo = userSkills.Photo
             };
-            foreach (var item in userSkills.SkillLevelPair)
+            foreach (var item in userSkills.Skills)
             {
-                skills.Add(Map(item.Key), item.Value);
+                result.Skills.Add(Map(item));
             }
-            result.SkillLevelPair = skills;
+
+            return result;
+        }
+
+        public static IEnumerable<BllSkill> Map(IEnumerable<DalSkill> skills)
+        {
+            var result = new List<BllSkill>();
+            foreach (var item in skills)
+            {
+                result.Add(Map(item));
+            }
 
             return result;
         }

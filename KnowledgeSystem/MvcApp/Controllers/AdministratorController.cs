@@ -1,47 +1,27 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Web;
 using System.Web.Mvc;
 using MvcApp.ViewModels;
 using BLL.Interface;
 using MvcApp.Infrastructure.Mappers;
 using MvcApp.Infrastructure;
-using Newtonsoft.Json;
-using System.Web.Security;
-using System.Security.Principal;
 
 namespace MvcApp.Controllers
 {
     public class AdministratorController : Controller
     {
         private readonly IUserService users;
-        private readonly ISkillService skills;
-        private readonly ICategoryService categories;
-        private readonly IProfileService profiles;
 
-
-        public AdministratorController(IUserService userService,
-                                       ISkillService skillService,
-                                       ICategoryService categoryService,
-                                       IProfileService profileService)
+        public AdministratorController(IUserService userService)
         {
             users = userService;
-            skills = skillService;
-            categories = categoryService;
-            profiles = profileService;
         }
 
         public ActionResult Users(int page = 1)
         {
-            var MvcUserList = new List<MvcUser>();
+            var mvcUsers = UserMapper.Map(users.GetAll());
 
-            foreach (var item in users.GetAll())
-            {
-                MvcUserList.Add(UserMapper.Map(item));
-            }
-
-            var viewModel = new GenericPaginationModel<MvcUser>(page, 2, MvcUserList);
+            var viewModel = new GenericPaginationModel<MvcUser>(page, 2, mvcUsers);
 
             ViewBag.Roles = new string[] { "Administrator", "Manager", "User" };
             return View(viewModel);
@@ -77,12 +57,8 @@ namespace MvcApp.Controllers
             {
                 Logger.LogError(e);
             }
-            return Redirect("~/Administrator/Users");
-        }
 
-        public ActionResult UserDetails(int id)
-        {
-            return Json(profiles.Get(id), JsonRequestBehavior.AllowGet);
-        }
+            return Redirect("~/Administrator/Users");
+        }       
     }
 }

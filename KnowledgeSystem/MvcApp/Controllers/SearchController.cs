@@ -1,11 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿using System.Linq;
 using System.Web.Mvc;
 using MvcApp.ViewModels;
 using BLL.Interface;
 using MvcApp.Infrastructure.Mappers;
-using MvcApp.Infrastructure;
 
 namespace MvcApp.Controllers
 {
@@ -17,7 +14,7 @@ namespace MvcApp.Controllers
         {
             this.service = service;
         }
-        // GET: Search
+
         public ActionResult Index()
         {
             return View();

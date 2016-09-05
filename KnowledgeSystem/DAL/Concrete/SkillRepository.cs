@@ -117,23 +117,38 @@ namespace DAL
         /// </summary>
         /// <param name="userId"></param>
         /// <returns>Dictionary DalSkill-level</returns>
-        public Dictionary<DalSkill, int> GetUserSkills(int userId)
+        public List<DalSkill> GetUserSkills(int userId)
         {
-            var skills = new Dictionary<DalSkill, int>();
+            var skills = new List<DalSkill>();
             var categories = context.Set<Category>().Select(c => c).Include(c => c.Skills);
             foreach (var item in categories)
             {
                 foreach (var skill in item.Skills)
                 {
+                    var userSkill = SkillMapper.Map(skill);
                     var entity = context.Set<UserSkill>().FirstOrDefault(us => us.User.Id == userId && us.Skill.Id == skill.Id);
-                    int level = (!ReferenceEquals(entity, null)) ? entity.Level : 0;
-                    skills.Add(SkillMapper.Map(skill), level);
+                    userSkill.Level = (!ReferenceEquals(entity, null)) ? entity.Level : 0;
+                    skills.Add(userSkill);
                 }
             }
 
             return skills;
         }
+        public List<DalCategory> GetSortedUserSkills(int userId)
+        {
+            var categories = CategoryMapper.Map(context.Set<Category>().Select(c => c).Include(c => c.Skills).ToList());
 
+            foreach (var item in categories)
+            {
+                foreach (var skill in item.Skills)
+                {
+                    var entity = context.Set<UserSkill>().FirstOrDefault(us => us.User.Id == userId && us.Skill.Id == skill.Id);
+                    skill.Level = (!ReferenceEquals(entity, null)) ? entity.Level : 0;
+                }
+            }
+
+            return categories.ToList();
+        }
         /// <summary>
         /// The method for updating all user skills
         /// </summary>

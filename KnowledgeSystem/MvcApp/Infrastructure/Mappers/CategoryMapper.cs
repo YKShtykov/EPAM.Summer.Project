@@ -1,10 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
+﻿using System.Collections.Generic;
 using MvcApp.ViewModels;
 using BLL.Interface;
-using MvcApp.Infrastructure.Mappers;
 
 namespace MvcApp.Infrastructure.Mappers
 {
@@ -35,6 +31,28 @@ namespace MvcApp.Infrastructure.Mappers
             {
                 result.Skills.Add(SkillMapper.Map(skill));
             }
+            return result;
+        }
+
+        public static IEnumerable<MvcCategory> Map(IEnumerable<BllCategory> categories)
+        {
+            var result = new List<MvcCategory>();
+            foreach (var item in categories)
+            {
+                result.Add(Map(item));
+            }
+
+            return result;
+        }
+
+        public static IEnumerable<BllCategory> Map(IEnumerable<MvcCategory> categories)
+        {
+            var result = new List<BllCategory>();
+            foreach (var item in categories)
+            {
+                result.Add(Map(item));
+            }
+
             return result;
         }
     }

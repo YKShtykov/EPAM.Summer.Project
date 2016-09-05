@@ -12,20 +12,30 @@ namespace DAL.Interface
         /// </summary>
         public DalUserSkills()
         {
-            SkillLevelPair = new Dictionary<DalSkill, int>();
+            Skills = new List<DalSkill>();
         }
         /// <summary>
         /// DAL User identify number
         /// </summary>
         public int userId { get; set; }
         /// <summary>
-        /// DAL USer login
+        /// User login
         /// </summary>
-        public string UserLogin { get; set; }
+        public string FirstName { get; set; }
+
+        /// <summary>
+        /// User login
+        /// </summary>
+        public string LastName { get; set; }
+
+        /// <summary>
+        /// User photo
+        /// </summary>
+        public byte[] Photo { get; set; }
 
         /// <summary>
         /// Dictionary storing skill - key and its level - value
         /// </summary>
-        public Dictionary<DalSkill, int> SkillLevelPair { get; set; }
+        public List<DalSkill> Skills { get; set; }
     }
 }

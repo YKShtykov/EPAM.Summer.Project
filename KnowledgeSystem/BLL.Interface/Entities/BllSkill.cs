@@ -15,6 +15,11 @@
         public string Name { get; set; }
 
         /// <summary>
+        /// User skill level
+        /// </summary>
+        public int Level { get; set; }
+
+        /// <summary>
         /// Category name wich consists the skill
         /// </summary>
         public string CategoryName { get; set; }

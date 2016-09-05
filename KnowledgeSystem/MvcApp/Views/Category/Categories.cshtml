@@ -48,10 +48,10 @@
                         </ul>
                     </td>
                     <td>
-                        @Html.RouteLink("Edit", new { controller = "Skill", action = "EditCategory", id = Model.Entities[i].Id })
+                        @Html.RouteLink("Edit", new { controller = "Category", action = "EditCategory", id = Model.Entities[i].Id })
                     </td>
                     <td>
-                        @Html.RouteLink("Remove", new { controller = "Skill", action = "RemoveCategory", id = Model.Entities[i].Id })
+                        @Html.RouteLink("Remove", new { controller = "Category", action = "RemoveCategory", id = Model.Entities[i].Id })
                     </td>
                 </tr>
             }
@@ -61,6 +61,6 @@
         @Html.PageSubmit(Model.Pagination)
     </div>
     <div>
-        @Html.ActionLink("Create category", "CreateCategory", "Skill")
+        @Html.ActionLink("Create category", "CreateCategory", "Category")
     </div>
 }

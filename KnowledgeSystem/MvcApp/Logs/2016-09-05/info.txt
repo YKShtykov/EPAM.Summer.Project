@@ -1,0 +1,3 @@
+2016-09-05 18:37:25.0900|INFO|MvcApp.Infrastructure.Logger|Login errorcheck your data
+2016-09-05 19:25:34.9468|INFO|MvcApp.Infrastructure.Logger|User: Id=1Name=adminwas changed
+2016-09-05 19:25:35.0211|INFO|MvcApp.Infrastructure.Logger|User: Id=2Name=ifrit91was changed

@@ -26,6 +26,6 @@ namespace BLL.Interface
         /// <summary>
         /// BllSkills collection, wich the category consists
         /// </summary>
-        public ICollection<BllSkill> Skills { get; set; }
+        public List<BllSkill> Skills { get; set; }
     }
 }

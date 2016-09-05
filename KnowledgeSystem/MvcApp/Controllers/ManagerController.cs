@@ -14,16 +14,12 @@ namespace MvcApp.Controllers
     {
         private readonly IUserService users;
         private readonly ISkillService skillService;
-        private readonly ICategoryService categories;
 
 
-        public ManagerController(IUserService userService,
-                                       ISkillService skillService,
-                                       ICategoryService categoryService)
+        public ManagerController(IUserService userService, ISkillService skillService)
         {
             users = userService;
             this.skillService = skillService;
-            categories = categoryService;
         }
 
         public ActionResult Index(IList<string> selector=null, int page =1)

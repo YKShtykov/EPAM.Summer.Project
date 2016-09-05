@@ -1,5 +1,7 @@
 ﻿using DAL.Interface;
 using ORM;
+using System.Collections;
+using System.Collections.Generic;
 
 namespace DAL.Mappers
 {
@@ -43,6 +45,17 @@ namespace DAL.Mappers
             {
                 result.Skills.Add(SkillMapper.Map(skill));
             }
+            return result;
+        }
+
+        public static IEnumerable<DalCategory> Map(IEnumerable<Category> categories)
+        {
+            var result = new List<DalCategory>();
+            foreach (var item in categories)
+            {
+                result.Add(Map(item));
+            }
+
             return result;
         }
     }

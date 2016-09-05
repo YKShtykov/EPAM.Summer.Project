@@ -1,6 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using MvcApp.ViewModels;
@@ -9,7 +7,6 @@ using MvcApp.Infrastructure.Mappers;
 using MvcApp.Infrastructure;
 using Newtonsoft.Json;
 using System.Web.Security;
-using System.Security.Principal;
 
 namespace MvcApp.Controllers
 {
@@ -40,22 +37,10 @@ namespace MvcApp.Controllers
         {
             if (ModelState.IsValid)
             {
-                MvcUser user;
                 try
                 {
-                    user = UserMapper.Map(service.Login(loginModel.EmailOrLogin, loginModel.Password));
-                    string userData = JsonConvert.SerializeObject(user);
-                    var ticket = new FormsAuthenticationTicket(1,
-                                                               user.Id.ToString(),
-                                                               DateTime.Now,
-                                                               DateTime.Now.AddMinutes(40),
-                                                               loginModel.IsRemember,
-                                                               userData);
-                    var encoded = FormsAuthentication.Encrypt(ticket);
-                    var coockie = new HttpCookie(FormsAuthentication.FormsCookieName, encoded);
-                    if (ticket.IsPersistent)
-                        coockie.Expires = ticket.Expiration;
-                    Response.Cookies.Add(coockie);
+                    var user = UserMapper.Map(service.Login(loginModel.EmailOrLogin, loginModel.Password));
+                    AddCookiesToResponce(user, loginModel.IsRemember);
 
                     return Redirect("~/Home/Index");
                 }
@@ -65,6 +50,7 @@ namespace MvcApp.Controllers
                     ModelState.AddModelError("", e.Message);
                 }                
             }
+
             return View();
         }
 
@@ -78,6 +64,7 @@ namespace MvcApp.Controllers
                 {
                     service.Create(UserMapper.Map(model));
                     Logger.LogInfo("User (Login=" + model.Login + "was created");
+
                     return Redirect("~/Home/Index");
                 }
                 catch (Exception e)
@@ -86,13 +73,31 @@ namespace MvcApp.Controllers
                     ModelState.AddModelError("", e.Message);
                 }
             }
+
             return View();
         }
 
         public ActionResult Logout()
         {
             FormsAuthentication.SignOut();
+
             return Redirect("~/Home/Index");
+        }
+
+        private void AddCookiesToResponce(MvcUser user, bool remember)
+        {
+            string userData = JsonConvert.SerializeObject(user);
+            var ticket = new FormsAuthenticationTicket(1,
+                                                       user.Id.ToString(),
+                                                       DateTime.Now,
+                                                       DateTime.Now.AddDays(1),
+                                                       remember,
+                                                       userData);
+            var encoded = FormsAuthentication.Encrypt(ticket);
+            var coockie = new HttpCookie(FormsAuthentication.FormsCookieName, encoded);
+            if (ticket.IsPersistent)
+                coockie.Expires = ticket.Expiration;
+            Response.Cookies.Add(coockie);
         }
     }
 }

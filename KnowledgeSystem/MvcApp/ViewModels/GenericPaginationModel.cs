@@ -11,10 +11,10 @@ namespace MvcApp.ViewModels
         public GenericPaginationModel()
         {
         }
-        public GenericPaginationModel(int page, int pageSize, List<T> entities)
+        public GenericPaginationModel(int page, int pageSize, IEnumerable<T> entities)
         {
             Entities = entities.Skip((page - 1) * pageSize).Take(pageSize).ToList();
-            Pagination = new Pagination { PageNumber = page, PageSize = pageSize, TotalItems = entities.Count };
+            Pagination = new Pagination { PageNumber = page, PageSize = pageSize, TotalItems = entities.ToList().Count };
         }
 
         public Pagination Pagination { get; set; }

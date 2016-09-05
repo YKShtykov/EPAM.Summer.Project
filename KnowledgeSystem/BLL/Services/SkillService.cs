@@ -90,13 +90,17 @@ namespace BLL
             foreach (var user in users)
             {
                 var userSkills = new BllUserSkills();
+                 var userProfile = uow.Profiles.Get(user.Id);
                 userSkills.userId = user.Id;
-                userSkills.UserLogin = user.Login;
+                userSkills.FirstName = userProfile.FirstName;
+                userSkills.LastName = userProfile.LastName;
+                userSkills.Photo = userProfile.Image;
 
                 foreach (var skill in skills)
                 {
-                    int level = uow.Skills.GetLevelOfSkill(user.Id, skill.Id);
-                    userSkills.SkillLevelPair.Add(SkillMapper.Map(skill), level);
+                    var bllSkill = SkillMapper.Map(skill);
+                    bllSkill.Level = uow.Skills.GetLevelOfSkill(user.Id, skill.Id);
+                    userSkills.Skills.Add(bllSkill);
                 }
                 result.Add(userSkills);
             }
@@ -127,26 +131,26 @@ namespace BLL
         /// <returns></returns>
         internal List<BllUserSkills> SortBySkill(List<BllUserSkills> users)
         {
-            int count = users.First().SkillLevelPair.Count;
-            if(count ==1)return users.OrderByDescending(u => u.SkillLevelPair.First().Value).ToList();
+            int count = users.First().Skills.Count;
+            if(count ==1)return users.OrderByDescending(u => u.Skills.First().Level).ToList();
 
-            if (count == 2) return users.OrderByDescending(u => u.SkillLevelPair.First().Value).
-                       ThenByDescending(u => u.SkillLevelPair.Skip(1).First().Value).ToList();
+            if (count == 2) return users.OrderByDescending(u => u.Skills.First().Level).
+                       ThenByDescending(u => u.Skills.Skip(1).First().Level).ToList();
 
-            if (count == 3) return users.OrderByDescending(u => u.SkillLevelPair.First().Value).
-                       ThenByDescending(u => u.SkillLevelPair.Skip(1).First().Value).
-                       ThenByDescending(u => u.SkillLevelPair.Skip(2).First().Value).ToList();
+            if (count == 3) return users.OrderByDescending(u => u.Skills.First().Level).
+                       ThenByDescending(u => u.Skills.Skip(1).First().Level).
+                       ThenByDescending(u => u.Skills.Skip(2).First().Level).ToList();
 
-            if (count == 4) return users.OrderByDescending(u => u.SkillLevelPair.First().Value).
-                       ThenByDescending(u => u.SkillLevelPair.Skip(1).First().Value).
-                       ThenByDescending(u => u.SkillLevelPair.Skip(2).First().Value).
-                       ThenByDescending(u => u.SkillLevelPair.Skip(3).First().Value).ToList();
+            if (count == 4) return users.OrderByDescending(u => u.Skills.First().Level).
+                       ThenByDescending(u => u.Skills.Skip(1).First().Level).
+                       ThenByDescending(u => u.Skills.Skip(2).First().Level).
+                       ThenByDescending(u => u.Skills.Skip(3).First().Level).ToList();
 
-            if (count == 5) return users.OrderByDescending(u => u.SkillLevelPair.First().Value).
-                       ThenByDescending(u => u.SkillLevelPair.Skip(1).First().Value).
-                       ThenByDescending(u => u.SkillLevelPair.Skip(2).First().Value).
-                       ThenByDescending(u => u.SkillLevelPair.Skip(3).First().Value).
-                       ThenByDescending(u => u.SkillLevelPair.Skip(4).First().Value).ToList();
+            if (count == 5) return users.OrderByDescending(u => u.Skills.First().Level).
+                       ThenByDescending(u => u.Skills.Skip(1).First().Level).
+                       ThenByDescending(u => u.Skills.Skip(2).First().Level).
+                       ThenByDescending(u => u.Skills.Skip(3).First().Level).
+                       ThenByDescending(u => u.Skills.Skip(4).First().Level).ToList();
 
             return users;
         }

@@ -88,15 +88,31 @@ namespace BLL
         /// </summary>
         /// <param name="userId"></param>
         /// <returns></returns>
-        public Dictionary<BllSkill, int> GetUserSkills(int userId)
+        public IEnumerable<BllSkill> GetUserSkills(int userId)
         {
-            var result = new Dictionary<BllSkill, int>();
-            foreach (var item in uow.Skills.GetUserSkills(userId))
+            return SkillMapper.Map(uow.Skills.GetUserSkills(userId));
+        }
+
+        
+        /// <summary>
+        /// The method returns categories collection, each category consists user skill and its level
+        /// </summary>
+        /// <param name="userId"></param>
+        /// <param name="skillsWithNullLevel">Incude in collection user skills with null level</param>
+        /// <returns></returns>
+        public IEnumerable<BllCategory> GetSortedUserSkills(int userId, bool skillsWithNullLevel)
+        {
+            var result = uow.Skills.GetSortedUserSkills(userId);
+            if (!skillsWithNullLevel)
             {
-                result.Add(SkillMapper.Map(item.Key), item.Value);
+                foreach (var item in result)
+                {
+                    item.Skills.RemoveAll(s => s.Level == 0);
+                }
+                result.RemoveAll(c => c.Skills.Count==0);
             }
 
-            return result;
+            return CategoryMapper.Map(result);
         }
 
         /// <summary>
@@ -118,10 +134,16 @@ namespace BLL
         /// The method for updating users skills
         /// </summary>
         /// <param name="userId"></param>
-        /// <param name="skillLevel"></param>
-        public void UpdateUserSkills(int userId, IDictionary<int, int> skillLevel)
+        /// <param name="categories"></param>
+        public void UpdateUserSkills(int userId, IEnumerable<BllCategory> categories)
         {
-            uow.Skills.UpdateUserSkills(userId, skillLevel);
+            foreach (var category in categories)
+            {
+                foreach (var skill in category.Skills)
+                {
+                    uow.Skills.UpdateSkillLevel(userId, skill.Id, skill.Level);
+                }
+            }            
             uow.Commit();
         }
 

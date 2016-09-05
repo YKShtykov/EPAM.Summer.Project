@@ -26,6 +26,6 @@ namespace DAL.Interface
         /// <summary>
         /// DAl Skills, which category has
         /// </summary>
-        public ICollection<DalSkill> Skills { get; set; }
+        public List<DalSkill> Skills { get; set; }
     }
 }

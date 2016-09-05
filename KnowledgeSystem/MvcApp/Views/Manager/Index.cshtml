@@ -68,7 +68,14 @@
                 @foreach (var item in Model.Entities)
                 {
                     <tr>
-                        <td>@Html.ActionLink(item.UserLogin, "UserDetails","Administrator", new { id = item.UserId }, null)</td>
+                        <td>
+                            <div>
+                                <img src="@Url.Action("GetImage", "Profile", new { id = item.UserId })" alt="I am" class="img-responsive" width="150" />
+                            </div>
+                            <div>
+                                @Html.ActionLink(item.FirstName + " " + item.LastName, "UserProfile", "Profile", new { id = item.UserId }, null)
+                            </div>
+                        </td>
                         @foreach (var item2 in item.Skills)
                         {
                             <td>@item2.Level</td>
@@ -87,36 +94,4 @@
     <div class="form-group col-md-2">
         <input type="submit" value="Save" class="btn btn-default" />
     </div>
-}
-
-@section scripts{
-<link rel="stylesheet" href="~/Content/bootstrap-select.css">
-<script src="~/Scripts/bootstrap-select.js"></script>
-<script type="text/javascript" src="~/scripts/jsrender.js"></script>
-
-<script id="UserTemplate" type="text/x-jsrender">
-    <div class="row">
-        <p><em>FName:</em> {{:FirstName}}</p>
-        <p><em>MName:</em> {{:MiddleName}}</p>
-        <p><em>LName:</em> {{:LastName}}</p>
-        <p><em>Age</em>{{:Age}}</p>
-        <a href="~/Controllers/SkillController.cs">Profile</a>
-        Html.RouteLink("Skills", new { controller = "Skill", action = "UserSkills", id = Id })
-    </div>
-</script>
-
-<script>
-            $(document).ready(function () {
-                $("td a").click(function (e) {
-                        e.preventDefault();
-                        var url = $(this).attr('href');
-                    $.getJSON(url, null, function (user) {
-                            var template = $.templates("#UserTemplate");
-                            var htmlOutput = template.render(user);
-                        $('#myModal').modal('show');
-                        $("#result").html(htmlOutput);
-                        });
-                    });
-            });
-</script>
-}
+                                }

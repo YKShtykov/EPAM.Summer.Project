@@ -12,7 +12,7 @@ namespace BLL.Interface
         /// </summary>
         public BllUserSkills()
         {
-            SkillLevelPair = new Dictionary<BllSkill, int>();
+            Skills = new List<BllSkill>();
         }
 
         /// <summary>
@@ -22,11 +22,21 @@ namespace BLL.Interface
         /// <summary>
         /// User login
         /// </summary>
-        public string UserLogin { get; set; }
+        public string FirstName { get; set; }
+
+        /// <summary>
+        /// User login
+        /// </summary>
+        public string LastName { get; set; }
+
+        /// <summary>
+        /// User photo
+        /// </summary>
+        public byte[] Photo { get; set; }
 
         /// <summary>
         /// Dictionary BllSkill-level
         /// </summary>
-        public Dictionary<BllSkill,int> SkillLevelPair { get; set; }
+        public List<BllSkill> Skills { get; set; }
     }
 }
