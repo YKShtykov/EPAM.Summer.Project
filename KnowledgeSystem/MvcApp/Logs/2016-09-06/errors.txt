@@ -1,0 +1,2 @@
+2016-09-06 18:34:11.2174|ERROR|MvcApp.Infrastructure.Logger|Cannot create file 'C:\Users\Yakov\Desktop\EPAM.Summer.Project Ч копи€\KnowledgeSystem\MvcApp\App_Data\KnowledgeSystemDB.mdf' because it already exists. Change the file path or the file name, and retry the operation.
+CREATE DATABASE failed. Some file names listed could not be created. Check related errors.

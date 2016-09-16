@@ -131,6 +131,8 @@ namespace BLL
         /// <returns></returns>
         internal List<BllUserSkills> SortBySkill(List<BllUserSkills> users)
         {
+            if (ReferenceEquals(users, null))
+                return null;
             int count = users.First().Skills.Count;
             if(count ==1)return users.OrderByDescending(u => u.Skills.First().Level).ToList();
 

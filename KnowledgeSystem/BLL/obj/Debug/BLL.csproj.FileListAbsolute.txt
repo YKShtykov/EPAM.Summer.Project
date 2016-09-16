@@ -30,3 +30,31 @@ C:\Users\Yakov\Desktop\EPAM.Summer.Project\KnowledgeSystem\BLL\bin\Debug\NLog.xm
 C:\Users\Yakov\Desktop\EPAM.Summer.Project\KnowledgeSystem\BLL\bin\Debug\DALL.Interface.xml
 C:\Users\Yakov\Desktop\EPAM.Summer.Project\KnowledgeSystem\BLL\bin\Debug\BLL.XML
 C:\Users\Yakov\Desktop\EPAM.Summer.Project\KnowledgeSystem\BLL\bin\Debug\BLL.Interface.xml
+C:\Users\Yakov\Desktop\EPAM.Summer.Project — копия\KnowledgeSystem\BLL\bin\Debug\BLL.XML
+C:\Users\Yakov\Desktop\EPAM.Summer.Project — копия\KnowledgeSystem\BLL\bin\Debug\BLL.dll
+C:\Users\Yakov\Desktop\EPAM.Summer.Project — копия\KnowledgeSystem\BLL\bin\Debug\BLL.pdb
+C:\Users\Yakov\Desktop\EPAM.Summer.Project — копия\KnowledgeSystem\BLL\bin\Debug\BLL.Interface.dll
+C:\Users\Yakov\Desktop\EPAM.Summer.Project — копия\KnowledgeSystem\BLL\bin\Debug\DALL.Interface.dll
+C:\Users\Yakov\Desktop\EPAM.Summer.Project — копия\KnowledgeSystem\BLL\bin\Debug\NLog.dll
+C:\Users\Yakov\Desktop\EPAM.Summer.Project — копия\KnowledgeSystem\BLL\bin\Debug\BLL.Interface.pdb
+C:\Users\Yakov\Desktop\EPAM.Summer.Project — копия\KnowledgeSystem\BLL\bin\Debug\BLL.Interface.xml
+C:\Users\Yakov\Desktop\EPAM.Summer.Project — копия\KnowledgeSystem\BLL\bin\Debug\DALL.Interface.pdb
+C:\Users\Yakov\Desktop\EPAM.Summer.Project — копия\KnowledgeSystem\BLL\bin\Debug\DALL.Interface.xml
+C:\Users\Yakov\Desktop\EPAM.Summer.Project — копия\KnowledgeSystem\BLL\bin\Debug\NLog.xml
+C:\Users\Yakov\Desktop\EPAM.Summer.Project — копия\KnowledgeSystem\BLL\obj\Debug\BLL.csprojResolveAssemblyReference.cache
+C:\Users\Yakov\Desktop\EPAM.Summer.Project — копия\KnowledgeSystem\BLL\obj\Debug\BLL.dll
+C:\Users\Yakov\Desktop\EPAM.Summer.Project — копия\KnowledgeSystem\BLL\obj\Debug\BLL.pdb
+C:\Users\Yakov\Desktop\project\KnowledgeSystem\BLL\bin\Debug\BLL.XML
+C:\Users\Yakov\Desktop\project\KnowledgeSystem\BLL\bin\Debug\BLL.dll
+C:\Users\Yakov\Desktop\project\KnowledgeSystem\BLL\bin\Debug\BLL.pdb
+C:\Users\Yakov\Desktop\project\KnowledgeSystem\BLL\bin\Debug\BLL.Interface.dll
+C:\Users\Yakov\Desktop\project\KnowledgeSystem\BLL\bin\Debug\DALL.Interface.dll
+C:\Users\Yakov\Desktop\project\KnowledgeSystem\BLL\bin\Debug\BLL.Interface.pdb
+C:\Users\Yakov\Desktop\project\KnowledgeSystem\BLL\bin\Debug\BLL.Interface.xml
+C:\Users\Yakov\Desktop\project\KnowledgeSystem\BLL\bin\Debug\DALL.Interface.pdb
+C:\Users\Yakov\Desktop\project\KnowledgeSystem\BLL\bin\Debug\DALL.Interface.xml
+C:\Users\Yakov\Desktop\project\KnowledgeSystem\BLL\obj\Debug\BLL.csprojResolveAssemblyReference.cache
+C:\Users\Yakov\Desktop\project\KnowledgeSystem\BLL\obj\Debug\BLL.dll
+C:\Users\Yakov\Desktop\project\KnowledgeSystem\BLL\obj\Debug\BLL.pdb
+C:\Users\Yakov\Desktop\project\KnowledgeSystem\BLL\bin\Debug\PasswordService.Interface.dll
+C:\Users\Yakov\Desktop\project\KnowledgeSystem\BLL\bin\Debug\PasswordService.Interface.pdb

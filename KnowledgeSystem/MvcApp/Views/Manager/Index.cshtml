@@ -6,18 +6,13 @@
     ViewBag.Title = "Index";
     int skillsCount = ViewBag.Skills.Length;
 }
-<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <div class="modal-body">
-                <div id="result"></div>
-            </div>
-        </div>
-    </div>
-</div>
+<div class="clearfix"></div>
+<div class="clearfix"></div>
 
-<h2>Index</h2>
-@using (Html.BeginForm())
+<h2 class="managerpage-header">Find new persons. Just set skills, that you need</h2>
+<div class="clearfix"></div>
+
+@using (Html.BeginRouteForm("Manage"))
 {
     <div id="content">
         <table class="table table-striped">
@@ -73,7 +68,7 @@
                                 <img src="@Url.Action("GetImage", "Profile", new { id = item.UserId })" alt="I am" class="img-responsive" width="150" />
                             </div>
                             <div>
-                                @Html.ActionLink(item.FirstName + " " + item.LastName, "UserProfile", "Profile", new { id = item.UserId }, null)
+                                @Html.RouteLink(item.FirstName + " " + item.LastName, "User", new { id = item.UserId })
                             </div>
                         </td>
                         @foreach (var item2 in item.Skills)
@@ -88,10 +83,23 @@
     </div>
     <div class="btn-group">
         @Html.PageSubmit(Model.Pagination)
-    </div>
-
+    </div>    
     <div id="page-selection"></div>
     <div class="form-group col-md-2">
         <input type="submit" value="Save" class="btn btn-default" />
     </div>
                                 }
+<div>
+    @using (Html.BeginForm("UserListPdf", "Manager"))
+    {
+        foreach (var item in ViewBag.Skills)
+        {
+            string skill = item;
+            @Html.Hidden("Skills", skill)
+        }
+        <div class="form-group col-md-2">
+            <input type="submit" value="Pdf" class="btn btn-default" />
+        </div>
+    }
+</div>
+

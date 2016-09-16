@@ -11,6 +11,8 @@ using MvcApp.ViewModels;
 using Newtonsoft.Json;
 using MvcApp.Infrastructure;
 using System.Security.Principal;
+using MvcApp.Controllers;
+using Log.Interface;
 
 namespace MvcApp
 {
@@ -45,6 +47,27 @@ namespace MvcApp
                         HttpContext.Current.User = new GenericPrincipal(customIdentity, userInfo.Roles.ToArray());
                     }
                 }
+        }
+
+        protected void Application_Error(object sender, EventArgs e)
+        {
+            Exception exception = Server.GetLastError();
+            if (ReferenceEquals(exception,null)) return;
+
+            Response.Clear();
+            var routeData = new RouteData();            
+            var httpErrorCode = (exception as HttpException)?.GetHttpCode();
+
+            routeData.Values.Add("httpErrorCode", httpErrorCode);
+            routeData.Values.Add("controller", "Error");
+            routeData.Values.Add("action", "Index");
+            routeData.Values.Add("exception", exception);
+
+            var logger = (ILogger)System.Web.Mvc.DependencyResolver.Current.GetService(typeof(ILogger));
+            IController controller = new ErrorController(logger);
+            controller.Execute(new RequestContext(new HttpContextWrapper(Context), routeData));
+
+            Response.End();
         }
     }
 }

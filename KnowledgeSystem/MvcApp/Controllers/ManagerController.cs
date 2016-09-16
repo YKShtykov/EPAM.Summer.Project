@@ -9,7 +9,7 @@ using MvcApp.Infrastructure;
 
 namespace MvcApp.Controllers
 {
-    [Authorize(Roles="Manager")]
+    [Authorize(Roles = "Manager")]
     public class ManagerController : Controller
     {
         private readonly IUserService users;
@@ -22,23 +22,24 @@ namespace MvcApp.Controllers
             this.skillService = skillService;
         }
 
-        public ActionResult Index(IList<string> selector=null, int page =1)
+        [Route("Manage", Name = "Manage")]
+        public ActionResult Index(IList<string> selector = null, int page = 1)
         {
-            GenericPaginationModel<SkillsModel> viewModel=null;
-            try
-            {
-                var userList = SkillMapper.Map(skillService.RateUsers(selector)).ToList();
-                viewModel = new GenericPaginationModel<SkillsModel>(page, 2, userList);
+            var userList = SkillMapper.Map(skillService.RateUsers(selector)).ToList();
+            var viewModel = new GenericPaginationModel<SkillsModel>(page, 5, userList);
 
-                ViewBag.Skills = (userList.First().Skills.Select(s => s.Name)).ToArray();
-                ViewBag.AllSkills = (skillService.GetAll().Select(s => s.Name)).ToArray();
-            }
-            catch (Exception e)
-            {
-                Logger.LogError(e);
-            }
-            
+            ViewBag.Skills = (userList.First().Skills.Select(s => s.Name)).ToArray();
+            ViewBag.AllSkills = (skillService.GetAll().Select(s => s.Name)).ToArray();
+
             return View(viewModel);
+        }
+
+        public ActionResult UserListPdf(IList<string> Skills)
+        {
+            var userList = SkillMapper.Map(skillService.RateUsers(Skills)).Take(20).ToList();
+            var memoryStream = PdfManager.CreateUserListPdf(userList);
+
+            return new FileStreamResult(memoryStream, "application/pdf");
         }
     }
 }

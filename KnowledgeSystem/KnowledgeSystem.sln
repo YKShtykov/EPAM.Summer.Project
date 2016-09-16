@@ -17,6 +17,19 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DependencyResolver", "Depen
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ORM", "ORM\ORM.csproj", "{4B6D8E25-3C4F-4F55-BE6E-2604B0F1A3FC}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Log.Interface", "Log.Interface\Log.Interface.csproj", "{E310D509-3871-4F48-9049-B82B2979968F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Log", "Log\Log.csproj", "{A44CA518-3573-4267-B93F-9A603150508C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CryptoLogic", "PasswordService\CryptoLogic.csproj", "{14E27A80-1E3C-48B4-8E0A-D18BEBD73015}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CryptoLogic.Interface", "PasswordService.Interface\CryptoLogic.Interface.csproj", "{DD00B0F8-A01C-4FB5-9F2D-6B9CE73D434C}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "AdditionalServices", "AdditionalServices", "{0C6B7EBA-EC88-46BB-B6FE-FA64B48F13E0}"
+	ProjectSection(SolutionItems) = preProject
+		BLL\Services\PasswordService.cs = BLL\Services\PasswordService.cs
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -51,8 +64,30 @@ Global
 		{4B6D8E25-3C4F-4F55-BE6E-2604B0F1A3FC}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{4B6D8E25-3C4F-4F55-BE6E-2604B0F1A3FC}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{4B6D8E25-3C4F-4F55-BE6E-2604B0F1A3FC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E310D509-3871-4F48-9049-B82B2979968F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E310D509-3871-4F48-9049-B82B2979968F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E310D509-3871-4F48-9049-B82B2979968F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E310D509-3871-4F48-9049-B82B2979968F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A44CA518-3573-4267-B93F-9A603150508C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A44CA518-3573-4267-B93F-9A603150508C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A44CA518-3573-4267-B93F-9A603150508C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A44CA518-3573-4267-B93F-9A603150508C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{14E27A80-1E3C-48B4-8E0A-D18BEBD73015}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{14E27A80-1E3C-48B4-8E0A-D18BEBD73015}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{14E27A80-1E3C-48B4-8E0A-D18BEBD73015}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{14E27A80-1E3C-48B4-8E0A-D18BEBD73015}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DD00B0F8-A01C-4FB5-9F2D-6B9CE73D434C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DD00B0F8-A01C-4FB5-9F2D-6B9CE73D434C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DD00B0F8-A01C-4FB5-9F2D-6B9CE73D434C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DD00B0F8-A01C-4FB5-9F2D-6B9CE73D434C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{E310D509-3871-4F48-9049-B82B2979968F} = {0C6B7EBA-EC88-46BB-B6FE-FA64B48F13E0}
+		{A44CA518-3573-4267-B93F-9A603150508C} = {0C6B7EBA-EC88-46BB-B6FE-FA64B48F13E0}
+		{14E27A80-1E3C-48B4-8E0A-D18BEBD73015} = {0C6B7EBA-EC88-46BB-B6FE-FA64B48F13E0}
+		{DD00B0F8-A01C-4FB5-9F2D-6B9CE73D434C} = {0C6B7EBA-EC88-46BB-B6FE-FA64B48F13E0}
 	EndGlobalSection
 EndGlobal

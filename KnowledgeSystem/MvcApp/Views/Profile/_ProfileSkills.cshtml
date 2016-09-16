@@ -1,34 +1,50 @@
 ﻿@using MvcApp.Infrastructure;
 @model MvcApp.ViewModels.GenericPaginationModel<MvcApp.ViewModels.MvcCategory>
 
-@using (Html.BeginForm("UserProfile", "Profile", new { id = ViewBag.ProfileId }))
-{
-    foreach (var item in Model.Entities)
+<div id="results">
+    @using (Ajax.BeginForm("UserSkills", "Profile", new AjaxOptions { UpdateTargetId = "results" }, new { id = ViewBag.ProfileId }))
     {
         <div>
-            @item.Name
-            <table class="table">
-                @foreach (var skill in item.Skills)
-                {
-                    <tr>
-                        <td>
-                            @Html.HiddenFor(Model => skill.Id)
-                        </td>
-                        <td>
-                            @Html.HiddenFor(Model => skill.Name)
-                            @Html.DisplayFor(Model => skill.Name)
-                        </td>
-                        <td>
-                            @{string name = skill.Name + ".Level";
-                            }
-                            <input for="Level" id="@skill.Id" value="@skill.Level" name="@name" class="rating-loading" data-size="xs" data-min="0" data-max="5" data-step="1" data-show-clear="false">
-                        </td>
-                    </tr>
-                                }
-            </table>
+            @foreach (var item in Model.Entities)
+            {
+                <div>
+                    <h3 style="margin-top:2em">@item.Name</h3>
+                    <table class="table">
+                        @foreach (var skill in item.Skills)
+                        {
+                            <tr>
+                                <td>
+                                    @Html.HiddenFor(Model => skill.Id)
+                                </td>
+                                <td>
+                                    @Html.HiddenFor(Model => skill.Name)
+                                    @Html.DisplayFor(Model => skill.Name)
+                                </td>
+                                <td>
+                                    @{string name = skill.Name + ".Level";
+                                    }
+                                    <input for="Level" id="@skill.Id" value="@skill.Level" name="@name" class="rating-loading" data-size="xs" data-min="0" data-max="5" data-step="1" data-show-clear="false">
+                                </td>
+                            </tr>
+                                        }
+                    </table>
+                </div>
+                                        }
+
         </div>
-                                }
-<div class="btn-group">
-    @Html.PageSubmit(Model.Pagination)
+        <div class="btn-group">
+            @Html.PageSubmit(Model.Pagination)
+        </div>
+                                        }
 </div>
-}
+<link href="~/Content/star-rating.css" media="all" rel="stylesheet" type="text/css" />
+<script src="~/Scripts/star-rating.js" type="text/javascript"></script>
+<script src="http://ajax.aspnetcdn.com/ajax/mvc/3.0/jquery.unobtrusive-ajax.min.js"></script>
+<script>
+    $('.rating-loading').rating({
+        step: 1,
+        displayOnly: true,
+        starCaptions: { 1: '', 2: '', 3: '', 4: '', 5: '' },
+        starCaptionClasses: function (val) { return 'text-success'; }
+    });
+</script>

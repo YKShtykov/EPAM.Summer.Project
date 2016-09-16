@@ -9,7 +9,7 @@ using MvcApp.Infrastructure;
 namespace MvcApp.Controllers
 {
     [Authorize]
-    
+
     public class ProfileController : Controller
     {
         private readonly IProfileService profiles;
@@ -24,14 +24,15 @@ namespace MvcApp.Controllers
         }
 
         //[HttpGet]
+        [Route("User", Name = "User")]
         public ActionResult UserProfile(int? id, int page = 1)
         {
             var fullProfileInfo = new FullProfileInfo();
             var identity = (CustomIdentity)User.Identity;
             if (ReferenceEquals(id, null)) id = identity.Id;
-            
+
             fullProfileInfo.Profile = ProfileMapper.Map(profiles.Get((int)id));
-            var userSkills = CategoryMapper.Map( users.GetSortedUserSkills((int)id, false));
+            var userSkills = CategoryMapper.Map(users.GetSortedUserSkills((int)id, false));
             fullProfileInfo.Categories = new GenericPaginationModel<MvcCategory>(page, 1, userSkills);
 
             ViewBag.ProfileId = fullProfileInfo.Profile.Id;
@@ -39,7 +40,21 @@ namespace MvcApp.Controllers
             return View(fullProfileInfo);
         }
 
+        public ActionResult UserSkills(int? id, int page = 1)
+        {
+            var identity = (CustomIdentity)User.Identity;
+            if (ReferenceEquals(id, null)) id = identity.Id;
+
+            var userSkills = CategoryMapper.Map(users.GetSortedUserSkills((int)id, false));
+            var mvcCategories = new GenericPaginationModel<MvcCategory>(page, 1, userSkills);
+
+            ViewBag.ProfileId = id;
+
+            return PartialView("_ProfileSkills",mvcCategories);
+        }
+
         [HttpGet]
+        [Route("Edit")]
         public ActionResult Edit()
         {
             var identity = (CustomIdentity)User.Identity;
@@ -49,24 +64,16 @@ namespace MvcApp.Controllers
         }
 
         [HttpPost]
+        [Route("Edit", Name = "Edit")]
         public ActionResult Edit(MvcProfile model, HttpPostedFileBase fileUpload)
         {
             if (ModelState.IsValid)
             {
                 SetProfileImage(model, fileUpload);
-
-                try
-                {
-                    profiles.Update(ProfileMapper.Map(model));
-                    //Logger.LogInfo("Profile( Id=" + model.Id + "was changed");
-                }
-                catch (Exception e)
-                {
-                    Logger.LogError(e);
-                }
+                profiles.Update(ProfileMapper.Map(model));
             }
 
-            return Redirect("~/Profile/UserProfile");
+            return RedirectToRoute("User");
         }
 
         [AllowAnonymous]

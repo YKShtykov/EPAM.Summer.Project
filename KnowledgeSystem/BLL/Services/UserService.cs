@@ -4,6 +4,7 @@ using BLL.Interface;
 using DAL.Interface;
 using BLL.Mappers;
 using System.Linq.Expressions;
+using CryptoLogic.Interface;
 
 namespace BLL
 {
@@ -13,14 +14,16 @@ namespace BLL
     public class UserService : IUserService
     {
         private readonly IUnitOfWork uow;
+        private readonly IPasswordService passwordService;
 
         /// <summary>
         /// Create UserService instance
         /// </summary>
         /// <param name="uow"></param>
-        public UserService(IUnitOfWork uow)
+        public UserService(IUnitOfWork uow, IPasswordService passwordService)
         {
             this.uow = uow;
+            this.passwordService = passwordService;
         }
 
         /// <summary>
@@ -33,13 +36,11 @@ namespace BLL
             if (!IsEmailEnabled(dalUser.Email)) throw new Exception("User with such email is already exists");
             if (!IsLoginEnabled(dalUser.Login)) throw new Exception("User with such login is already exists");
 
-            string passwordSalt = PasswordService.GenerateSalt();
-            string encoded = PasswordService.GetHash(user.Password, passwordSalt);
-            dalUser.Password = encoded;
-            dalUser.PasswordSalt = passwordSalt;
+            dalUser.PasswordSalt = passwordService.Key;
+            dalUser.Password = passwordService.GetHash(user.Password, dalUser.PasswordSalt);
 
             uow.Users.Create(dalUser);
-            uow.Profiles.Create(dalUser.Id);
+            uow.Profiles.Create(new DalProfile() { Id = user.Id });
             uow.Commit();
         }
 
@@ -88,9 +89,9 @@ namespace BLL
         /// </summary>
         /// <param name="userId"></param>
         /// <returns></returns>
-        public IEnumerable<BllSkill> GetUserSkills(int userId)
+        public IEnumerable<BllCategory> GetUserSkills(int userId)
         {
-            return SkillMapper.Map(uow.Skills.GetUserSkills(userId));
+            return CategoryMapper.Map(uow.Skills.GetUserSkills(userId));
         }
 
         
@@ -102,7 +103,8 @@ namespace BLL
         /// <returns></returns>
         public IEnumerable<BllCategory> GetSortedUserSkills(int userId, bool skillsWithNullLevel)
         {
-            var result = uow.Skills.GetSortedUserSkills(userId);
+            var result = uow.Skills.GetUserSkills(userId);
+            result.RemoveAll(c => c.Skills.Count == 0);
             if (!skillsWithNullLevel)
             {
                 foreach (var item in result)
@@ -125,7 +127,7 @@ namespace BLL
         {
             DalUser user;
             if (IsEnabled(emailOrLogin, out user))
-                if (PasswordService.VerifyPassword(password, user.PasswordSalt, user.Password)) return UserMapper.Map(user);
+                if (passwordService.VerifyPassword(password, user.PasswordSalt, user.Password)) return UserMapper.Map(user);
 
             throw new Exception("check your data");
         }

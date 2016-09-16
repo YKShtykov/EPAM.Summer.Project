@@ -43,3 +43,37 @@ C:\Users\Yakov\Desktop\EPAM.Summer.Project\KnowledgeSystem\DAL\obj\Debug\DAL.pdb
 C:\Users\Yakov\Desktop\EPAM.Summer.Project\KnowledgeSystem\DAL\bin\Debug\DALL.Interface.xml
 C:\Users\Yakov\Desktop\EPAM.Summer.Project\KnowledgeSystem\DAL\bin\Debug\ORM.xml
 C:\Users\Yakov\Desktop\EPAM.Summer.Project\KnowledgeSystem\DAL\bin\Debug\DAL.XML
+C:\Users\Yakov\Desktop\EPAM.Summer.Project — копия\KnowledgeSystem\DAL\bin\Debug\DAL.dll.config
+C:\Users\Yakov\Desktop\EPAM.Summer.Project — копия\KnowledgeSystem\DAL\bin\Debug\DAL.XML
+C:\Users\Yakov\Desktop\EPAM.Summer.Project — копия\KnowledgeSystem\DAL\bin\Debug\DAL.dll
+C:\Users\Yakov\Desktop\EPAM.Summer.Project — копия\KnowledgeSystem\DAL\bin\Debug\DAL.pdb
+C:\Users\Yakov\Desktop\EPAM.Summer.Project — копия\KnowledgeSystem\DAL\bin\Debug\DALL.Interface.dll
+C:\Users\Yakov\Desktop\EPAM.Summer.Project — копия\KnowledgeSystem\DAL\bin\Debug\EntityFramework.dll
+C:\Users\Yakov\Desktop\EPAM.Summer.Project — копия\KnowledgeSystem\DAL\bin\Debug\EntityFramework.SqlServer.dll
+C:\Users\Yakov\Desktop\EPAM.Summer.Project — копия\KnowledgeSystem\DAL\bin\Debug\ORM.dll
+C:\Users\Yakov\Desktop\EPAM.Summer.Project — копия\KnowledgeSystem\DAL\bin\Debug\DALL.Interface.pdb
+C:\Users\Yakov\Desktop\EPAM.Summer.Project — копия\KnowledgeSystem\DAL\bin\Debug\DALL.Interface.xml
+C:\Users\Yakov\Desktop\EPAM.Summer.Project — копия\KnowledgeSystem\DAL\bin\Debug\ORM.pdb
+C:\Users\Yakov\Desktop\EPAM.Summer.Project — копия\KnowledgeSystem\DAL\bin\Debug\ORM.xml
+C:\Users\Yakov\Desktop\EPAM.Summer.Project — копия\KnowledgeSystem\DAL\bin\Debug\EntityFramework.xml
+C:\Users\Yakov\Desktop\EPAM.Summer.Project — копия\KnowledgeSystem\DAL\bin\Debug\EntityFramework.SqlServer.xml
+C:\Users\Yakov\Desktop\EPAM.Summer.Project — копия\KnowledgeSystem\DAL\obj\Debug\DAL.csprojResolveAssemblyReference.cache
+C:\Users\Yakov\Desktop\EPAM.Summer.Project — копия\KnowledgeSystem\DAL\obj\Debug\DAL.dll
+C:\Users\Yakov\Desktop\EPAM.Summer.Project — копия\KnowledgeSystem\DAL\obj\Debug\DAL.pdb
+C:\Users\Yakov\Desktop\project\KnowledgeSystem\DAL\bin\Debug\DAL.dll.config
+C:\Users\Yakov\Desktop\project\KnowledgeSystem\DAL\bin\Debug\DAL.XML
+C:\Users\Yakov\Desktop\project\KnowledgeSystem\DAL\bin\Debug\DAL.dll
+C:\Users\Yakov\Desktop\project\KnowledgeSystem\DAL\bin\Debug\DAL.pdb
+C:\Users\Yakov\Desktop\project\KnowledgeSystem\DAL\bin\Debug\DALL.Interface.dll
+C:\Users\Yakov\Desktop\project\KnowledgeSystem\DAL\bin\Debug\EntityFramework.dll
+C:\Users\Yakov\Desktop\project\KnowledgeSystem\DAL\bin\Debug\EntityFramework.SqlServer.dll
+C:\Users\Yakov\Desktop\project\KnowledgeSystem\DAL\bin\Debug\ORM.dll
+C:\Users\Yakov\Desktop\project\KnowledgeSystem\DAL\bin\Debug\DALL.Interface.pdb
+C:\Users\Yakov\Desktop\project\KnowledgeSystem\DAL\bin\Debug\DALL.Interface.xml
+C:\Users\Yakov\Desktop\project\KnowledgeSystem\DAL\bin\Debug\ORM.pdb
+C:\Users\Yakov\Desktop\project\KnowledgeSystem\DAL\bin\Debug\ORM.xml
+C:\Users\Yakov\Desktop\project\KnowledgeSystem\DAL\bin\Debug\EntityFramework.xml
+C:\Users\Yakov\Desktop\project\KnowledgeSystem\DAL\bin\Debug\EntityFramework.SqlServer.xml
+C:\Users\Yakov\Desktop\project\KnowledgeSystem\DAL\obj\Debug\DAL.csprojResolveAssemblyReference.cache
+C:\Users\Yakov\Desktop\project\KnowledgeSystem\DAL\obj\Debug\DAL.dll
+C:\Users\Yakov\Desktop\project\KnowledgeSystem\DAL\obj\Debug\DAL.pdb

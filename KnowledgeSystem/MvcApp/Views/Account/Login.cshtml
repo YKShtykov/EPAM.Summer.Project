@@ -3,7 +3,7 @@
     ViewBag.Title = "LoginPage";
 }
 
-@using (Html.BeginForm())
+@using (Html.BeginRouteForm("Login"))
 {
     @Html.AntiForgeryToken()
     <div class="row">

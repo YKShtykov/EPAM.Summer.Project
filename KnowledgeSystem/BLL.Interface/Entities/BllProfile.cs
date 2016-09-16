@@ -40,12 +40,12 @@ namespace BLL.Interface
         /// <summary>
         /// User birth date
         /// </summary>
-        public DateTime BirthDate { get; set; }
+        public DateTime? BirthDate { get; set; }
 
         /// <summary>
         /// User age
         /// </summary>
-        public int Age { get; set; }
+        public int? Age { get; set; }
 
         /// <summary>
         /// User gender

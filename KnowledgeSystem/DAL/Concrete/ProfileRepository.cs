@@ -15,6 +15,7 @@ namespace DAL
     public class ProfileRepository : IProfileRepository
     {
         private readonly KnowledgeSystemContext context;
+        private readonly DbSet<Profile> profiles;
 
         /// <summary>
         /// Create ProfileRepository instance
@@ -23,15 +24,16 @@ namespace DAL
         public ProfileRepository(KnowledgeSystemContext knowledgeContext)
         {
             context = knowledgeContext;
+            profiles = context.Set<Profile>();
         }
 
         /// <summary>
         /// The method for creating new profile entity in collection
         /// </summary>
-        /// <param name="id"></param>
-        public void Create(int id)
+        /// <param name="profile"></param>
+        public void Create(DalProfile profile)
         {
-            context.Set<Profile>().Add(new Profile() { Id = id, BirthDate = default(DateTime).ToString() });
+            profiles.Add(ProfileMapper.Map(profile));
         }
 
         /// <summary>
@@ -40,7 +42,7 @@ namespace DAL
         /// <param name="profile"></param>
         public void Update(DalProfile profile)
         {
-            var ormProfile = context.Set<Profile>().FirstOrDefault(p => p.Id == profile.Id);
+            var ormProfile = profiles.FirstOrDefault(p => p.Id == profile.Id);
             if (ormProfile != null)
             {
                 ormProfile.LastName = profile.LastName;
@@ -69,17 +71,17 @@ namespace DAL
         /// <param name="id"></param>
         public void Delete(int id)
         {
-            context.Set<Profile>().Remove(context.Set<Profile>().FirstOrDefault(p => p.Id == id));
+            profiles.Remove(profiles.FirstOrDefault(p => p.Id == id));
         }
 
         /// <summary>
         /// The method for getting profile entity by Id
         /// </summary>
-        /// <param name="key"></param>
+        /// <param name="id"></param>
         /// <returns>DalProfile</returns>
-        public DalProfile Get(int key)
-        {
-            return ProfileMapper.Map(context.Set<Profile>().FirstOrDefault(u => u.Id == key));
+        public DalProfile Get(int id)
+        {            
+            return ProfileMapper.Map(profiles.FirstOrDefault(u => u.Id == id));
         }
 
         /// <summary>
@@ -88,7 +90,7 @@ namespace DAL
         /// <returns>DalProfile collection</returns>
         public IEnumerable<DalProfile> GetAll()
         {
-            return ProfileMapper.Map(context.Set<Profile>().Select(p=>p));
+            return ProfileMapper.Map(profiles.Select(p=>p));
         }
 
         /// <summary>
@@ -101,16 +103,7 @@ namespace DAL
             var expr = ExpressionTransformer<DalProfile, Profile>.Tranform(f);
             var func = expr.Compile();
 
-            return ProfileMapper.Map(context.Set<Profile>().FirstOrDefault(func));
-        }
-
-        /// <summary>
-        /// The method for creating new profile entity in collection
-        /// </summary>
-        /// <param name="entity"></param>
-        public void Create(DalProfile entity)
-        {
-            throw new NotImplementedException();
+            return ProfileMapper.Map(profiles.FirstOrDefault(func));
         }
     }
 }

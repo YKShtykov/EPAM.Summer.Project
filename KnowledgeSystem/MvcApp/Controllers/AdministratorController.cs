@@ -8,6 +8,7 @@ using MvcApp.Infrastructure;
 
 namespace MvcApp.Controllers
 {
+    [Authorize(Roles ="Administrator")]
     public class AdministratorController : Controller
     {
         private readonly IUserService users;
@@ -17,6 +18,8 @@ namespace MvcApp.Controllers
             users = userService;
         }
 
+        [HttpGet]
+        [Route("Users")]
         public ActionResult Users(int page = 1)
         {
             var mvcUsers = UserMapper.Map(users.GetAll());
@@ -28,7 +31,8 @@ namespace MvcApp.Controllers
         }
 
         [HttpPost]
-        public ActionResult Users(List<MvcUser> Entities, int page)
+        [Route("Users", Name = "Users")]
+        public ActionResult Users(List<MvcUser> Entities, int page=1)
         {
             foreach (var item in Entities)
             {
@@ -43,9 +47,10 @@ namespace MvcApp.Controllers
                 }
             }
 
-            return Redirect("~/Administrator/Users/?page=" + page);
+            return Redirect("~/Users/?page=" + page);
         }
 
+        [Route("RemoveUser", Name ="RemoveUser")]
         public ActionResult RemoveUser(int Id)
         {
             try
@@ -58,7 +63,7 @@ namespace MvcApp.Controllers
                 Logger.LogError(e);
             }
 
-            return Redirect("~/Administrator/Users");
+            return Redirect("~/Users");
         }       
     }
 }

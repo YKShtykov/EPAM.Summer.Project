@@ -20,12 +20,14 @@ namespace MvcApp.Controllers
         }
 
         [HttpGet]
+        [Route("Registration")]
         public ActionResult Registration()
         {
             return View();
         }
 
         [HttpGet]
+        [Route("Login")]
         public ActionResult Login()
         {
             return View();
@@ -33,55 +35,56 @@ namespace MvcApp.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Route("Login", Name = "Login")]
         public ActionResult Login(LoginModel loginModel)
         {
             if (ModelState.IsValid)
             {
-                try
-                {
-                    var user = UserMapper.Map(service.Login(loginModel.EmailOrLogin, loginModel.Password));
-                    AddCookiesToResponce(user, loginModel.IsRemember);
+                var user = UserMapper.Map(service.Login(loginModel.EmailOrLogin, loginModel.Password));
+                AddCookiesToResponce(user, loginModel.IsRemember);
 
-                    return Redirect("~/Home/Index");
-                }
-                catch (Exception e)
-                {
-                    Logger.LogInfo("Login error" + e.Message);
-                    ModelState.AddModelError("", e.Message);
-                }                
+                return RedirectToRoute("Home");
             }
 
             return View();
         }
 
         [HttpPost]
+        [Route("Registration", Name = "Registration")]
         [ValidateAntiForgeryToken]
         public ActionResult Registration(RegisterModel model)
         {
+            var work = Request.IsAjaxRequest();
+                
             if (ModelState.IsValid)
             {
-                try
-                {
-                    service.Create(UserMapper.Map(model));
-                    Logger.LogInfo("User (Login=" + model.Login + "was created");
+                service.Create(UserMapper.Map(model));
+                Logger.LogInfo("User (Login=" + model.Login + "was created");
 
-                    return Redirect("~/Home/Index");
-                }
-                catch (Exception e)
+                if (Request.IsAjaxRequest())
+                    return Json(new { Result = "You have successfully registered" });
+
+                return RedirectToRoute("Home");
+            }
+            string errorMessage =string.Empty;
+            foreach (ModelState modelState in ViewData.ModelState.Values)
+            {
+                foreach (ModelError error in modelState.Errors)
                 {
-                    Logger.LogInfo("Registration error"+e.Message);
-                    ModelState.AddModelError("", e.Message);
+                    errorMessage += error.ErrorMessage + "       \n";
                 }
             }
-
+            if (Request.IsAjaxRequest())
+                return Json(new { Result = errorMessage });
             return View();
         }
 
+        [Route("Logout", Name = "Logout")]
         public ActionResult Logout()
         {
             FormsAuthentication.SignOut();
 
-            return Redirect("~/Home/Index");
+            return RedirectToRoute("Home");
         }
 
         private void AddCookiesToResponce(MvcUser user, bool remember)

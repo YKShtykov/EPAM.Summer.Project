@@ -1,0 +1,11 @@
+2016-09-16 13:31:00.8773|ERROR|Log.Logger|An entity object cannot be referenced by multiple instances of IEntityChangeTracker.
+2016-09-16 13:31:00.8773|ERROR|Log.Logger|An entity object cannot be referenced by multiple instances of IEntityChangeTracker.
+2016-09-16 13:38:09.9034|ERROR|Log.Logger|An entity object cannot be referenced by multiple instances of IEntityChangeTracker.
+2016-09-16 13:57:24.5544|ERROR|Log.Logger|User with such email is already exists
+2016-09-16 13:59:25.7036|ERROR|Log.Logger|The model item passed into the dictionary is of type 'MvcApp.ViewModels.GenericPaginationModel`1[MvcApp.ViewModels.MvcUser]', but this dictionary requires a model item of type 'MvcApp.ViewModels.RegisterModel'.
+2016-09-16 14:00:12.4089|ERROR|Log.Logger|The model item passed into the dictionary is of type 'MvcApp.ViewModels.FullProfileInfo', but this dictionary requires a model item of type 'MvcApp.ViewModels.RegisterModel'.
+2016-09-16 14:22:52.7587|ERROR|Log.Logger|Выдано исключение типа "System.Exception".
+2016-09-16 14:22:54.0567|ERROR|Log.Logger|Выдано исключение типа "System.Exception".
+2016-09-16 14:22:54.9855|ERROR|Log.Logger|Выдано исключение типа "System.Exception".
+2016-09-16 14:22:55.8105|ERROR|Log.Logger|Выдано исключение типа "System.Exception".
+2016-09-16 14:23:39.6042|ERROR|Log.Logger|Выдано исключение типа "System.Exception".

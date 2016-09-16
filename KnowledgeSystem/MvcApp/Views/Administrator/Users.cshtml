@@ -4,19 +4,10 @@
 @{
     ViewBag.Title = "EditEntities";
 }
-<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <div class="modal-body">
-                <div id="result"></div>
-            </div>
-        </div>
-    </div>
-</div>
-<h2>EditEntities</h2>
-@using (Html.BeginForm())
+<h2>Users</h2>
+@using (Html.BeginRouteForm("Users"))
 {
-    <table class="table table-striped">
+    <table class="table">
         <thead>
             <tr>
                 <th></th>
@@ -43,7 +34,7 @@
                     </td>
                     <td class="login">
                         @Html.HiddenFor(m => Model.Entities[i].Login)
-                        @Html.ActionLink(Model.Entities[i].Login, "UserDetails", new { id = Model.Entities[i].Id })
+                        @Html.RouteLink(Model.Entities[i].Login, "User", new { id = Model.Entities[i].Id })
                     </td>
                     <td>
                         @Html.HiddenFor(m => Model.Entities[i].Email)
@@ -75,49 +66,23 @@
                         </select>
                     </td>
                     <td>
-                        @Html.RouteLink("Remove", new { controller = "Administrator", action = "RemoveUser", id = Model.Entities[i].Id })
+                        @Html.RouteLink("Remove", "RemoveUser", new { id = Model.Entities[i].Id })
                     </td>
                 </tr>
                             }
         </tbody>
     </table>
     <br />
-    <div id="result"></div>
     <div class="btn-group">
         @Html.PageSubmit(Model.Pagination)
     </div>
     <div class="form-group">
-        <div class="col-md-offset-2 col-md-10">
             <input type="submit" value="Save" class="btn btn-default" />
-        </div>
     </div>
+
                             }
+@Scripts.Render("~/bundles/jquery") 
 @section scripts{
     <link rel="stylesheet" href="~/Content/bootstrap-select.css">
     <script src="~/Scripts/bootstrap-select.js"></script>
-    <script type="text/javascript" src="~/scripts/jsrender.js"></script>
-
-<script id="UserTemplate" type="text/x-jsrender">
-        <div class="row">
-            <p><em>FName:</em> {{:FirstName}}</p>
-            <p><em>MName:</em> {{:MiddleName}}</p>
-            <p><em>LName:</em> {{:LastName}}</p>
-            <p><em>Age</em>{{:Age}}</p>            
-        </div>
-    </script>
-
-    <script>
-            $(document).ready(function () {
-                $("td.login a").click(function (e) {
-                        e.preventDefault();
-                        var url = $(this).attr('href');
-                    $.getJSON(url, null, function (user) {
-                            var template = $.templates("#UserTemplate");
-                            var htmlOutput = template.render(user);
-                        $('#myModal').modal('show');
-                        $("#result").html(htmlOutput);
-                        });
-                    });
-                });
-</script>
 }

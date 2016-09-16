@@ -9,13 +9,14 @@ namespace MvcApp.ViewModels
         [HiddenInput(DisplayValue = false)]
         public int Id { get; set; }
 
-        [Display(Name = "Category Name")]
+        [Display(Name = "Skill Name")]
         [StringLength(128, ErrorMessage = "Max length - {0} symbols")]
         [Required(ErrorMessage = "Please enter your last name")]
         public string Name { get; set; }
 
         public int Level { get; set; }
 
+        [Display(Name = "Category Name")]
         [Required(ErrorMessage ="Choose skill category")]
         public string CategoryName { get; set; }
     }

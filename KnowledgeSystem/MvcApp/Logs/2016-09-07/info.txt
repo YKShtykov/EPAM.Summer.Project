@@ -1,0 +1,3 @@
+2016-09-07 20:57:09.0533|INFO|MvcApp.Infrastructure.Logger|User (Login=Max30000was created
+2016-09-07 20:57:26.9448|INFO|MvcApp.Infrastructure.Logger|Login errorcheck your data
+2016-09-07 21:03:12.9521|INFO|MvcApp.Infrastructure.Logger|Skills of user(id=5) was changed

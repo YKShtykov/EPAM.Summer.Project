@@ -26,7 +26,7 @@ namespace DAL.Mappers
                 Password = user.Password,
                 PasswordSalt = user.PasswordSalt
             };
-
+           
             return result;
         }
 

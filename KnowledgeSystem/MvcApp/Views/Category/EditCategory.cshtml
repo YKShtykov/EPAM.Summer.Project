@@ -6,7 +6,7 @@
 
 <h2>EditCategory</h2>
 
-@using (Html.BeginForm())
+@using (Html.BeginRouteForm("EditCategory"))
 {
     @Html.AntiForgeryToken()
     
@@ -32,6 +32,3 @@
     </div>
 }
 
-<div>
-    @Html.ActionLink("Back to List", "Index")
-</div>

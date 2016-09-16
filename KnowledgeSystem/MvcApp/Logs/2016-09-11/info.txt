@@ -1,0 +1,1 @@
+2016-09-11 18:27:09.5472|INFO|Log.Logger|it works

@@ -9,6 +9,7 @@ using MvcApp.Infrastructure;
 
 namespace MvcApp.Controllers
 {
+    [Authorize(Roles = "Administrator")]
     public class CategoryController : Controller
     {
         private readonly ICategoryService categories;
@@ -18,7 +19,7 @@ namespace MvcApp.Controllers
             this.categories = categories;
         }
 
-        [Authorize(Roles = "Administrator")]
+        [Route("Categories", Name = "Categories")]
         public ActionResult Categories(string SearchString, int page = 1)
         {
             var mvcCategories = GetAllOrFind(SearchString);
@@ -30,33 +31,27 @@ namespace MvcApp.Controllers
         }
 
         [HttpGet]
-        [Authorize(Roles = "Administrator")]
+        [Route("CreateCategory")]
         public ActionResult CreateCategory()
         {
             return View();
         }
 
         [HttpPost]
-        [Authorize(Roles = "Administrator")]
+        [Route("CreateCategory", Name = "CreateCategory")]
         public ActionResult CreateCategory(MvcCategory category)
         {
             if (ModelState.IsValid)
             {
-                try
-                {
-                    categories.Create(CategoryMapper.Map(category));
-                    return Redirect("~/Category/Categories");
-                }
-                catch (Exception e)
-                {
-                    Logger.LogError(e);
-                }
+                categories.Create(CategoryMapper.Map(category));
+                return RedirectToRoute("Categories");
             }
+
             return View();
         }
 
         [HttpGet]
-        [Authorize(Roles = "Administrator")]
+        [Route("EditCategory")]
         public ActionResult EditCategory(int id)
         {
             MvcCategory category = CategoryMapper.Map(categories.Get(id));
@@ -64,40 +59,28 @@ namespace MvcApp.Controllers
         }
 
         [HttpPost]
-        [Authorize(Roles = "Administrator")]
+        [Route("EditCategory", Name = "EditCategory")]
         public ActionResult EditCategory(MvcCategory category)
         {
             if (ModelState.IsValid)
             {
-                try
-                {
-                    categories.Update(CategoryMapper.Map(category));
-                    return Redirect("~/Category/Categories");
-                }
-                catch (Exception e)
-                {
-                    Logger.LogError(e);
-                }
+                categories.Update(CategoryMapper.Map(category));
+                return RedirectToRoute("Categories");
             }
+
             return View();
         }
 
         [HttpGet]
-        [Authorize(Roles = "Administrator")]
+        [Route("RemoveCategory", Name = "RemoveCategory")]
         public ActionResult RemoveCategory(int id)
         {
             if (ModelState.IsValid)
             {
-                try
-                {
-                    categories.Delete(id);
-                }
-                catch (Exception e)
-                {
-                    Logger.LogError(e);
-                }
+                categories.Delete(id);
             }
-            return Redirect("~/Category/Categories");
+
+            return RedirectToRoute("Categories");
         }
 
         private IEnumerable<MvcCategory> GetAllOrFind(string searchString)

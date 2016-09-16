@@ -1,0 +1,11 @@
+2016-09-11 18:51:32.0846|ERROR|Log.Logger|The controller for path '/sdfgh' was not found or does not implement IController.
+2016-09-11 18:58:32.4366|ERROR|Log.Logger|Выдано исключение типа "System.Exception".
+2016-09-11 18:59:49.0091|ERROR|Log.Logger|Выдано исключение типа "System.Exception".
+2016-09-11 19:05:13.1601|ERROR|Log.Logger|Выдано исключение типа "System.Exception".
+2016-09-11 19:12:41.7338|ERROR|Log.Logger|Выдано исключение типа "System.Exception".
+2016-09-11 19:56:22.2933|ERROR|Log.Logger|Не удалось найти в семействе маршрутов маршрут с именем "Users".
+Имя параметра: name
+2016-09-11 20:19:04.8940|ERROR|Log.Logger|C:\Users\Yakov\Desktop\project\KnowledgeSystem\MvcApp\Views\Administrator\Users.cshtml(17): error CS1026: ) expected
+2016-09-11 20:19:11.2985|ERROR|Log.Logger|C:\Users\Yakov\Desktop\project\KnowledgeSystem\MvcApp\Views\Administrator\Users.cshtml(17): error CS1026: ) expected
+2016-09-11 20:51:58.2843|ERROR|Log.Logger|Выдано исключение типа "System.Exception".
+2016-09-11 20:51:59.5718|ERROR|Log.Logger|Выдано исключение типа "System.Exception".

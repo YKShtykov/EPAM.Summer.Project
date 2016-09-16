@@ -1,5 +1,7 @@
 ﻿using DAL.Interface;
 using ORM;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace DAL.Mappers
 {
@@ -9,31 +11,22 @@ namespace DAL.Mappers
     public static class RoleMapper
     {
         /// <summary>
-        /// Map Role
+        /// The method maps strings collection to roles collection
         /// </summary>
-        /// <param name="role"></param>
-        /// <returns>new ORM Role same as role</returns>
-        public static Role MapRole(DalRole role)
+        /// <param name="roles"></param>
+        /// <returns>Roles collection</returns>
+        public static ICollection<Role> Map(ICollection<string> roles)
         {
-            return new Role()
+            var result = new List<Role>();
+            using (KnowledgeSystemContext knowledgeContext = new KnowledgeSystemContext())
             {
-                Id = role.Id,
-                Name = role.Name
-            };
-        }
-
-        /// <summary>
-        /// Map Role
-        /// </summary>
-        /// <param name="role"></param>
-        /// <returns>new DalRole same as role</returns>
-        public static DalRole MapRole(Role role)
-        {
-            return new DalRole()
-            {
-                Id = role.Id,
-                Name = role.Name
-            };
+                foreach (var role in roles)
+                {
+                    var userRole = knowledgeContext.Set<Role>().FirstOrDefault(r => r.Name == role);
+                    result.Add(userRole);
+                }
+            }
+            return result;
         }
     }
 }

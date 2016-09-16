@@ -1,43 +1,160 @@
-﻿<!DOCTYPE html>
-<html>
+﻿@using MvcApp.Infrastructure;
+<!DOCTYPE html>
+<html lang="en">
 <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>@ViewBag.Title - My ASP.NET Application</title>
-    @Styles.Render("~/Content/css")
-    @Scripts.Render("~/bundles/modernizr")
+    <title>Academic A Education Category Flat Bootstrap Responsive Website Template | Home :: w3layouts</title>
+    <link href="~/Content/bootstrap.css" rel="stylesheet" type="text/css" media="all" />
+    <link href="~/Content/style.css" rel="stylesheet" type="text/css" media="all" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="keywords" content="Academic Responsive web template, Bootstrap Web Templates, Flat Web Templates, Android Compatible web template,
+Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, SonyEricsson, Motorola web design" />
+    <script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
+    <link href='//fonts.googleapis.com/css?family=Catamaran:400,100,300,500,700,600,800,900' rel='stylesheet' type='text/css'>
+    <link href='//fonts.googleapis.com/css?family=Montserrat:400,700' rel='stylesheet' type='text/css'>   
+    @Scripts.Render("~/bundles/jquery") 
 </head>
 <body>
-    <div class="navbar navbar-inverse navbar-fixed-top">
+    <div class="header head1">
         <div class="container">
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-                @Html.ActionLink("Knowledge portal", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+            <div class="head-top">
+                <div class="logo">
+                    <a href="@Url.RouteUrl("Home")"><img src="~/images/bo.png" alt="" title="Academic"></a>
+                </div>
+                <div class="login">
+                    <ul class="nav-login">
+                        @if (Request.IsAuthenticated)
+                        {
+                            <li><a href="@Url.RouteUrl("Logout")">Logout</a></li>
+                        }
+                        else
+                        {
+                            <li><a href="#" data-toggle="modal" data-target="#LoginModal">Login</a></li>
+                            <li><a href="#" data-toggle="modal" data-target="#SignUpModal">Signup</a></li>
+                        }
+                    </ul>
+                </div>
+                <div class="clearfix"></div>
             </div>
-            <div class="navbar-collapse collapse">
-                @Html.Partial("LoginPartial")
+        </div>
+        @Html.Partial("_ModalLogin");
+        @Html.Partial("_ModalSignup");
+        <div class="banner">
+            <div class="container">
+                <div class="banner-text">
+                    <h2>Knowledge</h2>
+                    <p>Promote yourself </p>
+                </div>
+            </div>
+        </div>
+        <div class="nav-top">
+            <div class="container">
+                <div class="nav1">
+                    <div class="navbar1">
+                        <!-- Brand and toggle get grouped for better mobile display -->
+                        <div class="navbar-header">
+                            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                                <span class="sr-only">Toggle navigation</span>
+                                <span class="icon-bar"></span>
+                                <span class="icon-bar"></span>
+                                <span class="icon-bar"></span>
+                            </button>
+
+                        </div>
+                        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+
+
+                            <ul class="nav navbar-nav cl-effect-8">
+                                @{
+                                    if (Request.IsAuthenticated)
+                                    {
+                                        var roles = ((CustomIdentity)User.Identity).Roles;
+                                        <li>
+                                            <a href="@Url.Action("UserProfile", "Profile")">
+                                                <span class="glyphicon glyphicon-user" aria-hidden="true"></span>
+                                            </a>
+                                        </li>
+                                        <li>@Html.ActionLink("Search", "Index", "Search")</li>
+                                        if (roles.Contains("Manager"))
+                                        {
+                                            <li>@Html.RouteLink("Manager page", "Manage")</li>
+                                        }
+
+                                        if (roles.Contains("Administrator"))
+                                        {
+                                            <li>
+                                                <div class="dropdown">
+                                                    <button onclick="myFunction()" class="dropbtn">Administrator pages</button>
+                                                    <div id="myDropdown" class="dropdown-content">
+                                                        <a href="@Url.RouteUrl("Categories")">Categories</a>
+                                                        <a href="@Url.Action("Skills","Skill")">Skills</a>
+                                                        <a href="@Url.RouteUrl("Users")">Users</a>
+                                                    </div>
+                                                </div>
+                                            </li>
+                                        }
+                                    }
+                                    <li><a href="@Url.Action("Index", "Home")">Home </a></li>
+                                    <li><a href="about.html">About</a></li>
+                                    <li><a href="gallery.html">Portfolio</a></li>
+                                    <li><a href="contact.html">Contact</a></li>
+                                }
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="clearfix"></div>
+                </div>
             </div>
         </div>
     </div>
+
     <div class="container body-content">
         @RenderBody()
-        <hr />
-        <footer>
-            <p>&copy; @DateTime.Now.Year - My ASP.NET Application</p>
-        </footer>
     </div>
 
-    @Scripts.Render("~/bundles/jquery")
+    <div class="footer">
+        <div class="container">
+            <div class="col-md-6 footer-left">
+                <h3>Information</h3>
+                <p class="para">
+                    If you have any troubles with application functionality, please contact administrator, and we try to do all possible for solving your problems.
+                </p>
+            </div>
+            <div class="col-md-6 footer-right">
+                <h3>Contact Us</h3>
+                <ul class="con-icons">
+                    <li><span class="glyphicon glyphicon-phone" aria-hidden="true"></span>+123 456 7890</li>
+                    <li><a href="mailto:info@example.com"><span class="glyphicon glyphicon-envelope" aria-hidden="true"></span>info@example.com</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>  
+      
     @Scripts.Render("~/bundles/bootstrap")
     @Scripts.Render("~/bundles/jqueryval")
     <script type="text/javascript">
         $.validator.unobtrusive.adapters.addBool("mustbetrue", "required");
     </script>
     @RenderSection("scripts", required: false)
-    
+
 </body>
 </html>
+<script>
+    function myFunction() {
+        document.getElementById("myDropdown").classList.toggle("show");
+    }
+
+    window.onclick = function (event) {
+        if (!event.target.matches('.dropbtn')) {
+
+            var dropdowns = document.getElementsByClassName("dropdown-content");
+            var i;
+            for (i = 0; i < dropdowns.length; i++) {
+                var openDropdown = dropdowns[i];
+                if (openDropdown.classList.contains('show')) {
+                    openDropdown.classList.remove('show');
+                }
+            }
+        }
+    }
+</script>

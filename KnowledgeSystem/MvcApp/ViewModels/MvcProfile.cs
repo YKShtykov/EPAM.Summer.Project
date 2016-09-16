@@ -32,11 +32,10 @@ namespace MvcApp.ViewModels
         public string ContactPhone { get; set; }
 
         [Display(Name = "Birth Date")]
-        [DataType(DataType.Date, ErrorMessage = "Please enter a valid date")]
-        [Required(ErrorMessage = "Please enter your birth name")]
-        public DateTime BirthDate { get; set; }
+        [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
+        public DateTime? BirthDate { get; set; }
 
-        public int Age { get; set; }
+        public int? Age { get; set; }
 
         [Display(Name = "Gender")]
         public string Gender { get; set; }

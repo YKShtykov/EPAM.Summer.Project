@@ -4,7 +4,7 @@
     ViewBag.Title = "View";
 }
 
-@using (Html.BeginForm())
+@using (Html.BeginRouteForm("Registration"))
 {
     @Html.AntiForgeryToken()
     <div class="row">

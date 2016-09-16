@@ -12,7 +12,7 @@ namespace DAL.Interface
         /// </summary>
         /// <param name="userId"></param>
         /// <returns>Dictionary DalSkill-level</returns>
-        List<DalSkill> GetUserSkills(int userId);
+        List<DalCategory> GetUserSkills(int userId);
         /// <summary>
         /// The method for updating all user skills
         /// </summary>
@@ -40,7 +40,5 @@ namespace DAL.Interface
         /// <param name="skillId"></param>
         /// <returns>Level of skill</returns>
         int GetLevelOfSkill(int userId, int skillId);
-
-        List<DalCategory> GetSortedUserSkills(int userId);
     }
 }

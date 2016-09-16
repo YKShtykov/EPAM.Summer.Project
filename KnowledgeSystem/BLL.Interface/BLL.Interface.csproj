@@ -43,8 +43,6 @@
   <ItemGroup>
     <Compile Include="Entities\BllCategory.cs" />
     <Compile Include="Entities\BllProfile.cs" />
-    <Compile Include="Entities\BllRole.cs" />
-    <Compile Include="Entities\BllSearchModel.cs" />
     <Compile Include="Entities\BllSkill.cs" />
     <Compile Include="Entities\BllUser.cs" />
     <Compile Include="Entities\BllUserSkills.cs" />

@@ -15,6 +15,8 @@ namespace DAL
     public class UserRepository : IUserRepository
     {
         private readonly KnowledgeSystemContext context;
+        private readonly DbSet<User> users;
+        private readonly DbSet<Role> roles;
 
         /// <summary>
         /// Create new UserRepository instance
@@ -23,40 +25,43 @@ namespace DAL
         public UserRepository(KnowledgeSystemContext knowledgeContext)
         {
             context = knowledgeContext;
+            users = context.Set<User>();
+            roles = context.Set<Role>();
         }
 
         /// <summary>
         /// The method for creating new user entity in collection
         /// </summary>
-        /// <param name="entity"></param>
-        public void Create(DalUser entity)
+        /// <param name="dalUser"></param>
+        public void Create(DalUser dalUser)
         {
-            var user = UserMapper.Map(entity);
+            var user = UserMapper.Map(dalUser);
 
-            foreach (var role in entity.Roles)
+            foreach (var role in dalUser.Roles)
             {
-                var userRole = context.Set<Role>().FirstOrDefault(r => r.Name == role);
+                var userRole = roles.FirstOrDefault(r => r.Name == role);
                 user.Roles.Add(userRole);
             }
 
-            context.Set<User>().Add(user);
+            users.Add(user);
         }
 
         /// <summary>
         /// The method for updating exsisting user in collection
         /// </summary>
-        /// <param name="entity"></param>
-        public void Update(DalUser entity)
+        /// <param name="dalUser"></param>
+        public void Update(DalUser dalUser)
         {
-            var user = context.Set<User>().FirstOrDefault(u => u.Id == entity.Id);
+            var user = users.FirstOrDefault(u => u.Id == dalUser.Id);
             if (!ReferenceEquals(user, null))
             {
-                user.Login = entity.Login;
-                user.Email = entity.Email;
+                user.Login = dalUser.Login;
+                user.Email = dalUser.Email;
                 user.Roles.Clear();
-                foreach (var item in entity.Roles)
+                foreach (var item in dalUser.Roles)
                 {
-                    user.Roles.Add(context.Set<Role>().FirstOrDefault(r => r.Name == item));
+                    var userRole = roles.FirstOrDefault(r => r.Name == item);
+                    user.Roles.Add(userRole);
                 }
                 context.Entry(user).State = EntityState.Modified;
             }
@@ -68,7 +73,7 @@ namespace DAL
         /// <param name="id"></param>
         public void Delete(int id)
         {
-            context.Set<User>().Remove(context.Set<User>().FirstOrDefault(u => u.Id == id));
+            users.Remove(users.FirstOrDefault(u => u.Id == id));
         }
 
         /// <summary>
@@ -78,7 +83,7 @@ namespace DAL
         /// <returns>DalUser</returns>
         public DalUser Get(int id)
         {
-            return UserMapper.Map(context.Users.FirstOrDefault(u => u.Id == id));
+            return UserMapper.Map(users.FirstOrDefault(u => u.Id == id));
         }
 
         /// <summary>
@@ -87,7 +92,7 @@ namespace DAL
         /// <returns>DalUser collection</returns>
         public IEnumerable<DalUser> GetAll()
         {
-            return UserMapper.Map(context.Set<User>().Include(u=>u.Roles).Select(u => u));            
+            return UserMapper.Map(users.Include(u=>u.Roles).Select(u => u));            
         }
 
         /// <summary>
@@ -100,7 +105,7 @@ namespace DAL
             var expr = ExpressionTransformer<DalUser, User>.Tranform(f);
             var func = expr.Compile();
 
-            return UserMapper.Map(context.Set<User>().FirstOrDefault(func));
+            return UserMapper.Map(users.FirstOrDefault(func));
         }
     }
 }

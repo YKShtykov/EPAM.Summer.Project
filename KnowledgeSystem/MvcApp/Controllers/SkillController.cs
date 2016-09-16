@@ -23,36 +23,30 @@ namespace MvcApp.Controllers
             this.categories = categories;
         }
 
-
-        public ActionResult Index(int page =1)
+        [Route("YourSkills")]
+        public ActionResult Index(int page = 1)
         {
 
             var id = ((CustomIdentity)User.Identity).Id;
-            var userSkills = CategoryMapper.Map(service.GetSortedUserSkills(id,true));
-
-            var viewModel = new GenericPaginationModel<MvcCategory>(page, 5, userSkills);            
+            var userSkills = CategoryMapper.Map(service.GetSortedUserSkills(id, true));
+            var viewModel = new GenericPaginationModel<MvcCategory>(page, 5, userSkills);
 
             return View(viewModel);
         }
 
         [HttpPost]
-        public ActionResult Index(List<MvcCategory> Entities, int page=1)
+        [Route("YourSkills", Name = "UserSkills")]
+        public ActionResult Index(List<MvcCategory> Entities, int page = 1)
         {
-            try
-            {
-                int id = ((CustomIdentity)User.Identity).Id;
-                service.UpdateUserSkills(id, CategoryMapper.Map(Entities));
-                Logger.LogInfo("Skills of user(id=" + id + ") was changed");
-            }
-            catch (Exception e)
-            {
-                Logger.LogError(e);
-            }
+            int id = ((CustomIdentity)User.Identity).Id;
+            service.UpdateUserSkills(id, CategoryMapper.Map(Entities));
+            Logger.LogInfo("Skills of user(id=" + id + ") was changed");
 
-            return Redirect("~/Skill/index/?page="+page);
+            return Redirect("~/YourSkills/?page=" + page);
         }
 
         [Authorize(Roles = "Administrator")]
+        [Route("Skills", Name = "Skills")]
         public ActionResult Skills(string FindSkill, string FindCategory, int page = 1)
         {
             var mvcCategories = FindSkills(FindSkill, FindCategory);
@@ -72,6 +66,7 @@ namespace MvcApp.Controllers
 
         [HttpGet]
         [Authorize(Roles = "Administrator")]
+        [Route("CreateSkill")]
         public ActionResult CreateSkill(string category = "")
         {
             IEnumerable<BllCategory> allCategories = categories.GetAll();
@@ -83,25 +78,20 @@ namespace MvcApp.Controllers
 
         [HttpPost]
         [Authorize(Roles = "Administrator")]
+        [Route("CreateSkill", Name = "CreateSkill")]
         public ActionResult CreateSkill(MvcSkill skill)
         {
             if (ModelState.IsValid)
             {
-                try
-                {
-                    skills.Create(SkillMapper.Map(skill));
-                    return Redirect("~/Skill/Skills");
-                }
-                catch (Exception e)
-                {
-                    Logger.LogError(e);
-                }
+                skills.Create(SkillMapper.Map(skill));
+                return RedirectToRoute("Skills");
             }
             return View();
         }
 
         [HttpGet]
         [Authorize(Roles = "Administrator")]
+        [Route("EditSkill")]
         public ActionResult EditSkill(int id)
         {
             MvcSkill skill = SkillMapper.Map(skills.Get(id));
@@ -115,39 +105,27 @@ namespace MvcApp.Controllers
 
         [HttpPost]
         [Authorize(Roles = "Administrator")]
+        [Route("EditSkill", Name = "EditSkill")]
         public ActionResult EditSkill(MvcSkill skill)
         {
             if (ModelState.IsValid)
             {
-                try
-                {
-                    skills.Update(SkillMapper.Map(skill));
-                    return Redirect("~/Skill/Skills");
-                }
-                catch (Exception e)
-                {
-                    Logger.LogError(e);
-                }
+                skills.Update(SkillMapper.Map(skill));
+                return RedirectToRoute("Skills");
             }
             return View();
         }
 
         [Authorize(Roles = "Administrator")]
+        [Route("RemoveSkill", Name = "RemoveSkill")]
         public ActionResult RemoveSkill(int id)
         {
             if (ModelState.IsValid)
             {
-                try
-                {
-                    skills.Delete(id);
-                }
-                catch (Exception e)
-                {
-                    Logger.LogError(e);
-                }
+                skills.Delete(id);
             }
-            return Redirect("~/Skill/Skills");
-        }        
+            return RedirectToRoute("Skills");
+        }
 
         private List<MvcCategory> FindSkills(string skill, string category)
         {

@@ -1,0 +1,5 @@
+2016-09-08 12:59:01.4139|INFO|MvcApp.Infrastructure.Logger|Skills of user(id=5) was changed
+2016-09-08 13:21:55.2258|INFO|MvcApp.Infrastructure.Logger|Skills of user(id=5) was changed
+2016-09-08 23:21:48.6094|INFO|MvcApp.Infrastructure.Logger|User: Id=1Name=adminwas changed
+2016-09-08 23:21:50.6722|INFO|MvcApp.Infrastructure.Logger|User: Id=2Name=ifrit91was changed
+2016-09-08 23:23:44.4238|INFO|MvcApp.Infrastructure.Logger|User: Id=5Name=Max30000was changed

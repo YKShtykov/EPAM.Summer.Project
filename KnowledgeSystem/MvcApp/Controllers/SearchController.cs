@@ -8,27 +8,35 @@ namespace MvcApp.Controllers
 {
     public class SearchController : Controller
     {
-        private readonly IProfileService service;
+        private readonly IProfileService profiles;
 
         public SearchController(IProfileService service)
         {
-            this.service = service;
+            profiles = service;
         }
-
+        [Route("Search")]
         public ActionResult Index()
         {
             return View();
         }
 
         [HttpPost]
-        public ActionResult Index(SearchModel model, int page =1)
+        [Route("Search", Name = "Search")]
+        public ActionResult Index(SearchModel model, int page = 1)
         {
-            var bllProfiles = service.Search(SearchModelMapper.Map(model));
+            var bllProfiles = profiles.Find(model.StringKey, model.City);
             var result = ProfileMapper.Map(bllProfiles);
-            model.Profiles = new GenericPaginationModel<MvcProfile>(page,2,result.ToList());
+            model.Profiles = new GenericPaginationModel<MvcProfile>(page, 2, result.ToList());
 
             return View(model);
 
+        }
+
+        public ActionResult FindUsers(string term)
+        {
+            var mvcProfiles = profiles.Find(term).Select(p=>p.FirstName+" "+p.LastName);
+
+            return Json(mvcProfiles.ToList(), JsonRequestBehavior.AllowGet);
         }
     }
 }

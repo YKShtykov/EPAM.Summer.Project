@@ -31,10 +31,6 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="NLog, Version=4.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c, processorArchitecture=MSIL">
-      <HintPath>..\packages\NLog.4.3.7\lib\net45\NLog.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -45,15 +41,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Logger.cs" />
     <Compile Include="Mappers\CategoryMapper.cs" />
     <Compile Include="Mappers\ProfileMapper.cs" />
-    <Compile Include="Mappers\RoleMapper.cs" />
     <Compile Include="Mappers\SkillMapper.cs" />
     <Compile Include="Mappers\UserMapper.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Services\CategoryService.cs" />
-    <Compile Include="Services\PasswordService.cs" />
     <Compile Include="Services\ProfileService.cs" />
     <Compile Include="Services\SkillService.cs" />
     <Compile Include="Services\UserService.cs" />
@@ -67,9 +60,10 @@
       <Project>{4a960316-a249-404e-9776-9d0a55e6d463}</Project>
       <Name>DAL.Interface</Name>
     </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="packages.config" />
+    <ProjectReference Include="..\PasswordService.Interface\CryptoLogic.Interface.csproj">
+      <Project>{dd00b0f8-a01c-4fb5-9f2d-6b9ce73d434c}</Project>
+      <Name>CryptoLogic.Interface</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

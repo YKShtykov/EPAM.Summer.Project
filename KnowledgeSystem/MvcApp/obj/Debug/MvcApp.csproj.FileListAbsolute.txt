@@ -237,3 +237,188 @@ C:\Users\Yakov\Desktop\EPAM.Summer.Project\KnowledgeSystem\MvcApp\bin\BLL.Interf
 C:\Users\Yakov\Desktop\EPAM.Summer.Project\KnowledgeSystem\MvcApp\bin\BLL.xml
 C:\Users\Yakov\Desktop\EPAM.Summer.Project\KnowledgeSystem\MvcApp\bin\itextsharp.dll
 C:\Users\Yakov\Desktop\EPAM.Summer.Project\KnowledgeSystem\MvcApp\bin\itextsharp.xml
+C:\Users\Yakov\Desktop\EPAM.Summer.Project — копия\KnowledgeSystem\MvcApp\bin\ApplicationInsights.config
+C:\Users\Yakov\Desktop\EPAM.Summer.Project — копия\KnowledgeSystem\MvcApp\bin\roslyn\csc.exe
+C:\Users\Yakov\Desktop\EPAM.Summer.Project — копия\KnowledgeSystem\MvcApp\bin\roslyn\Microsoft.Build.Tasks.CodeAnalysis.dll
+C:\Users\Yakov\Desktop\EPAM.Summer.Project — копия\KnowledgeSystem\MvcApp\bin\roslyn\Microsoft.CodeAnalysis.CSharp.dll
+C:\Users\Yakov\Desktop\EPAM.Summer.Project — копия\KnowledgeSystem\MvcApp\bin\roslyn\Microsoft.CodeAnalysis.dll
+C:\Users\Yakov\Desktop\EPAM.Summer.Project — копия\KnowledgeSystem\MvcApp\bin\roslyn\Microsoft.CodeAnalysis.VisualBasic.dll
+C:\Users\Yakov\Desktop\EPAM.Summer.Project — копия\KnowledgeSystem\MvcApp\bin\roslyn\Microsoft.CSharp.Core.targets
+C:\Users\Yakov\Desktop\EPAM.Summer.Project — копия\KnowledgeSystem\MvcApp\bin\roslyn\Microsoft.VisualBasic.Core.targets
+C:\Users\Yakov\Desktop\EPAM.Summer.Project — копия\KnowledgeSystem\MvcApp\bin\roslyn\System.Collections.Immutable.dll
+C:\Users\Yakov\Desktop\EPAM.Summer.Project — копия\KnowledgeSystem\MvcApp\bin\roslyn\System.Reflection.Metadata.dll
+C:\Users\Yakov\Desktop\EPAM.Summer.Project — копия\KnowledgeSystem\MvcApp\bin\roslyn\vbc.exe
+C:\Users\Yakov\Desktop\EPAM.Summer.Project — копия\KnowledgeSystem\MvcApp\bin\roslyn\VBCSCompiler.exe
+C:\Users\Yakov\Desktop\EPAM.Summer.Project — копия\KnowledgeSystem\MvcApp\bin\roslyn\VBCSCompiler.exe.config
+C:\Users\Yakov\Desktop\EPAM.Summer.Project — копия\KnowledgeSystem\MvcApp\bin\MvcApp.dll.config
+C:\Users\Yakov\Desktop\EPAM.Summer.Project — копия\KnowledgeSystem\MvcApp\bin\MvcApp.dll
+C:\Users\Yakov\Desktop\EPAM.Summer.Project — копия\KnowledgeSystem\MvcApp\bin\MvcApp.pdb
+C:\Users\Yakov\Desktop\EPAM.Summer.Project — копия\KnowledgeSystem\MvcApp\bin\Antlr3.Runtime.dll
+C:\Users\Yakov\Desktop\EPAM.Summer.Project — копия\KnowledgeSystem\MvcApp\bin\BLL.Interface.dll
+C:\Users\Yakov\Desktop\EPAM.Summer.Project — копия\KnowledgeSystem\MvcApp\bin\DependencyResolver.dll
+C:\Users\Yakov\Desktop\EPAM.Summer.Project — копия\KnowledgeSystem\MvcApp\bin\EntityFramework.dll
+C:\Users\Yakov\Desktop\EPAM.Summer.Project — копия\KnowledgeSystem\MvcApp\bin\EntityFramework.SqlServer.dll
+C:\Users\Yakov\Desktop\EPAM.Summer.Project — копия\KnowledgeSystem\MvcApp\bin\itextsharp.dll
+C:\Users\Yakov\Desktop\EPAM.Summer.Project — копия\KnowledgeSystem\MvcApp\bin\LogentriesCore.dll
+C:\Users\Yakov\Desktop\EPAM.Summer.Project — копия\KnowledgeSystem\MvcApp\bin\LogentriesNLog.dll
+C:\Users\Yakov\Desktop\EPAM.Summer.Project — копия\KnowledgeSystem\MvcApp\bin\Microsoft.AI.Agent.Intercept.dll
+C:\Users\Yakov\Desktop\EPAM.Summer.Project — копия\KnowledgeSystem\MvcApp\bin\Microsoft.AI.DependencyCollector.dll
+C:\Users\Yakov\Desktop\EPAM.Summer.Project — копия\KnowledgeSystem\MvcApp\bin\Microsoft.AI.PerfCounterCollector.dll
+C:\Users\Yakov\Desktop\EPAM.Summer.Project — копия\KnowledgeSystem\MvcApp\bin\Microsoft.AI.ServerTelemetryChannel.dll
+C:\Users\Yakov\Desktop\EPAM.Summer.Project — копия\KnowledgeSystem\MvcApp\bin\Microsoft.AI.Web.dll
+C:\Users\Yakov\Desktop\EPAM.Summer.Project — копия\KnowledgeSystem\MvcApp\bin\Microsoft.AI.WindowsServer.dll
+C:\Users\Yakov\Desktop\EPAM.Summer.Project — копия\KnowledgeSystem\MvcApp\bin\Microsoft.ApplicationInsights.dll
+C:\Users\Yakov\Desktop\EPAM.Summer.Project — копия\KnowledgeSystem\MvcApp\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll
+C:\Users\Yakov\Desktop\EPAM.Summer.Project — копия\KnowledgeSystem\MvcApp\bin\Microsoft.Web.Infrastructure.dll
+C:\Users\Yakov\Desktop\EPAM.Summer.Project — копия\KnowledgeSystem\MvcApp\bin\Microsoft.WindowsAzure.Configuration.dll
+C:\Users\Yakov\Desktop\EPAM.Summer.Project — копия\KnowledgeSystem\MvcApp\bin\Newtonsoft.Json.dll
+C:\Users\Yakov\Desktop\EPAM.Summer.Project — копия\KnowledgeSystem\MvcApp\bin\Ninject.dll
+C:\Users\Yakov\Desktop\EPAM.Summer.Project — копия\KnowledgeSystem\MvcApp\bin\Ninject.Web.Common.dll
+C:\Users\Yakov\Desktop\EPAM.Summer.Project — копия\KnowledgeSystem\MvcApp\bin\NLog.dll
+C:\Users\Yakov\Desktop\EPAM.Summer.Project — копия\KnowledgeSystem\MvcApp\bin\System.Web.Helpers.dll
+C:\Users\Yakov\Desktop\EPAM.Summer.Project — копия\KnowledgeSystem\MvcApp\bin\System.Web.Mvc.dll
+C:\Users\Yakov\Desktop\EPAM.Summer.Project — копия\KnowledgeSystem\MvcApp\bin\System.Web.Optimization.dll
+C:\Users\Yakov\Desktop\EPAM.Summer.Project — копия\KnowledgeSystem\MvcApp\bin\System.Web.Razor.dll
+C:\Users\Yakov\Desktop\EPAM.Summer.Project — копия\KnowledgeSystem\MvcApp\bin\System.Web.WebPages.Deployment.dll
+C:\Users\Yakov\Desktop\EPAM.Summer.Project — копия\KnowledgeSystem\MvcApp\bin\System.Web.WebPages.dll
+C:\Users\Yakov\Desktop\EPAM.Summer.Project — копия\KnowledgeSystem\MvcApp\bin\System.Web.WebPages.Razor.dll
+C:\Users\Yakov\Desktop\EPAM.Summer.Project — копия\KnowledgeSystem\MvcApp\bin\WebActivatorEx.dll
+C:\Users\Yakov\Desktop\EPAM.Summer.Project — копия\KnowledgeSystem\MvcApp\bin\WebGrease.dll
+C:\Users\Yakov\Desktop\EPAM.Summer.Project — копия\KnowledgeSystem\MvcApp\bin\DALL.Interface.dll
+C:\Users\Yakov\Desktop\EPAM.Summer.Project — копия\KnowledgeSystem\MvcApp\bin\DAL.dll
+C:\Users\Yakov\Desktop\EPAM.Summer.Project — копия\KnowledgeSystem\MvcApp\bin\ORM.dll
+C:\Users\Yakov\Desktop\EPAM.Summer.Project — копия\KnowledgeSystem\MvcApp\bin\BLL.dll
+C:\Users\Yakov\Desktop\EPAM.Summer.Project — копия\KnowledgeSystem\MvcApp\bin\BLL.Interface.pdb
+C:\Users\Yakov\Desktop\EPAM.Summer.Project — копия\KnowledgeSystem\MvcApp\bin\BLL.Interface.xml
+C:\Users\Yakov\Desktop\EPAM.Summer.Project — копия\KnowledgeSystem\MvcApp\bin\DependencyResolver.pdb
+C:\Users\Yakov\Desktop\EPAM.Summer.Project — копия\KnowledgeSystem\MvcApp\bin\DependencyResolver.xml
+C:\Users\Yakov\Desktop\EPAM.Summer.Project — копия\KnowledgeSystem\MvcApp\bin\EntityFramework.xml
+C:\Users\Yakov\Desktop\EPAM.Summer.Project — копия\KnowledgeSystem\MvcApp\bin\EntityFramework.SqlServer.xml
+C:\Users\Yakov\Desktop\EPAM.Summer.Project — копия\KnowledgeSystem\MvcApp\bin\itextsharp.xml
+C:\Users\Yakov\Desktop\EPAM.Summer.Project — копия\KnowledgeSystem\MvcApp\bin\Microsoft.AI.DependencyCollector.xml
+C:\Users\Yakov\Desktop\EPAM.Summer.Project — копия\KnowledgeSystem\MvcApp\bin\Microsoft.AI.ServerTelemetryChannel.xml
+C:\Users\Yakov\Desktop\EPAM.Summer.Project — копия\KnowledgeSystem\MvcApp\bin\Microsoft.AI.Web.xml
+C:\Users\Yakov\Desktop\EPAM.Summer.Project — копия\KnowledgeSystem\MvcApp\bin\Microsoft.AI.WindowsServer.xml
+C:\Users\Yakov\Desktop\EPAM.Summer.Project — копия\KnowledgeSystem\MvcApp\bin\Microsoft.ApplicationInsights.xml
+C:\Users\Yakov\Desktop\EPAM.Summer.Project — копия\KnowledgeSystem\MvcApp\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
+C:\Users\Yakov\Desktop\EPAM.Summer.Project — копия\KnowledgeSystem\MvcApp\bin\Microsoft.WindowsAzure.Configuration.xml
+C:\Users\Yakov\Desktop\EPAM.Summer.Project — копия\KnowledgeSystem\MvcApp\bin\Ninject.xml
+C:\Users\Yakov\Desktop\EPAM.Summer.Project — копия\KnowledgeSystem\MvcApp\bin\Ninject.Web.Common.xml
+C:\Users\Yakov\Desktop\EPAM.Summer.Project — копия\KnowledgeSystem\MvcApp\bin\System.Web.Helpers.xml
+C:\Users\Yakov\Desktop\EPAM.Summer.Project — копия\KnowledgeSystem\MvcApp\bin\System.Web.Mvc.xml
+C:\Users\Yakov\Desktop\EPAM.Summer.Project — копия\KnowledgeSystem\MvcApp\bin\System.Web.Optimization.xml
+C:\Users\Yakov\Desktop\EPAM.Summer.Project — копия\KnowledgeSystem\MvcApp\bin\System.Web.Razor.xml
+C:\Users\Yakov\Desktop\EPAM.Summer.Project — копия\KnowledgeSystem\MvcApp\bin\System.Web.WebPages.xml
+C:\Users\Yakov\Desktop\EPAM.Summer.Project — копия\KnowledgeSystem\MvcApp\bin\System.Web.WebPages.Deployment.xml
+C:\Users\Yakov\Desktop\EPAM.Summer.Project — копия\KnowledgeSystem\MvcApp\bin\System.Web.WebPages.Razor.xml
+C:\Users\Yakov\Desktop\EPAM.Summer.Project — копия\KnowledgeSystem\MvcApp\bin\Antlr3.Runtime.pdb
+C:\Users\Yakov\Desktop\EPAM.Summer.Project — копия\KnowledgeSystem\MvcApp\bin\Newtonsoft.Json.xml
+C:\Users\Yakov\Desktop\EPAM.Summer.Project — копия\KnowledgeSystem\MvcApp\bin\DALL.Interface.pdb
+C:\Users\Yakov\Desktop\EPAM.Summer.Project — копия\KnowledgeSystem\MvcApp\bin\DALL.Interface.xml
+C:\Users\Yakov\Desktop\EPAM.Summer.Project — копия\KnowledgeSystem\MvcApp\bin\DAL.pdb
+C:\Users\Yakov\Desktop\EPAM.Summer.Project — копия\KnowledgeSystem\MvcApp\bin\DAL.xml
+C:\Users\Yakov\Desktop\EPAM.Summer.Project — копия\KnowledgeSystem\MvcApp\bin\ORM.pdb
+C:\Users\Yakov\Desktop\EPAM.Summer.Project — копия\KnowledgeSystem\MvcApp\bin\ORM.xml
+C:\Users\Yakov\Desktop\EPAM.Summer.Project — копия\KnowledgeSystem\MvcApp\bin\BLL.pdb
+C:\Users\Yakov\Desktop\EPAM.Summer.Project — копия\KnowledgeSystem\MvcApp\bin\BLL.xml
+C:\Users\Yakov\Desktop\EPAM.Summer.Project — копия\KnowledgeSystem\MvcApp\obj\Debug\MvcApp.csprojResolveAssemblyReference.cache
+C:\Users\Yakov\Desktop\EPAM.Summer.Project — копия\KnowledgeSystem\MvcApp\obj\Debug\MvcApp.dll
+C:\Users\Yakov\Desktop\EPAM.Summer.Project — копия\KnowledgeSystem\MvcApp\obj\Debug\MvcApp.pdb
+C:\Users\Yakov\Desktop\EPAM.Summer.Project — копия\KnowledgeSystem\MvcApp\bin\Log.Interface.dll
+C:\Users\Yakov\Desktop\EPAM.Summer.Project — копия\KnowledgeSystem\MvcApp\bin\Log.dll
+C:\Users\Yakov\Desktop\EPAM.Summer.Project — копия\KnowledgeSystem\MvcApp\bin\Log.Interface.pdb
+C:\Users\Yakov\Desktop\EPAM.Summer.Project — копия\KnowledgeSystem\MvcApp\bin\Log.pdb
+C:\Users\Yakov\Desktop\project\KnowledgeSystem\MvcApp\bin\ApplicationInsights.config
+C:\Users\Yakov\Desktop\project\KnowledgeSystem\MvcApp\bin\roslyn\csc.exe
+C:\Users\Yakov\Desktop\project\KnowledgeSystem\MvcApp\bin\roslyn\Microsoft.Build.Tasks.CodeAnalysis.dll
+C:\Users\Yakov\Desktop\project\KnowledgeSystem\MvcApp\bin\roslyn\Microsoft.CodeAnalysis.CSharp.dll
+C:\Users\Yakov\Desktop\project\KnowledgeSystem\MvcApp\bin\roslyn\Microsoft.CodeAnalysis.dll
+C:\Users\Yakov\Desktop\project\KnowledgeSystem\MvcApp\bin\roslyn\Microsoft.CodeAnalysis.VisualBasic.dll
+C:\Users\Yakov\Desktop\project\KnowledgeSystem\MvcApp\bin\roslyn\Microsoft.CSharp.Core.targets
+C:\Users\Yakov\Desktop\project\KnowledgeSystem\MvcApp\bin\roslyn\Microsoft.VisualBasic.Core.targets
+C:\Users\Yakov\Desktop\project\KnowledgeSystem\MvcApp\bin\roslyn\System.Collections.Immutable.dll
+C:\Users\Yakov\Desktop\project\KnowledgeSystem\MvcApp\bin\roslyn\System.Reflection.Metadata.dll
+C:\Users\Yakov\Desktop\project\KnowledgeSystem\MvcApp\bin\roslyn\vbc.exe
+C:\Users\Yakov\Desktop\project\KnowledgeSystem\MvcApp\bin\roslyn\VBCSCompiler.exe
+C:\Users\Yakov\Desktop\project\KnowledgeSystem\MvcApp\bin\roslyn\VBCSCompiler.exe.config
+C:\Users\Yakov\Desktop\project\KnowledgeSystem\MvcApp\bin\MvcApp.dll.config
+C:\Users\Yakov\Desktop\project\KnowledgeSystem\MvcApp\bin\MvcApp.dll
+C:\Users\Yakov\Desktop\project\KnowledgeSystem\MvcApp\bin\MvcApp.pdb
+C:\Users\Yakov\Desktop\project\KnowledgeSystem\MvcApp\bin\Antlr3.Runtime.dll
+C:\Users\Yakov\Desktop\project\KnowledgeSystem\MvcApp\bin\BLL.Interface.dll
+C:\Users\Yakov\Desktop\project\KnowledgeSystem\MvcApp\bin\DependencyResolver.dll
+C:\Users\Yakov\Desktop\project\KnowledgeSystem\MvcApp\bin\EntityFramework.dll
+C:\Users\Yakov\Desktop\project\KnowledgeSystem\MvcApp\bin\EntityFramework.SqlServer.dll
+C:\Users\Yakov\Desktop\project\KnowledgeSystem\MvcApp\bin\itextsharp.dll
+C:\Users\Yakov\Desktop\project\KnowledgeSystem\MvcApp\bin\Log.Interface.dll
+C:\Users\Yakov\Desktop\project\KnowledgeSystem\MvcApp\bin\Microsoft.AI.Agent.Intercept.dll
+C:\Users\Yakov\Desktop\project\KnowledgeSystem\MvcApp\bin\Microsoft.AI.DependencyCollector.dll
+C:\Users\Yakov\Desktop\project\KnowledgeSystem\MvcApp\bin\Microsoft.AI.PerfCounterCollector.dll
+C:\Users\Yakov\Desktop\project\KnowledgeSystem\MvcApp\bin\Microsoft.AI.ServerTelemetryChannel.dll
+C:\Users\Yakov\Desktop\project\KnowledgeSystem\MvcApp\bin\Microsoft.AI.Web.dll
+C:\Users\Yakov\Desktop\project\KnowledgeSystem\MvcApp\bin\Microsoft.AI.WindowsServer.dll
+C:\Users\Yakov\Desktop\project\KnowledgeSystem\MvcApp\bin\Microsoft.ApplicationInsights.dll
+C:\Users\Yakov\Desktop\project\KnowledgeSystem\MvcApp\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll
+C:\Users\Yakov\Desktop\project\KnowledgeSystem\MvcApp\bin\Microsoft.Web.Infrastructure.dll
+C:\Users\Yakov\Desktop\project\KnowledgeSystem\MvcApp\bin\Microsoft.WindowsAzure.Configuration.dll
+C:\Users\Yakov\Desktop\project\KnowledgeSystem\MvcApp\bin\Newtonsoft.Json.dll
+C:\Users\Yakov\Desktop\project\KnowledgeSystem\MvcApp\bin\Ninject.dll
+C:\Users\Yakov\Desktop\project\KnowledgeSystem\MvcApp\bin\Ninject.Web.Common.dll
+C:\Users\Yakov\Desktop\project\KnowledgeSystem\MvcApp\bin\NLog.dll
+C:\Users\Yakov\Desktop\project\KnowledgeSystem\MvcApp\bin\System.Web.Helpers.dll
+C:\Users\Yakov\Desktop\project\KnowledgeSystem\MvcApp\bin\System.Web.Mvc.dll
+C:\Users\Yakov\Desktop\project\KnowledgeSystem\MvcApp\bin\System.Web.Optimization.dll
+C:\Users\Yakov\Desktop\project\KnowledgeSystem\MvcApp\bin\System.Web.Razor.dll
+C:\Users\Yakov\Desktop\project\KnowledgeSystem\MvcApp\bin\System.Web.WebPages.Deployment.dll
+C:\Users\Yakov\Desktop\project\KnowledgeSystem\MvcApp\bin\System.Web.WebPages.dll
+C:\Users\Yakov\Desktop\project\KnowledgeSystem\MvcApp\bin\System.Web.WebPages.Razor.dll
+C:\Users\Yakov\Desktop\project\KnowledgeSystem\MvcApp\bin\WebActivatorEx.dll
+C:\Users\Yakov\Desktop\project\KnowledgeSystem\MvcApp\bin\WebGrease.dll
+C:\Users\Yakov\Desktop\project\KnowledgeSystem\MvcApp\bin\DALL.Interface.dll
+C:\Users\Yakov\Desktop\project\KnowledgeSystem\MvcApp\bin\DAL.dll
+C:\Users\Yakov\Desktop\project\KnowledgeSystem\MvcApp\bin\ORM.dll
+C:\Users\Yakov\Desktop\project\KnowledgeSystem\MvcApp\bin\Log.dll
+C:\Users\Yakov\Desktop\project\KnowledgeSystem\MvcApp\bin\BLL.dll
+C:\Users\Yakov\Desktop\project\KnowledgeSystem\MvcApp\bin\BLL.Interface.pdb
+C:\Users\Yakov\Desktop\project\KnowledgeSystem\MvcApp\bin\BLL.Interface.xml
+C:\Users\Yakov\Desktop\project\KnowledgeSystem\MvcApp\bin\DependencyResolver.pdb
+C:\Users\Yakov\Desktop\project\KnowledgeSystem\MvcApp\bin\DependencyResolver.xml
+C:\Users\Yakov\Desktop\project\KnowledgeSystem\MvcApp\bin\Log.Interface.pdb
+C:\Users\Yakov\Desktop\project\KnowledgeSystem\MvcApp\bin\EntityFramework.xml
+C:\Users\Yakov\Desktop\project\KnowledgeSystem\MvcApp\bin\EntityFramework.SqlServer.xml
+C:\Users\Yakov\Desktop\project\KnowledgeSystem\MvcApp\bin\itextsharp.xml
+C:\Users\Yakov\Desktop\project\KnowledgeSystem\MvcApp\bin\Microsoft.AI.DependencyCollector.xml
+C:\Users\Yakov\Desktop\project\KnowledgeSystem\MvcApp\bin\Microsoft.AI.ServerTelemetryChannel.xml
+C:\Users\Yakov\Desktop\project\KnowledgeSystem\MvcApp\bin\Microsoft.AI.Web.xml
+C:\Users\Yakov\Desktop\project\KnowledgeSystem\MvcApp\bin\Microsoft.AI.WindowsServer.xml
+C:\Users\Yakov\Desktop\project\KnowledgeSystem\MvcApp\bin\Microsoft.ApplicationInsights.xml
+C:\Users\Yakov\Desktop\project\KnowledgeSystem\MvcApp\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
+C:\Users\Yakov\Desktop\project\KnowledgeSystem\MvcApp\bin\Microsoft.WindowsAzure.Configuration.xml
+C:\Users\Yakov\Desktop\project\KnowledgeSystem\MvcApp\bin\Ninject.xml
+C:\Users\Yakov\Desktop\project\KnowledgeSystem\MvcApp\bin\Ninject.Web.Common.xml
+C:\Users\Yakov\Desktop\project\KnowledgeSystem\MvcApp\bin\System.Web.Helpers.xml
+C:\Users\Yakov\Desktop\project\KnowledgeSystem\MvcApp\bin\System.Web.Mvc.xml
+C:\Users\Yakov\Desktop\project\KnowledgeSystem\MvcApp\bin\System.Web.Optimization.xml
+C:\Users\Yakov\Desktop\project\KnowledgeSystem\MvcApp\bin\System.Web.Razor.xml
+C:\Users\Yakov\Desktop\project\KnowledgeSystem\MvcApp\bin\System.Web.WebPages.xml
+C:\Users\Yakov\Desktop\project\KnowledgeSystem\MvcApp\bin\System.Web.WebPages.Deployment.xml
+C:\Users\Yakov\Desktop\project\KnowledgeSystem\MvcApp\bin\System.Web.WebPages.Razor.xml
+C:\Users\Yakov\Desktop\project\KnowledgeSystem\MvcApp\bin\Antlr3.Runtime.pdb
+C:\Users\Yakov\Desktop\project\KnowledgeSystem\MvcApp\bin\Newtonsoft.Json.xml
+C:\Users\Yakov\Desktop\project\KnowledgeSystem\MvcApp\bin\DALL.Interface.pdb
+C:\Users\Yakov\Desktop\project\KnowledgeSystem\MvcApp\bin\DALL.Interface.xml
+C:\Users\Yakov\Desktop\project\KnowledgeSystem\MvcApp\bin\DAL.pdb
+C:\Users\Yakov\Desktop\project\KnowledgeSystem\MvcApp\bin\DAL.xml
+C:\Users\Yakov\Desktop\project\KnowledgeSystem\MvcApp\bin\ORM.pdb
+C:\Users\Yakov\Desktop\project\KnowledgeSystem\MvcApp\bin\ORM.xml
+C:\Users\Yakov\Desktop\project\KnowledgeSystem\MvcApp\bin\Log.pdb
+C:\Users\Yakov\Desktop\project\KnowledgeSystem\MvcApp\bin\BLL.pdb
+C:\Users\Yakov\Desktop\project\KnowledgeSystem\MvcApp\bin\BLL.xml
+C:\Users\Yakov\Desktop\project\KnowledgeSystem\MvcApp\obj\Debug\MvcApp.csprojResolveAssemblyReference.cache
+C:\Users\Yakov\Desktop\project\KnowledgeSystem\MvcApp\obj\Debug\MvcApp.dll
+C:\Users\Yakov\Desktop\project\KnowledgeSystem\MvcApp\obj\Debug\MvcApp.pdb
+C:\Users\Yakov\Desktop\project\KnowledgeSystem\MvcApp\bin\NLog.xml
+C:\Users\Yakov\Desktop\project\KnowledgeSystem\MvcApp\bin\PasswordService.Interface.dll
+C:\Users\Yakov\Desktop\project\KnowledgeSystem\MvcApp\bin\PasswordService.dll
+C:\Users\Yakov\Desktop\project\KnowledgeSystem\MvcApp\bin\PasswordService.Interface.pdb
+C:\Users\Yakov\Desktop\project\KnowledgeSystem\MvcApp\bin\PasswordService.pdb

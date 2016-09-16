@@ -6,6 +6,11 @@ using ORM;
 using Ninject;
 using Ninject.Web.Common;
 using System.Data.Entity;
+using Log.Interface;
+using Log;
+using CryptoLogic;
+using CryptoLogic.Interface;
+
 
 namespace DependencyResolver
 {
@@ -27,6 +32,9 @@ namespace DependencyResolver
         {
             kernel.Bind<IUnitOfWork>().To<UnitOfWork>().InRequestScope();
             kernel.Bind<DbContext>().To<KnowledgeSystemContext>().InRequestScope();
+
+            kernel.Bind<ILogger>().To<Logger>();
+            kernel.Bind<IPasswordService>().To<PasswordService>();
 
             kernel.Bind<IUserService>().To<UserService>();
             kernel.Bind<ISkillService>().To<SkillService>();            

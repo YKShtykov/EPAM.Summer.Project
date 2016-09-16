@@ -15,7 +15,10 @@ namespace DAL
     public class SkillRepository : ISkillRepository
     {
         private readonly KnowledgeSystemContext context;
-
+        private readonly DbSet<Category> categories;
+        private readonly DbSet<Skill> skills;
+        private readonly DbSet<UserSkill> userSkills;
+        private readonly DbSet<User> users;
         /// <summary>
         /// Create SkillRepository instance
         /// </summary>
@@ -23,34 +26,38 @@ namespace DAL
         public SkillRepository(KnowledgeSystemContext knowledgeContext)
         {
             context = knowledgeContext;
+            skills = context.Set<Skill>();
+            users = context.Set<User>();
+            categories = context.Set<Category>();
+            userSkills = context.Set<UserSkill>();
         }
 
         /// <summary>
         /// The method for creating new skill entity in collection
         /// </summary>
-        /// <param name="skill"></param>
-        public void Create(DalSkill skill)
+        /// <param name="dalSkill"></param>
+        public void Create(DalSkill dalSkill)
         {
-            var ormSkill = SkillMapper.Map(skill);
-            context.Set<Skill>().Add(ormSkill);
+            var skill = SkillMapper.Map(dalSkill);
+            skills.Add(skill);
 
-            context.Set<Category>().FirstOrDefault(c => c.Name == skill.CategoryName).Skills.Add(ormSkill);
+            categories.FirstOrDefault(c => c.Name == dalSkill.CategoryName).Skills.Add(skill);
         }
 
         /// <summary>
         /// The method for updating exsisting skill in collection
         /// </summary>
-        /// <param name="skill"></param>
-        public void Update(DalSkill skill)
+        /// <param name="dalSkill"></param>
+        public void Update(DalSkill dalSkill)
         {
-            var ormSkill = context.Set<Skill>().FirstOrDefault(s => s.Id == skill.Id);
-            if (ormSkill != null)
+            var skill = skills.FirstOrDefault(s => s.Id == dalSkill.Id);
+            if (skill != null)
             {
-                ormSkill.Name = skill.Name;
-                var category = context.Set<Category>().FirstOrDefault(c => c.Name == skill.CategoryName);
-                ormSkill.Category = category;
+                skill.Name = dalSkill.Name;
+                var category = categories.FirstOrDefault(c => c.Name == dalSkill.CategoryName);
+                skill.Category = category;
 
-                context.Entry(ormSkill).State = EntityState.Modified;
+                context.Entry(skill).State = EntityState.Modified;
             }
         }
 
@@ -60,8 +67,7 @@ namespace DAL
         /// <param name="id"></param>
         public void Delete(int id)
         {
-            var skill = context.Set<Skill>().FirstOrDefault(s => s.Id == id);
-            context.Set<Skill>().Remove(skill);
+            skills.Remove(skills.FirstOrDefault(s => s.Id == id));
         }
 
         /// <summary>
@@ -71,7 +77,7 @@ namespace DAL
         /// <returns></returns>
         public DalSkill Get(int id)
         {
-            return SkillMapper.Map(context.Set<Skill>().Select(s => s).Include(s => s.Category).FirstOrDefault(u => u.Id == id));
+            return SkillMapper.Map(skills.Select(s => s).Include(s => s.Category).FirstOrDefault(u => u.Id == id));
         }
 
         /// <summary>
@@ -80,13 +86,7 @@ namespace DAL
         /// <returns></returns>
         public IEnumerable<DalSkill> GetAll()
         {
-            List<DalSkill> result = new List<DalSkill>();
-            foreach (Skill item in context.Set<Skill>().Include(s => s.Category).Select(s => s))
-            {
-                result.Add(SkillMapper.Map(item));
-            }
-
-            return result;
+            return SkillMapper.Map(skills.Include(s => s.Category).Select(s => s));
         }
 
         /// <summary>
@@ -99,7 +99,7 @@ namespace DAL
             var expr = ExpressionTransformer<DalSkill, Skill>.Tranform(f);
             var func = expr.Compile();
 
-            return SkillMapper.Map(context.Set<Skill>().FirstOrDefault(func));
+            return SkillMapper.Map(skills.FirstOrDefault(func));
         }
 
         /// <summary>
@@ -109,7 +109,7 @@ namespace DAL
         /// <returns> DalUser collection </returns>
         public IEnumerable<DalUser> GetUsersWithThatSkill(DalSkill skill)
         {
-            return UserMapper.Map(context.Set<UserSkill>().Where(us => us.Skill.Id == skill.Id).OrderBy(us => us.Level).Select(us => us.User));
+            return UserMapper.Map(userSkills.Where(us => us.Skill.Id == skill.Id).OrderBy(us => us.Level).Select(us => us.User));
         }
 
         /// <summary>
@@ -117,38 +117,21 @@ namespace DAL
         /// </summary>
         /// <param name="userId"></param>
         /// <returns>Dictionary DalSkill-level</returns>
-        public List<DalSkill> GetUserSkills(int userId)
+        public List<DalCategory> GetUserSkills(int userId)
         {
-            var skills = new List<DalSkill>();
-            var categories = context.Set<Category>().Select(c => c).Include(c => c.Skills);
-            foreach (var item in categories)
+            var skillsInCategories = CategoryMapper.Map( categories.Select(c => c).Include(c => c.Skills));
+            foreach (var item in skillsInCategories)
             {
                 foreach (var skill in item.Skills)
                 {
-                    var userSkill = SkillMapper.Map(skill);
-                    var entity = context.Set<UserSkill>().FirstOrDefault(us => us.User.Id == userId && us.Skill.Id == skill.Id);
-                    userSkill.Level = (!ReferenceEquals(entity, null)) ? entity.Level : 0;
-                    skills.Add(userSkill);
+                    var userSkill = userSkills.FirstOrDefault(us => us.User.Id == userId && us.Skill.Id == skill.Id);
+                    skill.Level = ReferenceEquals(userSkill, null) ? 0 : userSkill.Level;
                 }
             }
 
-            return skills;
+            return skillsInCategories.ToList();
         }
-        public List<DalCategory> GetSortedUserSkills(int userId)
-        {
-            var categories = CategoryMapper.Map(context.Set<Category>().Select(c => c).Include(c => c.Skills).ToList());
 
-            foreach (var item in categories)
-            {
-                foreach (var skill in item.Skills)
-                {
-                    var entity = context.Set<UserSkill>().FirstOrDefault(us => us.User.Id == userId && us.Skill.Id == skill.Id);
-                    skill.Level = (!ReferenceEquals(entity, null)) ? entity.Level : 0;
-                }
-            }
-
-            return categories.ToList();
-        }
         /// <summary>
         /// The method for updating all user skills
         /// </summary>
@@ -170,7 +153,7 @@ namespace DAL
         /// <param name="level"></param>
         public void UpdateSkillLevel(int userId, int skillId, int level)
         {
-            var userSkill = context.Set<UserSkill>().FirstOrDefault(us => us.User.Id == userId && us.Skill.Id == skillId);
+            var userSkill = userSkills.FirstOrDefault(us => us.User.Id == userId && us.Skill.Id == skillId);
             if (!ReferenceEquals(userSkill, null))
             {
                 userSkill.Level = level;
@@ -180,8 +163,8 @@ namespace DAL
             {
                 userSkill = new UserSkill()
                 {
-                    User = context.Set<User>().FirstOrDefault(u => u.Id == userId),
-                    Skill = context.Set<Skill>().FirstOrDefault(s => s.Id == skillId),
+                    User = users.FirstOrDefault(u => u.Id == userId),
+                    Skill = skills.FirstOrDefault(s => s.Id == skillId),
                     Level = level
                 };
                 context.Set<UserSkill>().Add(userSkill);
@@ -196,7 +179,7 @@ namespace DAL
         /// <returns>Level of skill</returns>
         public int GetLevelOfSkill(int userId, int skillId)
         {
-            return context.Set<UserSkill>().FirstOrDefault(us => us.Skill.Id == skillId && us.User.Id == userId).Level;
+            return userSkills.FirstOrDefault(us => us.Skill.Id == skillId && us.User.Id == userId).Level;
         }
     }
 }

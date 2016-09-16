@@ -1,0 +1,6 @@
+2016-09-13 12:01:33.2898|ERROR|Log.Logger|The parameters dictionary contains a null entry for parameter 'page' of non-nullable type 'System.Int32' for method 'System.Web.Mvc.ActionResult Users(System.Collections.Generic.List`1[MvcApp.ViewModels.MvcUser], Int32)' in 'MvcApp.Controllers.AdministratorController'. An optional parameter must be a reference type, a nullable type, or be declared as an optional parameter.
+Имя параметра: parameters
+2016-09-13 12:07:42.6953|ERROR|Log.Logger|The parameters dictionary contains a null entry for parameter 'page' of non-nullable type 'System.Int32' for method 'System.Web.Mvc.ActionResult Users(System.Collections.Generic.List`1[MvcApp.ViewModels.MvcUser], Int32)' in 'MvcApp.Controllers.AdministratorController'. An optional parameter must be a reference type, a nullable type, or be declared as an optional parameter.
+Имя параметра: parameters
+2016-09-13 12:08:32.2169|ERROR|Log.Logger|The parameters dictionary contains a null entry for parameter 'page' of non-nullable type 'System.Int32' for method 'System.Web.Mvc.ActionResult Users(System.Collections.Generic.List`1[MvcApp.ViewModels.MvcUser], Int32)' in 'MvcApp.Controllers.AdministratorController'. An optional parameter must be a reference type, a nullable type, or be declared as an optional parameter.
+Имя параметра: parameters

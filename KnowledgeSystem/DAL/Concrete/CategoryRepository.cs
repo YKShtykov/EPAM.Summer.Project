@@ -15,6 +15,8 @@ namespace DAL
     public class CategoryRepository : ICategoryRepository
     {
         private readonly KnowledgeSystemContext context;
+        private readonly DbSet<Category> categories;
+        private readonly DbSet<Skill> skills;
 
         /// <summary>
         /// Create CategoryRepository instance
@@ -23,6 +25,8 @@ namespace DAL
         public CategoryRepository(KnowledgeSystemContext knowledgeContext)
         {
             context = knowledgeContext;
+            categories = context.Set<Category>();
+            skills = context.Set<Skill>();
         }
 
         /// <summary>
@@ -31,28 +35,27 @@ namespace DAL
         /// <param name="category"></param>
         public void Create(DalCategory category)
         {
-            context.Set<Category>().Add(CategoryMapper.Map(category));
+            categories.Add(CategoryMapper.Map(category));
         }
 
         /// <summary>
         /// The method for updating exsisting category in collection
         /// </summary>
-        /// <param name="category"></param>
-        public void Update(DalCategory category)
+        /// <param name="dalCategory"></param>
+        public void Update(DalCategory dalCategory)
         {
-            var ormCategory = context.Set<Category>().FirstOrDefault(p => p.Id == category.Id);
-            if (ormCategory != null)
+            var category = categories.FirstOrDefault(p => p.Id == dalCategory.Id);
+            if (!ReferenceEquals(category,null))
             {
-                ormCategory.Name = category.Name;
-                ormCategory.Skills.Clear();
-                foreach (var item in category.Skills)
+                category.Name = dalCategory.Name;
+                category.Skills.Clear();
+                foreach (var item in dalCategory.Skills)
                 {
-                    var skill = context.Set<Skill>().FirstOrDefault(s => s.Id == item.Id);
-                    ormCategory.Skills.Add(skill);
+                    var skill = skills.FirstOrDefault(s => s.Id == item.Id);
+                    category.Skills.Add(skill);
                 }
 
-                context.Entry(ormCategory).State = EntityState.Modified;
-                context.SaveChanges();
+                context.Entry(category).State = EntityState.Modified;
             }
         }
 
@@ -62,9 +65,9 @@ namespace DAL
         /// <param name="id"></param>
         public void Delete(int id)
         {
-            var category = context.Set<Category>().Include(c => c.Skills).FirstOrDefault(c => c.Id == id);
-            context.Set<Skill>().RemoveRange(category.Skills);
-            context.Set<Category>().Remove(category);
+            var category = categories.Include(c => c.Skills).FirstOrDefault(c => c.Id == id);
+            skills.RemoveRange(category.Skills);
+            categories.Remove(category);
         }
 
         /// <summary>
@@ -74,7 +77,7 @@ namespace DAL
         /// <returns>DalCategory</returns>
         public DalCategory Get(int id)
         {
-            return CategoryMapper.Map(context.Set<Category>().FirstOrDefault(u => u.Id == id));
+            return CategoryMapper.Map(categories.FirstOrDefault(u => u.Id == id));
         }
 
         /// <summary>
@@ -83,13 +86,13 @@ namespace DAL
         /// <returns> DalCategory collection</returns>
         public IEnumerable<DalCategory> GetAll()
         {
-            List<DalCategory> result = new List<DalCategory>();
-            foreach (Category item in context.Set<Category>().Include(c => c.Skills).Select(u => u))
+            List<DalCategory> categoryList = new List<DalCategory>();
+            foreach (Category item in categories.Include(c => c.Skills).Select(u => u))
             {
-                result.Add(CategoryMapper.Map(item));
+                categoryList.Add(CategoryMapper.Map(item));
             }
 
-            return result;
+            return categoryList;
         }
 
         /// <summary>
@@ -102,7 +105,7 @@ namespace DAL
             var expr = ExpressionTransformer<DalCategory, Category>.Tranform(f);
             var func = expr.Compile();
 
-            return CategoryMapper.Map(context.Set<Category>().FirstOrDefault(func));
+            return CategoryMapper.Map(categories.FirstOrDefault(func));
         }        
     }
 }

@@ -43,6 +43,15 @@ namespace DAL.Mappers
         /// <returns>new DalProfile same as profile</returns>
         public static DalProfile Map(Profile profile)
         {
+            var birthDate = new DateTime?();
+            if (ReferenceEquals(profile.BirthDate,null)||profile.BirthDate=="")
+            {
+                birthDate = null;
+            }
+            else
+            {
+                birthDate = Convert.ToDateTime(profile.BirthDate);
+            }
             return new DalProfile()
             {
                 Id = profile.Id,
@@ -51,7 +60,7 @@ namespace DAL.Mappers
                 MiddleName = profile.MiddleName,
                 ContactEmail = profile.ContactEmail,
                 ContactPhone = profile.ContactPhone,
-                BirthDate = Convert.ToDateTime(profile.BirthDate),
+                BirthDate = birthDate,
                 AdditionalInfo = profile.AdditionalInfo,
                 City = profile.City,
                 Gender = profile.Gender,

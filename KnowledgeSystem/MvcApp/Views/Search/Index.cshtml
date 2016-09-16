@@ -1,92 +1,96 @@
 ﻿@using MvcApp.Infrastructure;
-@model MvcApp.ViewModels.SearchModel
+@model MvcApp.ViewModels.SearchModel 
 
-@using (Html.BeginForm())
+@using (Html.BeginRouteForm("Search"))
 {
     @Html.AntiForgeryToken()
     <div class="form-horizontal">
         <div class="row">
             @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-            <div class="col-md-5">
+            <div class="col-md-offset-4 col-md-4">
                 <div class="form-group">
-                    @Html.LabelFor(model => model.Age, htmlAttributes: new { @class = "control-label" })
-                    @Html.EditorFor(model => model.Age, new { htmlAttributes = new { @class = "form-control"} })
-
-                    @Html.ValidationMessageFor(model => model.Age, "", new { @class = "text-danger" })
-                </div>
-
-                <div class="form-group">              
-                    @Html.EditorFor(model => model.StringKey, new { htmlAttributes = new { @class = "form-control col-xs-3", placeholder = "Enter Name" } })
+                    @Html.EditorFor(model => model.StringKey, new { htmlAttributes = new { id = "stringKey", @class = "form-control col-xs-3", placeholder = "Enter Name" } })
                     @Html.ValidationMessageFor(model => model.StringKey, "", new { @class = "text-danger" })
-                </div>                
-            </div>
-            <div class="col-md-5">
-                <div class="form-group">
-                    @Html.LabelFor(model => model.Gender, htmlAttributes: new { @class = "control-label" })
-                    @Html.DropDownListFor(model => model.Gender, new List<SelectListItem>
-            {
-                new SelectListItem { Text = "Unspecified", Value = "Unspecified" },
-                new SelectListItem { Text = "Male", Value = "Male" },
-                new SelectListItem { Text = "Female", Value = "Female" }
-            }, new { @class = "form-control " })
                 </div>
-
                 <div class="form-group">
-                    @Html.EditorFor(model => model.City, new { htmlAttributes = new { @class = "form-control col-xs-3", placeholder = "Enter City" } })
+                    @Html.EditorFor(model => model.City, new { htmlAttributes = new { id = "city", @class = "form-control col-xs-3", placeholder = "Enter City" } })
                     @Html.ValidationMessageFor(model => model.City, "", new { @class = "text-danger" })
                 </div>
 
                 <div class="form-group">
                     <input type="submit" value="Save" class="btn btn-default" />
                 </div>
-            </div>            
+            </div>
         </div>
     </div>
     if (!ReferenceEquals(Model, null))
     {
-            <table class="table table-striped col-md-5">
-                @for (int i = 0; i < Model.Profiles.Entities.Count; i++)
-                {
-                    <tr>
-                        <td class="col-xs-3">
-                            <img src="@Url.Action("GetImage", "Profile", new { id = Model.Profiles.Entities[i].Id })" alt="I am" class="img-responsive img-thumbnail  col-xs-8" />
-                        </td>
-                        <td>
-                            <dl class="dl-horizontal">
-                                <dt>
-                                    Last Name:
-                                </dt>
-                                <dd>
-                                    @Html.DisplayFor(model => Model.Profiles.Entities[i].LastName)
-                                </dd>
-                                <dt>
-                                    First name:
-                                </dt>
-                                <dd>
-                                    @Html.DisplayFor(model => Model.Profiles.Entities[i].FirstName)
-                                </dd>
-                                <dt>
-                                    Age:
-                                </dt>
-                                <dd>
-                                    @Html.DisplayFor(model => Model.Profiles.Entities[i].Age)
-                                </dd>
-                                <dt>
-                                    City:
-                                </dt>
-                                <dd>
-                                    @Html.DisplayFor(model => Model.Profiles.Entities[i].City)
-                                </dd>
-                                <dd>
-                                    @Html.RouteLink("Profile", new { controller = "Profile", action = "UserProfile", id = Model.Profiles.Entities[i].Id })
-                                </dd>
-                            </dl>
-                        </td>
-                    </tr>
-                }
-            </table>
+        <table class="table table-striped col-md-5">
+            @for (int i = 0; i < Model.Profiles.Entities.Count; i++)
+            {
+                <tr>
+                    <td class="col-xs-3">
+                        <img src="@Url.Action("GetImage", "Profile", new { id = Model.Profiles.Entities[i].Id })" alt="I am" class="img-responsive img-thumbnail  col-xs-8" />
+                    </td>
+                    <td>
+                        <dl class="dl-horizontal">
+                            <dt>
+                                Last Name:
+                            </dt>
+                            <dd>
+                                @Html.DisplayFor(model => Model.Profiles.Entities[i].LastName)
+                            </dd>
+                            <dt>
+                                First name:
+                            </dt>
+                            <dd>
+                                @Html.DisplayFor(model => Model.Profiles.Entities[i].FirstName)
+                            </dd>
+                            <dt>
+                                Age:
+                            </dt>
+                            <dd>
+                                @Html.DisplayFor(model => Model.Profiles.Entities[i].Age)
+                            </dd>
+                            <dt>
+                                City:
+                            </dt>
+                            <dd>
+                                @Html.DisplayFor(model => Model.Profiles.Entities[i].City)
+                            </dd>
+                            <dd>
+                                @Html.RouteLink("Profile", "User", new { id = Model.Profiles.Entities[i].Id })
+                            </dd>
+                        </dl>
+                    </td>
+                </tr>
+            }
+        </table>
             <div class="btn-group">
                 @Html.PageSubmit(Model.Profiles.Pagination)
             </div>
     }
 }
+<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+<script src="https://code.jquery.com/ui/1.12.0/jquery-ui.js"></script>
+<link href="~/Content/jquery-ui.theme.css" rel="stylesheet" />
+<link href="~/Content/jquery-ui.structure.css" rel="stylesheet" />
+<script>
+    $(function () {
+        $("input#stringKey").autocomplete({
+            source: '@Url.Action("FindUsers")',
+            minLength: 1
+        });
+        $("input#city").autocomplete({
+            source: function (request, response) {
+                jQuery.getJSON(
+                   "http://gd.geobytes.com/AutoCompleteCity?callback=?&q=" + request.term,
+                   function (data) {
+                       response(data);
+                   }
+                );
+            },
+            minLength: 3
+        });
+    });
+</script>

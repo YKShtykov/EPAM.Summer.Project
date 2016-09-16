@@ -23,6 +23,6 @@ namespace BLL.Interface
         /// </summary>
         /// <param name="model"></param>
         /// <returns>BllProfile collection</returns>
-        IEnumerable<BllProfile> Search(BllSearchModel model);
+        IEnumerable<BllProfile> Find(string stringKey="", string city=null);
     }
 }

@@ -1,0 +1,30 @@
+﻿<div class="modal fade" id="LoginModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content modal-info">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            </div>
+            <div class="modal-body modal-spa">
+                <div class="login-grids">
+
+                    <div class="login-right">
+                        <form action="@Url.RouteUrl("Login")" method="post">
+                            @Html.AntiForgeryToken()
+                            <h3>Signin with your account </h3>
+                            <input class = "form-control" type="text" value="Enter your mobile number or Email" name="EmailOrLogin" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Enter your Login or Email';}" required="">
+                            <input class = "form-control" type="password" value="Password" name="Password" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Password';}" required="">
+
+                            <div class="single-bottom">
+                                <input type='checkbox' name='IsRemember' id="brand" value="true">
+                                <label for="brand"><span></span>Remember Me.</label>
+                            </div>
+                            <input id="loginInput" type="submit" value="SIGNIN">
+                        </form>
+                    </div>
+
+                    <p>By logging in you agree to our <span>Terms and Conditions</span> and <span>Privacy Policy</span></p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

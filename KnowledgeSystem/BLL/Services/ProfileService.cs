@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using BLL.Interface;
 using DAL.Interface;
 using BLL.Mappers;
+using System.Linq;
 
 namespace BLL
 {
@@ -50,36 +51,13 @@ namespace BLL
         /// </summary>
         /// <param name="model"></param>
         /// <returns></returns>
-        public IEnumerable<BllProfile> Search(BllSearchModel model)
+        public IEnumerable<BllProfile> Find(string stringKey = "", string city = null)
         {
-            var result = new List<BllProfile>();
+            var profiles = uow.Profiles.GetAll();
+            if (!ReferenceEquals(stringKey, null)) profiles = profiles.Where(p => (p.FirstName + " " + p.LastName).Contains(stringKey));
+            if (!ReferenceEquals(city, null)) profiles = profiles.Where(p => p.City!=null&&p.City.Contains(city));
 
-            var profiles = ProfileMapper.Map(uow.Profiles.GetAll());
-
-            foreach (var item in profiles)
-            {
-                if (!ReferenceEquals(model.StringKey,null))
-                {
-                    string fullName = item.FirstName + " " + item.LastName;
-                    if (!fullName.Contains(model.StringKey)) break;
-                }
-                item.Age = GetAge(item.BirthDate);
-                if (model.Age!=0)
-                {                    
-                    if (item.Age > model.Age) break;
-                }
-                if (!ReferenceEquals(model.City,null))
-                {
-                    if (item.City != model.City) break;
-                }
-                if (model.Gender!= "Unspecified")
-                {
-                    if (item.Gender != model.Gender) break;
-                }
-                result.Add(item);
-            }
-
-            return result;
+            return ProfileMapper.Map(profiles);
         }
 
         /// <summary>
@@ -87,10 +65,13 @@ namespace BLL
         /// </summary>
         /// <param name="birthDate"></param>
         /// <returns>age</returns>
-        private int GetAge(DateTime birthDate)
+        private int? GetAge(DateTime? birthDate)
         {
+            if (ReferenceEquals(birthDate, null))
+                return null;
+
             DateTime today = DateTime.Today;
-            int age = today.Year - birthDate.Year;
+            int age = today.Year - ((DateTime)birthDate).Year;
             if (birthDate > today.AddYears(-age)) age--;
 
             return age;
