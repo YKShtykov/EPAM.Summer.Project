@@ -1,0 +1,4 @@
+2016-09-17 17:41:54.2734|ERROR|Log.Logger|The using block is missing a closing "}" character.  Make sure you have a matching "}" character for all the "{" characters within this block, and that none of the "}" characters are being interpreted as markup.
+
+2016-09-17 17:50:09.8750|ERROR|Log.Logger|The using block is missing a closing "}" character.  Make sure you have a matching "}" character for all the "{" characters within this block, and that none of the "}" characters are being interpreted as markup.
+

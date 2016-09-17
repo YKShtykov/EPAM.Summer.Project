@@ -27,7 +27,14 @@ namespace MvcApp.Controllers
             ViewBag.SearchString = SearchString;
             var viewModel = new GenericPaginationModel<MvcCategory>(page, 2, mvcCategories);
 
-            return View(viewModel);
+            if (Request.IsAjaxRequest())
+            {
+                return PartialView("_Categories", viewModel);
+            }
+            else
+            {
+                return View(viewModel);
+            }           
         }
 
         [HttpGet]
@@ -94,6 +101,13 @@ namespace MvcApp.Controllers
             }
 
             return mvcCategories;
+        }
+
+        public ActionResult FindCategories(string term)
+        {
+            var mvcCategories = categories.Find(term).Select(c=>c.Name);
+
+            return Json(mvcCategories.ToList(), JsonRequestBehavior.AllowGet);
         }
     }
 }

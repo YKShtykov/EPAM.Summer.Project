@@ -1,105 +1,10 @@
-﻿@using MvcApp.Infrastructure;
-@model MvcApp.ViewModels.GenericPaginationModel<MvcApp.ViewModels.SkillsModel>
-
+﻿@model MvcApp.ViewModels.GenericPaginationModel<MvcApp.ViewModels.SkillsModel>
 
 @{
     ViewBag.Title = "Index";
-    int skillsCount = ViewBag.Skills.Length;
 }
-<div class="clearfix"></div>
-<div class="clearfix"></div>
-
 <h2 class="managerpage-header">Find new persons. Just set skills, that you need</h2>
-<div class="clearfix"></div>
 
-@using (Html.BeginRouteForm("Manage"))
-{
-    <div id="content">
-        <table class="table table-striped">
-            <thead>
-                <tr>
-                    <th>User Login</th>
-                    @for (int i = 0; i < ViewBag.Skills.Length; i++)
-                {
-                        <th>
-                            @{string id = "select" + i;
-                            }
-                            <select class="form-control" id="@id" name="selector">
-                                @for (int j = 0; j < ViewBag.AllSkills.Length; j++)
-                                {
-                                    if (ViewBag.Skills[i] == ViewBag.AllSkills[j])
-                                    {
-                                        <option selected>@ViewBag.AllSkills[j]</option>
-                                    }
-                                    else
-                                    {
-                                        <option>@ViewBag.AllSkills[j]</option>
-                                    }
-                                }
-                            </select>
-                        </th>
-                                }
-                    @if (skillsCount < 5)
-                {
-                    for (int i = 0; i < 5 - skillsCount; i++)
-                    {
-                            <th>
-                                <select class="form-control" name="selector">
-                                    <option data-hidden="true"></option>
-                                    @foreach (var option in ViewBag.AllSkills)
-                                    {
-                                        <option>@option</option>
-
-                                    }
-                                </select>
-                            </th>
-
-                        }
-                    }
-                </tr>
-
-            </thead>
-            <tbody>
-                @foreach (var item in Model.Entities)
-                {
-                    <tr>
-                        <td>
-                            <div>
-                                <img src="@Url.Action("GetImage", "Profile", new { id = item.UserId })" alt="I am" class="img-responsive" width="150" />
-                            </div>
-                            <div>
-                                @Html.RouteLink(item.FirstName + " " + item.LastName, "User", new { id = item.UserId })
-                            </div>
-                        </td>
-                        @foreach (var item2 in item.Skills)
-                        {
-                            <td>@item2.Level</td>
-                        }
-                    </tr>
-
-                }
-            </tbody>
-        </table>
-    </div>
-    <div class="btn-group">
-        @Html.PageSubmit(Model.Pagination)
-    </div>    
-    <div id="page-selection"></div>
-    <div class="form-group col-md-2">
-        <input type="submit" value="Save" class="btn btn-default" />
-    </div>
-                                }
-<div>
-    @using (Html.BeginForm("UserListPdf", "Manager"))
-    {
-        foreach (var item in ViewBag.Skills)
-        {
-            string skill = item;
-            @Html.Hidden("Skills", skill)
-        }
-        <div class="form-group col-md-2">
-            <input type="submit" value="Pdf" class="btn btn-default" />
-        </div>
-    }
-</div>
+@Html.Partial("_Users", Model)
+<script src="http://ajax.aspnetcdn.com/ajax/mvc/3.0/jquery.unobtrusive-ajax.min.js"></script>
 

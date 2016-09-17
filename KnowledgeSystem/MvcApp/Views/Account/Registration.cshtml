@@ -66,4 +66,7 @@
 }
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
+    <script type="text/javascript">
+        $.validator.unobtrusive.adapters.addBool("mustbetrue", "required");
+    </script>
 }

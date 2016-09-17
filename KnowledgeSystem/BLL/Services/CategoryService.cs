@@ -2,6 +2,7 @@
 using BLL.Interface;
 using DAL.Interface;
 using BLL.Mappers;
+using System.Linq;
 
 namespace BLL
 {
@@ -68,6 +69,21 @@ namespace BLL
         public IEnumerable<BllCategory> GetAll()
         {            
             return CategoryMapper.Map(uow.Categories.GetAll());
-        }              
+        }
+
+        /// <summary>
+        /// The method for category searching
+        /// </summary>
+        /// <param name="stringKey"></param>
+        /// <param name="city"></param>
+        /// <returns></returns>
+        public IEnumerable<BllCategory> Find(string stringKey)
+        {
+            var categories = uow.Categories.GetAll();
+            if (!ReferenceEquals(stringKey, null)) categories = categories.Where(c => c.Name.Contains(stringKey));
+            
+
+            return CategoryMapper.Map(categories);
+        }
     }
 }

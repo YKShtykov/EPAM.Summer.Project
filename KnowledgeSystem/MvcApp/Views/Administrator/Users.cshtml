@@ -2,7 +2,7 @@
 @using MvcApp.Infrastructure;
 
 @{
-    ViewBag.Title = "EditEntities";
+    ViewBag.Title = "Users";
 }
 <h2>Users</h2>
 @using (Html.BeginRouteForm("Users"))
@@ -66,7 +66,7 @@
                         </select>
                     </td>
                     <td>
-                        @Html.RouteLink("Remove", "RemoveUser", new { id = Model.Entities[i].Id })
+                        @Html.RouteLink("Remove", "RemoveUser", new { id = Model.Entities[i].Id }, new { onclick = "return confirmDelete()"})
                     </td>
                 </tr>
                             }
@@ -86,3 +86,12 @@
     <link rel="stylesheet" href="~/Content/bootstrap-select.css">
     <script src="~/Scripts/bootstrap-select.js"></script>
 }
+<script>
+    function confirmDelete() {
+        if (confirm("Are you sure?")) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+</script>  

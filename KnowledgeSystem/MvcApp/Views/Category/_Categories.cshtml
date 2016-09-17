@@ -1,0 +1,73 @@
+﻿@using MvcApp.Infrastructure;
+@model MvcApp.ViewModels.GenericPaginationModel<MvcApp.ViewModels.MvcCategory>
+
+<div id="results">
+    @using (Ajax.BeginRouteForm("Categories", new AjaxOptions { UpdateTargetId = "results" }))
+    {
+        <h2>Categories</h2>
+        <div class="form-group">
+            <div class="col-md-offset-3 col-md-6">
+                <input type="text" class="form-control" id="stringKey" name="SearchString" placeholder="Find Category" value=@ViewBag.SearchString>
+                <div class="form-group col-md-2">
+                    <input type="submit" value="Find" class="btn btn-default" />
+                </div>
+            </div>
+        </div>
+
+
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th></th>
+                    <th>
+                        Name
+                    </th>
+                    <th>
+                        Skills
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                @for (int i = 0; i < Model.Entities.Count; i++)
+                {
+                    <tr>
+                        <td>
+                            @Html.HiddenFor(m => m.Entities[i].Id)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(m => m.Entities[i].Name)
+                        </td>
+                        <td>
+                            <ul class="list-group">
+                                @foreach (var item in Model.Entities[i].Skills)
+                                {
+                                    <li class="list-group-item">@item.Name</li>
+                                }
+                                <li class="list-group-item">@Html.RouteLink("Add skill", new { controller = "Skill", action = "CreateSkill", category = Model.Entities[i].Name })</li>
+                            </ul>
+                        </td>
+                        <td>
+                            @Html.RouteLink("Edit", "EditCategory", new { id = Model.Entities[i].Id })
+                        </td>
+                        <td>
+                            @Html.RouteLink("Remove", "RemoveCategory", new { id = Model.Entities[i].Id }, new { onclick = "return confirmDelete()"})
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+        <div class="btn-group">
+            @Html.PageSubmit(Model.Pagination)
+        </div>
+        <div>
+            @Html.RouteLink("Create category", "CreateCategory")
+        </div>
+    }
+</div>
+
+<script>
+    $("input#stringKey").autocomplete({
+        source: '@Url.Action("FindCategories")',
+        minLength: 1
+    });
+</script>

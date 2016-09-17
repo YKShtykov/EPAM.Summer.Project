@@ -26,12 +26,18 @@ namespace MvcApp.Controllers
         public ActionResult Index(IList<string> selector = null, int page = 1)
         {
             var userList = SkillMapper.Map(skillService.RateUsers(selector)).ToList();
-            var viewModel = new GenericPaginationModel<SkillsModel>(page, 5, userList);
+            var viewModel = new GenericPaginationModel<SkillsModel>(page, 1, userList);
 
             ViewBag.Skills = (userList.First().Skills.Select(s => s.Name)).ToArray();
             ViewBag.AllSkills = (skillService.GetAll().Select(s => s.Name)).ToArray();
-
-            return View(viewModel);
+            if (Request.IsAjaxRequest())
+            {
+                return PartialView("_Users",viewModel);
+            }
+            else
+            {
+                return View(viewModel);
+            }
         }
 
         public ActionResult UserListPdf(IList<string> Skills)

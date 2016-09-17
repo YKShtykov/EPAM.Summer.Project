@@ -9,3 +9,26 @@
 2016-09-16 14:22:54.9855|ERROR|Log.Logger|Выдано исключение типа "System.Exception".
 2016-09-16 14:22:55.8105|ERROR|Log.Logger|Выдано исключение типа "System.Exception".
 2016-09-16 14:23:39.6042|ERROR|Log.Logger|Выдано исключение типа "System.Exception".
+2016-09-16 16:01:14.8618|ERROR|Log.Logger|The partial view 'AjaxIndex' was not found or no view engine supports the searched locations. The following locations were searched:
+~/Views/Skill/AjaxIndex.aspx
+~/Views/Skill/AjaxIndex.ascx
+~/Views/Shared/AjaxIndex.aspx
+~/Views/Shared/AjaxIndex.ascx
+~/Views/Skill/AjaxIndex.cshtml
+~/Views/Skill/AjaxIndex.vbhtml
+~/Views/Shared/AjaxIndex.cshtml
+~/Views/Shared/AjaxIndex.vbhtml
+2016-09-16 16:05:02.5840|ERROR|Log.Logger|The parameters dictionary contains a null entry for parameter 'page' of non-nullable type 'System.Int32' for method 'System.Web.Mvc.ActionResult AjaxIndex(Int32)' in 'MvcApp.Controllers.SkillController'. An optional parameter must be a reference type, a nullable type, or be declared as an optional parameter.
+Имя параметра: parameters
+2016-09-16 16:05:02.5840|ERROR|Log.Logger|The parameters dictionary contains a null entry for parameter 'page' of non-nullable type 'System.Int32' for method 'System.Web.Mvc.ActionResult AjaxIndex(Int32)' in 'MvcApp.Controllers.SkillController'. An optional parameter must be a reference type, a nullable type, or be declared as an optional parameter.
+Имя параметра: parameters
+2016-09-16 16:05:02.5840|ERROR|Log.Logger|The parameters dictionary contains a null entry for parameter 'page' of non-nullable type 'System.Int32' for method 'System.Web.Mvc.ActionResult AjaxIndex(Int32)' in 'MvcApp.Controllers.SkillController'. An optional parameter must be a reference type, a nullable type, or be declared as an optional parameter.
+Имя параметра: parameters
+2016-09-16 16:05:02.5840|ERROR|Log.Logger|The parameters dictionary contains a null entry for parameter 'page' of non-nullable type 'System.Int32' for method 'System.Web.Mvc.ActionResult AjaxIndex(Int32)' in 'MvcApp.Controllers.SkillController'. An optional parameter must be a reference type, a nullable type, or be declared as an optional parameter.
+Имя параметра: parameters
+2016-09-16 16:05:32.7692|ERROR|Log.Logger|The parameters dictionary contains a null entry for parameter 'page' of non-nullable type 'System.Int32' for method 'System.Web.Mvc.ActionResult AjaxIndex(Int32)' in 'MvcApp.Controllers.SkillController'. An optional parameter must be a reference type, a nullable type, or be declared as an optional parameter.
+Имя параметра: parameters
+2016-09-16 16:13:03.0578|ERROR|Log.Logger|The parameters dictionary contains a null entry for parameter 'page' of non-nullable type 'System.Int32' for method 'System.Web.Mvc.ActionResult AjaxIndex(System.Collections.Generic.List`1[MvcApp.ViewModels.MvcCategory], Int32)' in 'MvcApp.Controllers.SkillController'. An optional parameter must be a reference type, a nullable type, or be declared as an optional parameter.
+Имя параметра: parameters
+2016-09-16 16:14:46.4524|ERROR|Log.Logger|The parameters dictionary contains a null entry for parameter 'page' of non-nullable type 'System.Int32' for method 'System.Web.Mvc.ActionResult AjaxIndex(System.Collections.Generic.List`1[MvcApp.ViewModels.MvcCategory], Int32)' in 'MvcApp.Controllers.SkillController'. An optional parameter must be a reference type, a nullable type, or be declared as an optional parameter.
+Имя параметра: parameters

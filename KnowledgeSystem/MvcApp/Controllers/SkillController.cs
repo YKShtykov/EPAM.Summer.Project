@@ -26,23 +26,34 @@ namespace MvcApp.Controllers
         [Route("YourSkills")]
         public ActionResult Index(int page = 1)
         {
-
             var id = ((CustomIdentity)User.Identity).Id;
             var userSkills = CategoryMapper.Map(service.GetSortedUserSkills(id, true));
-            var viewModel = new GenericPaginationModel<MvcCategory>(page, 5, userSkills);
+            var viewModel = new GenericPaginationModel<MvcCategory>(page, 2, userSkills);
 
             return View(viewModel);
         }
 
+
         [HttpPost]
         [Route("YourSkills", Name = "UserSkills")]
-        public ActionResult Index(List<MvcCategory> Entities, int page = 1)
+        public ActionResult Index(List<MvcCategory> Entities,int? page, int currentPage)
         {
-            int id = ((CustomIdentity)User.Identity).Id;
-            service.UpdateUserSkills(id, CategoryMapper.Map(Entities));
-            Logger.LogInfo("Skills of user(id=" + id + ") was changed");
-
-            return Redirect("~/YourSkills/?page=" + page);
+            var id = ((CustomIdentity)User.Identity).Id;
+            if (ReferenceEquals(page,null))
+            {
+                service.UpdateUserSkills(id, CategoryMapper.Map(Entities));
+                page = currentPage;
+            }            
+            if (Request.IsAjaxRequest())
+            {
+                var userSkills = CategoryMapper.Map(service.GetSortedUserSkills(id, true));
+                var viewModel = new GenericPaginationModel<MvcCategory>((int)page, 2, userSkills);
+                return PartialView("_Skills", viewModel);
+            }
+            else
+            {
+                return Redirect("~/YourSkills/?page=" + page);
+            }
         }
 
         [Authorize(Roles = "Administrator")]
@@ -61,7 +72,14 @@ namespace MvcApp.Controllers
             ViewBag.FindSkill = FindSkill;
             ViewBag.FindCategory = FindCategory;
 
-            return View(viewModel);
+            if (Request.IsAjaxRequest())
+            {
+                return PartialView("_SkillsRedactorPartial", viewModel);
+            }
+            else
+            {
+                return View(viewModel);
+            }
         }
 
         [HttpGet]

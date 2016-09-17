@@ -32,6 +32,13 @@ namespace BLL.Interface
         /// The method for getting all BllCategories
         /// </summary>
         /// <returns>BllCategories collection</returns>
-        IEnumerable<BllCategory> GetAll();       
+        IEnumerable<BllCategory> GetAll();
+
+        /// <summary>
+        /// The method for category searching
+        /// </summary>
+        /// <param name="stringKey"></param>
+        /// <returns></returns>
+        IEnumerable<BllCategory> Find(string stringKey);
     }
 }

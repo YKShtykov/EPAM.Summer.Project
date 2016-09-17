@@ -1,0 +1,53 @@
+﻿@using MvcApp.Infrastructure;
+@model MvcApp.ViewModels.GenericPaginationModel<MvcApp.ViewModels.MvcCategory>
+
+<div id="results">
+    @using (Ajax.BeginRouteForm("UserSkills", new AjaxOptions { UpdateTargetId = "results" }))
+    {
+        <input type="hidden" name="currentPage" value=@Model.Pagination.PageNumber>
+        for (int i = 0; i < Model.Entities.Count; i++)
+        {
+            <div>
+                <h3 style="margin-top:2em">@Model.Entities[i].Name</h3>
+                @Html.HiddenFor(Model => Model.Entities[i].Id)
+                @Html.HiddenFor(Model => Model.Entities[i].Name)
+                <table class="table">
+                    @for (int j = 0; j < Model.Entities[i].Skills.Count; j++)
+                    {
+                        <tr>
+                            <td>
+                                @Html.HiddenFor(Model => Model.Entities[i].Skills[j].Id)
+                            </td>
+                            <td>
+                                @Html.HiddenFor(Model => Model.Entities[i].Skills[j].Name)
+                                @Html.DisplayFor(Model => Model.Entities[i].Skills[j].Name)
+                            </td>
+                            <td>
+                                @{string name = "Entities[" + i + "].Skills[" + j + "].Level";
+                                }
+                                <input for="Level" id="@Model.Entities[i].Skills[j].Id" value="@Model.Entities[i].Skills[j].Level" name="@name" class="rating-loading" data-size="xs" data-min="0" data-max="5" data-step="1" data-show-clear="true">
+                            </td>
+                        </tr>
+                                    }
+                </table>
+            </div>
+                                    }
+                                    <div class="btn-group">
+                                        @Html.PageSubmit(Model.Pagination)
+                                    </div>
+                                    <div class="form-group">
+                                        <div class="col-md-offset-2 col-md-10">
+                                            <input id="submit" type="submit" value="Submit" class="btn btn-default" />
+                                        </div>
+                                    </div>
+                                    }
+</div>
+<script>
+    $('.rating-loading').rating({
+        step: 1,
+        defaultCaption: '.',
+        starCaptions: { 1: '', 2: '', 3: '', 4: '', 5: '' },
+        starCaptionClasses: function (val) { return 'text-success'; }
+    });
+</script>
+
