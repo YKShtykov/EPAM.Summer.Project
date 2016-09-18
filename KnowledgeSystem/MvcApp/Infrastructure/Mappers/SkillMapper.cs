@@ -1,15 +1,19 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
+﻿using System.Collections.Generic;
 using MvcApp.ViewModels;
 using BLL.Interface;
-using MvcApp.Infrastructure.Mappers;
 
 namespace MvcApp.Infrastructure.Mappers
 {
+    /// <summary>
+    /// Class-mapper for skills
+    /// </summary>
     public static  class SkillMapper
     {
+        /// <summary>
+        /// Map skill
+        /// </summary>
+        /// <param name="skill"></param>
+        /// <returns>Bll skill such as skill</returns>
         public static BllSkill Map(MvcSkill skill)
         {
             return new BllSkill()
@@ -21,6 +25,11 @@ namespace MvcApp.Infrastructure.Mappers
             };
         }
 
+        /// <summary>
+        /// Map skill
+        /// </summary>
+        /// <param name="skill"></param>
+        /// <returns>Mvc skill such as skill</returns>
         public static MvcSkill Map(BllSkill skill)
         {
             return new MvcSkill()
@@ -32,6 +41,11 @@ namespace MvcApp.Infrastructure.Mappers
             };
         }
 
+        /// <summary>
+        /// Map Skill model
+        /// </summary>
+        /// <param name="userSkills"></param>
+        /// <returns>bll skill model such as model</returns>
         public static SkillsModel Map(BllUserSkills userSkills)
         {
             var mvcSkills = new List<MvcSkill>();
@@ -51,25 +65,17 @@ namespace MvcApp.Infrastructure.Mappers
             return result;
         }
 
+        /// <summary>
+        /// Map skill model list
+        /// </summary>
+        /// <param name="skills"></param>
+        /// <returns></returns>
         public static IEnumerable<SkillsModel> Map(IEnumerable<BllUserSkills> skills)
         {
             var result = new List<SkillsModel>();
             foreach (var item in skills)
             {
                 result.Add(Map(item));
-            }
-
-            return result;
-        }
-
-        public static IEnumerable<MvcSkill> Map(Dictionary<BllSkill, int> skills)
-        {
-            var result = new List<MvcSkill>();
-            foreach (var item in skills)
-            {
-                var skill = Map(item.Key);
-                skill.Level = item.Value;
-                result.Add(skill);
             }
 
             return result;

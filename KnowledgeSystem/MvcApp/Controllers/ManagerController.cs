@@ -9,6 +9,9 @@ using MvcApp.Infrastructure;
 
 namespace MvcApp.Controllers
 {
+    /// <summary>
+    /// Controller for users managment
+    /// </summary>
     [Authorize(Roles = "Manager")]
     public class ManagerController : Controller
     {
@@ -16,12 +19,23 @@ namespace MvcApp.Controllers
         private readonly ISkillService skillService;
 
 
+        /// <summary>
+        /// Create manager controller
+        /// </summary>
+        /// <param name="userService"></param>
+        /// <param name="skillService"></param>
         public ManagerController(IUserService userService, ISkillService skillService)
         {
             users = userService;
             this.skillService = skillService;
         }
 
+        /// <summary>
+        /// Consists logic for users selection
+        /// </summary>
+        /// <param name="selector"></param>
+        /// <param name="page"></param>
+        /// <returns></returns>
         [Route("Manage", Name = "Manage")]
         public ActionResult Index(IList<string> selector = null, int page = 1)
         {
@@ -40,6 +54,11 @@ namespace MvcApp.Controllers
             }
         }
 
+        /// <summary>
+        /// Creates pdf with users list and their skills information
+        /// </summary>
+        /// <param name="Skills"></param>
+        /// <returns></returns>
         public ActionResult UserListPdf(IList<string> Skills)
         {
             var userList = SkillMapper.Map(skillService.RateUsers(Skills)).Take(20).ToList();

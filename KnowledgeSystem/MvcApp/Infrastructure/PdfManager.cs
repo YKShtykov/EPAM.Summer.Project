@@ -1,8 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Web;
-using iTextSharp;
 using MvcApp.ViewModels;
 using iTextSharp.text;
 using iTextSharp.text.pdf;
@@ -10,8 +8,16 @@ using System.IO;
 
 namespace MvcApp.Infrastructure
 {
+    /// <summary>
+    /// Pdf creator class
+    /// </summary>
     public class PdfManager
     {
+        /// <summary>
+        /// Creates pdf with user information
+        /// </summary>
+        /// <param name="profileInfo"></param>
+        /// <returns></returns>
         public static MemoryStream CreateUserInfoPdf(FullProfileInfo profileInfo)
         {
             MemoryStream workStream;
@@ -32,7 +38,7 @@ namespace MvcApp.Infrastructure
             foreach (var category in profileInfo.Categories.Entities)
             {
                 document.Add(new Paragraph(category.Name));
-                document.Add(new Paragraph( " "));
+                document.Add(Chunk.NEWLINE);
                 PdfPTable table = new PdfPTable(2);
                 foreach (var skill in category.Skills)
                 {
@@ -48,6 +54,11 @@ namespace MvcApp.Infrastructure
             return SendDocument(document, workStream);
         }
 
+        /// <summary>
+        /// Creates prf with users list and their skills
+        /// </summary>
+        /// <param name="userList"></param>
+        /// <returns></returns>
         public static MemoryStream CreateUserListPdf(List<SkillsModel> userList)
         {
             MemoryStream workStream;
@@ -86,6 +97,12 @@ namespace MvcApp.Infrastructure
             return SendDocument(document,workStream);
         }
 
+        /// <summary>
+        /// Initialize new pdf document
+        /// </summary>
+        /// <param name="message"></param>
+        /// <param name="workStream"></param>
+        /// <returns></returns>
         private static Document GetNewDocument(string message, out MemoryStream workStream)
         {
             workStream = new MemoryStream();
@@ -99,6 +116,12 @@ namespace MvcApp.Infrastructure
             return document;
         }
 
+        /// <summary>
+        /// Close document and send it in stream
+        /// </summary>
+        /// <param name="document"></param>
+        /// <param name="workStream"></param>
+        /// <returns></returns>
         private static MemoryStream SendDocument(Document document, MemoryStream workStream)
         {
             document.Close();

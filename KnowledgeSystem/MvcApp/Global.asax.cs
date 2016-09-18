@@ -16,8 +16,14 @@ using Log.Interface;
 
 namespace MvcApp
 {
+    /// <summary>
+    /// Main class with methods on various cases
+    /// </summary>
     public class MvcApplication : HttpApplication
     {
+        /// <summary>
+        /// Actions when app started
+        /// </summary>
         protected void Application_Start()
         {
             AreaRegistration.RegisterAllAreas();
@@ -26,6 +32,9 @@ namespace MvcApp
             BundleConfig.RegisterBundles(BundleTable.Bundles);
         }
 
+        /// <summary>
+        /// Authentificate actions
+        /// </summary>
         protected void Application_AuthenticateRequest()
         {
             if (HttpContext.Current.User != null)
@@ -49,6 +58,11 @@ namespace MvcApp
                 }
         }
 
+        /// <summary>
+        /// Actions when error is occured
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         protected void Application_Error(object sender, EventArgs e)
         {
             Exception exception = Server.GetLastError();

@@ -11,6 +11,9 @@ namespace MvcApp.App_Start
     using Ninject.Web.Common;
     using Infrastructure;
 
+    /// <summary>
+    /// Class for configurating ninject module
+    /// </summary>
     public static class NinjectWebCommon
     {
         private static readonly Bootstrapper bootstrapper = new Bootstrapper();

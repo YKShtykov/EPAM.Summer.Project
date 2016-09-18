@@ -1,5 +1,6 @@
 ﻿using System.Data.Entity;
 using ORM.Mappers;
+using CryptoService.Interface;
 
 namespace ORM
 {
@@ -11,10 +12,10 @@ namespace ORM
         /// <summary>
         /// Creates context and starts DbInitialiser
         /// </summary>
-        public KnowledgeSystemContext()
+        public KnowledgeSystemContext(IPasswordService passwordService)
               : base("name=KnowledgeSystemContext")
         {
-            Database.SetInitializer(new DbInitializer());
+            Database.SetInitializer(new DbInitializer(passwordService));
         }
 
         /// <summary>

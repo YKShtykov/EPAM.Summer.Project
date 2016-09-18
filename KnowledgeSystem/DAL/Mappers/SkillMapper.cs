@@ -38,6 +38,11 @@ namespace DAL.Mappers
             };
         }
 
+        /// <summary>
+        /// Map skills list
+        /// </summary>
+        /// <param name="skills"></param>
+        /// <returns></returns>
         public static IEnumerable<DalSkill> Map(IEnumerable<Skill> skills)
         {
             var skillList = new List<DalSkill>();

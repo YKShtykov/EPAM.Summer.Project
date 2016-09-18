@@ -46,10 +46,12 @@ namespace BLL
             uow.Commit();
         }
 
+
         /// <summary>
         /// The method for profile searching
         /// </summary>
-        /// <param name="model"></param>
+        /// <param name="stringKey"></param>
+        /// <param name="city"></param>
         /// <returns></returns>
         public IEnumerable<BllProfile> Find(string stringKey = "", string city = null)
         {

@@ -21,14 +21,11 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Log.Interface", "Log.Interf
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Log", "Log\Log.csproj", "{A44CA518-3573-4267-B93F-9A603150508C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CryptoLogic", "PasswordService\CryptoLogic.csproj", "{14E27A80-1E3C-48B4-8E0A-D18BEBD73015}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CryptoLogic.Interface", "PasswordService.Interface\CryptoLogic.Interface.csproj", "{DD00B0F8-A01C-4FB5-9F2D-6B9CE73D434C}"
-EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "AdditionalServices", "AdditionalServices", "{0C6B7EBA-EC88-46BB-B6FE-FA64B48F13E0}"
-	ProjectSection(SolutionItems) = preProject
-		BLL\Services\PasswordService.cs = BLL\Services\PasswordService.cs
-	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CryptoService", "CryptoService\CryptoService.csproj", "{77E84DD3-77A8-406D-9FDF-1BB8CCA4FE07}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CryptoService.Interface", "ICryptoService.Interface\CryptoService.Interface.csproj", "{E6D5E2B1-FA75-4518-9740-6306680BFDD0}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -72,14 +69,14 @@ Global
 		{A44CA518-3573-4267-B93F-9A603150508C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A44CA518-3573-4267-B93F-9A603150508C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A44CA518-3573-4267-B93F-9A603150508C}.Release|Any CPU.Build.0 = Release|Any CPU
-		{14E27A80-1E3C-48B4-8E0A-D18BEBD73015}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{14E27A80-1E3C-48B4-8E0A-D18BEBD73015}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{14E27A80-1E3C-48B4-8E0A-D18BEBD73015}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{14E27A80-1E3C-48B4-8E0A-D18BEBD73015}.Release|Any CPU.Build.0 = Release|Any CPU
-		{DD00B0F8-A01C-4FB5-9F2D-6B9CE73D434C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{DD00B0F8-A01C-4FB5-9F2D-6B9CE73D434C}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{DD00B0F8-A01C-4FB5-9F2D-6B9CE73D434C}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{DD00B0F8-A01C-4FB5-9F2D-6B9CE73D434C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{77E84DD3-77A8-406D-9FDF-1BB8CCA4FE07}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{77E84DD3-77A8-406D-9FDF-1BB8CCA4FE07}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{77E84DD3-77A8-406D-9FDF-1BB8CCA4FE07}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{77E84DD3-77A8-406D-9FDF-1BB8CCA4FE07}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E6D5E2B1-FA75-4518-9740-6306680BFDD0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E6D5E2B1-FA75-4518-9740-6306680BFDD0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E6D5E2B1-FA75-4518-9740-6306680BFDD0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E6D5E2B1-FA75-4518-9740-6306680BFDD0}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -87,7 +84,7 @@ Global
 	GlobalSection(NestedProjects) = preSolution
 		{E310D509-3871-4F48-9049-B82B2979968F} = {0C6B7EBA-EC88-46BB-B6FE-FA64B48F13E0}
 		{A44CA518-3573-4267-B93F-9A603150508C} = {0C6B7EBA-EC88-46BB-B6FE-FA64B48F13E0}
-		{14E27A80-1E3C-48B4-8E0A-D18BEBD73015} = {0C6B7EBA-EC88-46BB-B6FE-FA64B48F13E0}
-		{DD00B0F8-A01C-4FB5-9F2D-6B9CE73D434C} = {0C6B7EBA-EC88-46BB-B6FE-FA64B48F13E0}
+		{77E84DD3-77A8-406D-9FDF-1BB8CCA4FE07} = {0C6B7EBA-EC88-46BB-B6FE-FA64B48F13E0}
+		{E6D5E2B1-FA75-4518-9740-6306680BFDD0} = {0C6B7EBA-EC88-46BB-B6FE-FA64B48F13E0}
 	EndGlobalSection
 EndGlobal

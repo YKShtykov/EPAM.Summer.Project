@@ -75,7 +75,6 @@ namespace BLL
         /// The method for category searching
         /// </summary>
         /// <param name="stringKey"></param>
-        /// <param name="city"></param>
         /// <returns></returns>
         public IEnumerable<BllCategory> Find(string stringKey)
         {

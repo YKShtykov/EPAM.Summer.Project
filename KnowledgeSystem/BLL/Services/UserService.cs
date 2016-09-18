@@ -4,7 +4,7 @@ using BLL.Interface;
 using DAL.Interface;
 using BLL.Mappers;
 using System.Linq.Expressions;
-using CryptoLogic.Interface;
+using CryptoService.Interface;
 
 namespace BLL
 {
@@ -16,10 +16,12 @@ namespace BLL
         private readonly IUnitOfWork uow;
         private readonly IPasswordService passwordService;
 
+
         /// <summary>
         /// Create UserService instance
         /// </summary>
         /// <param name="uow"></param>
+        /// <param name="passwordService"></param>
         public UserService(IUnitOfWork uow, IPasswordService passwordService)
         {
             this.uow = uow;
@@ -33,8 +35,8 @@ namespace BLL
         public void Create(BllUser user)
         {
             DalUser dalUser = UserMapper.Map(user);
-            if (!IsEmailEnabled(dalUser.Email)) throw new Exception("User with such email is already exists");
-            if (!IsLoginEnabled(dalUser.Login)) throw new Exception("User with such login is already exists");
+            if (!IsEmailEnabled(dalUser.Email)) throw new AccountException("User with such email is already exists");
+            if (!IsLoginEnabled(dalUser.Login)) throw new AccountException("User with such login is already exists");
 
             dalUser.PasswordSalt = passwordService.Key;
             dalUser.Password = passwordService.GetHash(user.Password, dalUser.PasswordSalt);
@@ -129,7 +131,7 @@ namespace BLL
             if (IsEnabled(emailOrLogin, out user))
                 if (passwordService.VerifyPassword(password, user.PasswordSalt, user.Password)) return UserMapper.Map(user);
 
-            throw new Exception("check your data");
+            throw new AccountException("check your data");
         }
 
         /// <summary>

@@ -74,6 +74,10 @@
       <Project>{d9fa5b44-068d-4005-af5b-3a279102e78f}</Project>
       <Name>BLL</Name>
     </ProjectReference>
+    <ProjectReference Include="..\CryptoService\CryptoService.csproj">
+      <Project>{77e84dd3-77a8-406d-9fdf-1bb8cca4fe07}</Project>
+      <Name>CryptoService</Name>
+    </ProjectReference>
     <ProjectReference Include="..\DALL.Interface\DAL.Interface.csproj">
       <Project>{4a960316-a249-404e-9776-9d0a55e6d463}</Project>
       <Name>DAL.Interface</Name>
@@ -81,6 +85,10 @@
     <ProjectReference Include="..\DAL\DAL.csproj">
       <Project>{9eef7818-39ee-4070-8f8b-86b24cd5409c}</Project>
       <Name>DAL</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ICryptoService.Interface\CryptoService.Interface.csproj">
+      <Project>{e6d5e2b1-fa75-4518-9740-6306680bfdd0}</Project>
+      <Name>CryptoService.Interface</Name>
     </ProjectReference>
     <ProjectReference Include="..\Log.Interface\Log.Interface.csproj">
       <Project>{e310d509-3871-4f48-9049-b82b2979968f}</Project>
@@ -93,14 +101,6 @@
     <ProjectReference Include="..\ORM\ORM.csproj">
       <Project>{4b6d8e25-3c4f-4f55-be6e-2604b0f1a3fc}</Project>
       <Name>ORM</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\PasswordService.Interface\CryptoLogic.Interface.csproj">
-      <Project>{dd00b0f8-a01c-4fb5-9f2d-6b9ce73d434c}</Project>
-      <Name>CryptoLogic.Interface</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\PasswordService\CryptoLogic.csproj">
-      <Project>{14e27a80-1e3c-48b4-8e0a-d18bebd73015}</Project>
-      <Name>CryptoLogic</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

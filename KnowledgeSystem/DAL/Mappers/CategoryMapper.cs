@@ -48,6 +48,11 @@ namespace DAL.Mappers
             return result;
         }
 
+        /// <summary>
+        /// Map categories list
+        /// </summary>
+        /// <param name="categories"></param>
+        /// <returns></returns>
         public static IEnumerable<DalCategory> Map(IEnumerable<Category> categories)
         {
             var result = new List<DalCategory>();

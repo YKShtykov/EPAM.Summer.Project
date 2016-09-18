@@ -26,3 +26,9 @@ C:\Users\Yakov\Desktop\project\KnowledgeSystem\BLL.Interface\bin\Debug\BLL.Inter
 C:\Users\Yakov\Desktop\project\KnowledgeSystem\BLL.Interface\obj\Debug\BLL.Interface.csprojResolveAssemblyReference.cache
 C:\Users\Yakov\Desktop\project\KnowledgeSystem\BLL.Interface\obj\Debug\BLL.Interface.dll
 C:\Users\Yakov\Desktop\project\KnowledgeSystem\BLL.Interface\obj\Debug\BLL.Interface.pdb
+C:\Users\Yakov\Desktop\project_old\KnowledgeSystem\BLL.Interface\bin\Debug\BLL.Interface.XML
+C:\Users\Yakov\Desktop\project_old\KnowledgeSystem\BLL.Interface\bin\Debug\BLL.Interface.dll
+C:\Users\Yakov\Desktop\project_old\KnowledgeSystem\BLL.Interface\bin\Debug\BLL.Interface.pdb
+C:\Users\Yakov\Desktop\project_old\KnowledgeSystem\BLL.Interface\obj\Debug\BLL.Interface.csprojResolveAssemblyReference.cache
+C:\Users\Yakov\Desktop\project_old\KnowledgeSystem\BLL.Interface\obj\Debug\BLL.Interface.dll
+C:\Users\Yakov\Desktop\project_old\KnowledgeSystem\BLL.Interface\obj\Debug\BLL.Interface.pdb

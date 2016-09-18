@@ -8,8 +8,10 @@ using Ninject.Web.Common;
 using System.Data.Entity;
 using Log.Interface;
 using Log;
-using CryptoLogic;
-using CryptoLogic.Interface;
+using CryptoService;
+using CryptoService.Interface;
+//using CryptoLogic;
+//using CryptoLogic.Interface;
 
 
 namespace DependencyResolver

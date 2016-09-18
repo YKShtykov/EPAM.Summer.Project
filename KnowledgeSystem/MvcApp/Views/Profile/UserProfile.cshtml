@@ -5,7 +5,7 @@
     ViewBag.Title = "UserProfile";
     var roles = ((CustomIdentity)User.Identity).Roles;
 }
-
+<script src="~/Scripts/star-rating.js" type="text/javascript"></script>
 <div class="userProfileContent">
     <div class="row">
         <div class="col-md-3">
@@ -41,3 +41,6 @@
         </div>
     </div>
 </div>
+<link href="~/Content/star-rating.css" media="all" rel="stylesheet" type="text/css" />
+<script src="~/Scripts/star-rating.js" type="text/javascript"></script>
+<script src="http://ajax.aspnetcdn.com/ajax/mvc/3.0/jquery.unobtrusive-ajax.min.js"></script>

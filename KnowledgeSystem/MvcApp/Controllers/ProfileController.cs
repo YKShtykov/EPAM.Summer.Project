@@ -8,14 +8,22 @@ using MvcApp.Infrastructure;
 
 namespace MvcApp.Controllers
 {
+    /// <summary>
+    /// Class for profile logic. Consists logic for edit and looking profiles
+    /// </summary>
     [Authorize]
-
     public class ProfileController : Controller
     {
         private readonly IProfileService profiles;
         private readonly IUserService users;
         private readonly ICategoryService categories;
 
+        /// <summary>
+        /// Create profile controller
+        /// </summary>
+        /// <param name="service"></param>
+        /// <param name="users"></param>
+        /// <param name="categories"></param>
         public ProfileController(IProfileService service, IUserService users, ICategoryService categories)
         {
             this.profiles = service;
@@ -23,7 +31,12 @@ namespace MvcApp.Controllers
             this.categories = categories;
         }
 
-        //[HttpGet]
+        /// <summary>
+        /// Returns user profile page
+        /// </summary>
+        /// <param name="id"></param>
+        /// <param name="page"></param>
+        /// <returns></returns>
         [Route("User", Name = "User")]
         public ActionResult UserProfile(int? id, int page = 1)
         {
@@ -40,6 +53,12 @@ namespace MvcApp.Controllers
             return View(fullProfileInfo);
         }
 
+        /// <summary>
+        /// Returns user skills partial view
+        /// </summary>
+        /// <param name="id"></param>
+        /// <param name="page"></param>
+        /// <returns></returns>
         public ActionResult UserSkills(int? id, int page = 1)
         {
             var identity = (CustomIdentity)User.Identity;
@@ -53,6 +72,10 @@ namespace MvcApp.Controllers
             return PartialView("_ProfileSkills",mvcCategories);
         }
 
+        /// <summary>
+        /// Returns profile edit page
+        /// </summary>
+        /// <returns></returns>
         [HttpGet]
         [Route("Edit")]
         public ActionResult Edit()
@@ -63,6 +86,12 @@ namespace MvcApp.Controllers
             return View(profile);
         }
 
+        /// <summary>
+        /// Consists logic for profile editing
+        /// </summary>
+        /// <param name="model"></param>
+        /// <param name="fileUpload"></param>
+        /// <returns></returns>
         [HttpPost]
         [Route("Edit", Name = "Edit")]
         public ActionResult Edit(MvcProfile model, HttpPostedFileBase fileUpload)
@@ -76,6 +105,11 @@ namespace MvcApp.Controllers
             return RedirectToRoute("User");
         }
 
+        /// <summary>
+        /// Returns profile image
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         [AllowAnonymous]
         public FileContentResult GetImage(int id)
         {
@@ -91,7 +125,6 @@ namespace MvcApp.Controllers
                 {
                     return StandartImage();
                 }
-
             }
             return null;
         }
@@ -113,11 +146,21 @@ namespace MvcApp.Controllers
             return File(fileBytes, "image/png");
         }
 
+        /// <summary>
+        /// Returns json profile info
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         public ActionResult UserDetails(int id)
         {
             return Json(profiles.Get(id), JsonRequestBehavior.AllowGet);
         }
 
+        /// <summary>
+        /// Creates pdf document with profile info
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         public ActionResult UserInfoPdf(int id)
         {
             var fullProfileInfo = new FullProfileInfo();

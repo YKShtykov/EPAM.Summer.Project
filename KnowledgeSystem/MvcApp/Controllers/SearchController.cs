@@ -6,21 +6,38 @@ using MvcApp.Infrastructure.Mappers;
 
 namespace MvcApp.Controllers
 {
+    /// <summary>
+    /// Class consists user search logic
+    /// </summary>
     public class SearchController : Controller
     {
         private readonly IProfileService profiles;
 
+        /// <summary>
+        /// Create search controller
+        /// </summary>
+        /// <param name="service"></param>
         public SearchController(IProfileService service)
         {
             profiles = service;
         }
+
+        /// <summary>
+        /// Returns search page
+        /// </summary>
+        /// <returns></returns>
         [Route("Search")]
         public ActionResult Index()
         {
             return View();
         }
 
-
+        /// <summary>
+        /// Consists logic for user searsh
+        /// </summary>
+        /// <param name="model"></param>
+        /// <param name="page"></param>
+        /// <returns></returns>
         [HttpPost]
         [Route("Search", Name = "Search")]
         public ActionResult Index(SearchModel model, int page = 1)
@@ -38,6 +55,11 @@ namespace MvcApp.Controllers
             }
         }
 
+        /// <summary>
+        /// Returns json autocomplete help
+        /// </summary>
+        /// <param name="term"></param>
+        /// <returns></returns>
         public ActionResult FindUsers(string term)
         {
             var mvcProfiles = profiles.Find(term).Select(p => p.FirstName + " " + p.LastName);

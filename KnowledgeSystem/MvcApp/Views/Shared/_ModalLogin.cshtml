@@ -8,11 +8,12 @@
                 <div class="login-grids">
 
                     <div class="login-right">
-                        <form action="@Url.RouteUrl("Login")" method="post">
+                        <form id="loginForm" action="@Url.RouteUrl("Login")" method="post">
                             @Html.AntiForgeryToken()
                             <h3>Signin with your account </h3>
-                            <input class = "form-control" type="text" value="Enter your mobile number or Email" name="EmailOrLogin" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Enter your Login or Email';}" required="">
-                            <input class = "form-control" type="password" value="Password" name="Password" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Password';}" required="">
+                            <p id="loginError"></p>
+                            <input class = "form-control" type="text" placeholder="Enter your Login or Email" name="EmailOrLogin">
+                            <input class = "form-control" type="password" placeholder="password" name="Password">
 
                             <div class="single-bottom">
                                 <input type='checkbox' name='IsRemember' id="brand" value="true">
@@ -28,3 +29,10 @@
         </div>
     </div>
 </div>
+<script>
+    $(document).ready(function () {
+        $('#loginInput').click(function (event) {
+            $("#loginForm").ajaxForm({ dataType: "json", success: function (data) { document.getElementById('loginError').innerHTML = data.Result; } });
+        });
+    });
+</script>

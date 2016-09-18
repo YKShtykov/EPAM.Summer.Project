@@ -8,8 +8,16 @@ using MvcApp.Infrastructure.Mappers;
 
 namespace MvcApp.Infrastructure.Mappers
 {
+    /// <summary>
+    /// Class-mapper for profiles
+    /// </summary>
     public static class ProfileMapper
     {
+        /// <summary>
+        /// Map profile
+        /// </summary>
+        /// <param name="profile"></param>
+        /// <returns>Bll profile such as profile</returns>
         public static BllProfile Map(MvcProfile profile)
         {
             return new BllProfile()
@@ -31,6 +39,11 @@ namespace MvcApp.Infrastructure.Mappers
             };
         }
 
+        /// <summary>
+        /// Map profile
+        /// </summary>
+        /// <param name="profile"></param>
+        /// <returns>profile such as profile</returns>
         public static MvcProfile Map(BllProfile profile)
         {
             return new MvcProfile()
@@ -52,6 +65,11 @@ namespace MvcApp.Infrastructure.Mappers
             };
         }
 
+        /// <summary>
+        /// Map profiles list
+        /// </summary>
+        /// <param name="profiles"></param>
+        /// <returns></returns>
         public static IEnumerable<MvcProfile> Map(IEnumerable<BllProfile> profiles)
         {
             var result = new List<MvcProfile>();

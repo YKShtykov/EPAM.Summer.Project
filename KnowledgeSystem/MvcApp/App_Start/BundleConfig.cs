@@ -3,9 +3,16 @@ using System.Web.Optimization;
 
 namespace MvcApp
 {
+    /// <summary>
+    /// Class for bundles configoration
+    /// </summary>
     public class BundleConfig
     {
         // For more information on bundling, visit http://go.microsoft.com/fwlink/?LinkId=301862
+        /// <summary>
+        /// Config bundles
+        /// </summary>
+        /// <param name="bundles"></param>
         public static void RegisterBundles(BundleCollection bundles)
         {
             bundles.Add(new ScriptBundle("~/bundles/jquery").Include(

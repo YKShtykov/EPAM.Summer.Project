@@ -53,6 +53,12 @@ namespace BLL.Interface
         /// <returns>dictionary BllSkill-level</returns>
         IEnumerable<BllCategory> GetUserSkills(int userId);
 
+        /// <summary>
+        /// The method for getting user sorted skills
+        /// </summary>
+        /// <param name="userId"></param>
+        /// <param name="skillsWithNullLevel"></param>
+        /// <returns></returns>
         IEnumerable<BllCategory> GetSortedUserSkills(int userId, bool skillsWithNullLevel);
     }
 }

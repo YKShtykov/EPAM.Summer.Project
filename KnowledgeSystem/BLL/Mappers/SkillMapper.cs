@@ -63,6 +63,11 @@ namespace BLL.Mappers
             return result;
         }
 
+        /// <summary>
+        /// Map skills list
+        /// </summary>
+        /// <param name="skills"></param>
+        /// <returns></returns>
         public static IEnumerable<BllSkill> Map(IEnumerable<DalSkill> skills)
         {
             var result = new List<BllSkill>();

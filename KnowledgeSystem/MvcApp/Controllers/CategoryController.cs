@@ -9,16 +9,29 @@ using MvcApp.Infrastructure;
 
 namespace MvcApp.Controllers
 {
+    /// <summary>
+    /// Class for category logic in app. It consists category creating updating and removing methods
+    /// </summary>
     [Authorize(Roles = "Administrator")]
     public class CategoryController : Controller
     {
         private readonly ICategoryService categories;
 
+        /// <summary>
+        /// Create category controller
+        /// </summary>
+        /// <param name="categories"></param>
         public CategoryController(ICategoryService categories)
         {
             this.categories = categories;
         }
 
+        /// <summary>
+        /// Returns categories page
+        /// </summary>
+        /// <param name="SearchString"></param>
+        /// <param name="page"></param>
+        /// <returns></returns>
         [Route("Categories", Name = "Categories")]
         public ActionResult Categories(string SearchString, int page = 1)
         {
@@ -37,6 +50,10 @@ namespace MvcApp.Controllers
             }           
         }
 
+        /// <summary>
+        /// Returns category creating page
+        /// </summary>
+        /// <returns></returns>
         [HttpGet]
         [Route("CreateCategory")]
         public ActionResult CreateCategory()
@@ -44,6 +61,11 @@ namespace MvcApp.Controllers
             return View();
         }
 
+        /// <summary>
+        /// Consists logic for creating category
+        /// </summary>
+        /// <param name="category"></param>
+        /// <returns></returns>
         [HttpPost]
         [Route("CreateCategory", Name = "CreateCategory")]
         public ActionResult CreateCategory(MvcCategory category)
@@ -57,6 +79,11 @@ namespace MvcApp.Controllers
             return View();
         }
 
+        /// <summary>
+        /// Returns category editor view
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         [HttpGet]
         [Route("EditCategory")]
         public ActionResult EditCategory(int id)
@@ -65,6 +92,11 @@ namespace MvcApp.Controllers
             return View(category);
         }
 
+        /// <summary>
+        /// Consists logic for category editing
+        /// </summary>
+        /// <param name="category"></param>
+        /// <returns></returns>
         [HttpPost]
         [Route("EditCategory", Name = "EditCategory")]
         public ActionResult EditCategory(MvcCategory category)
@@ -78,6 +110,11 @@ namespace MvcApp.Controllers
             return View();
         }
 
+        /// <summary>
+        /// Consists logic for category removing
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         [HttpGet]
         [Route("RemoveCategory", Name = "RemoveCategory")]
         public ActionResult RemoveCategory(int id)
@@ -103,6 +140,11 @@ namespace MvcApp.Controllers
             return mvcCategories;
         }
 
+        /// <summary>
+        /// Finds and returns categories with skills in json format
+        /// </summary>
+        /// <param name="term"></param>
+        /// <returns></returns>
         public ActionResult FindCategories(string term)
         {
             var mvcCategories = categories.Find(term).Select(c=>c.Name);

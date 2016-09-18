@@ -46,6 +46,7 @@
     <Compile Include="Entities\BllSkill.cs" />
     <Compile Include="Entities\BllUser.cs" />
     <Compile Include="Entities\BllUserSkills.cs" />
+    <Compile Include="Exceptions\RegistrationException.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Services\ICategoryService.cs" />
     <Compile Include="Services\IProfileService.cs" />

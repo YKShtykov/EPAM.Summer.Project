@@ -1,7 +1,6 @@
 ﻿using System.Text;
 using CryptoLogic.Interface;
 using System.Security.Cryptography;
-using System;
 
 namespace CryptoLogic
 {
@@ -12,6 +11,9 @@ namespace CryptoLogic
     {
         private const int SaltLength = 128;
 
+        /// <summary>
+        /// Hashing key
+        /// </summary>
         public string Key
         {
             get
@@ -26,6 +28,12 @@ namespace CryptoLogic
             }
         }
 
+        /// <summary>
+        /// Get hashed password
+        /// </summary>
+        /// <param name="password"></param>
+        /// <param name="key"></param>
+        /// <returns>hashed password</returns>
         public string GetHash(string password, string key)
         {
             var bytes = Encoding.Unicode.GetBytes(password + key);
@@ -33,6 +41,13 @@ namespace CryptoLogic
             return Encoding.Unicode.GetString(hashed);
         }
 
+        /// <summary>
+        /// Check input password
+        /// </summary>
+        /// <param name="password"></param>
+        /// <param name="key"></param>
+        /// <param name="hash"></param>
+        /// <returns></returns>
         public bool VerifyPassword(string password, string key, string hash)
         {
             return hash == GetHash(password, key);

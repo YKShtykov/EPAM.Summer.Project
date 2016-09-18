@@ -9,6 +9,9 @@ using MvcApp.Infrastructure;
 
 namespace MvcApp.Controllers
 {
+    /// <summary>
+    /// Class consists logic for work with skills
+    /// </summary>
     [Authorize]
     public class SkillController : Controller
     {
@@ -16,6 +19,12 @@ namespace MvcApp.Controllers
         private readonly ISkillService skills;
         private readonly ICategoryService categories;
 
+        /// <summary>
+        /// Create skill controller
+        /// </summary>
+        /// <param name="service"></param>
+        /// <param name="skillService"></param>
+        /// <param name="categories"></param>
         public SkillController(IUserService service, ISkillService skillService, ICategoryService categories)
         {
             this.service = service;
@@ -23,6 +32,11 @@ namespace MvcApp.Controllers
             this.categories = categories;
         }
 
+        /// <summary>
+        /// Returns user skills page
+        /// </summary>
+        /// <param name="page"></param>
+        /// <returns></returns>
         [Route("YourSkills")]
         public ActionResult Index(int page = 1)
         {
@@ -34,6 +48,13 @@ namespace MvcApp.Controllers
         }
 
 
+        /// <summary>
+        /// Consists logic for updating users skills
+        /// </summary>
+        /// <param name="Entities"></param>
+        /// <param name="page"></param>
+        /// <param name="currentPage"></param>
+        /// <returns></returns>
         [HttpPost]
         [Route("YourSkills", Name = "UserSkills")]
         public ActionResult Index(List<MvcCategory> Entities,int? page, int currentPage)
@@ -56,6 +77,13 @@ namespace MvcApp.Controllers
             }
         }
 
+        /// <summary>
+        /// Returns skills redactor for administrator
+        /// </summary>
+        /// <param name="FindSkill"></param>
+        /// <param name="FindCategory"></param>
+        /// <param name="page"></param>
+        /// <returns></returns>
         [Authorize(Roles = "Administrator")]
         [Route("Skills", Name = "Skills")]
         public ActionResult Skills(string FindSkill, string FindCategory, int page = 1)
@@ -82,6 +110,11 @@ namespace MvcApp.Controllers
             }
         }
 
+        /// <summary>
+        /// Returns skill creating page
+        /// </summary>
+        /// <param name="category"></param>
+        /// <returns></returns>
         [HttpGet]
         [Authorize(Roles = "Administrator")]
         [Route("CreateSkill")]
@@ -94,6 +127,11 @@ namespace MvcApp.Controllers
             return View();
         }
 
+        /// <summary>
+        /// Consists logic for skill creating
+        /// </summary>
+        /// <param name="skill"></param>
+        /// <returns></returns>
         [HttpPost]
         [Authorize(Roles = "Administrator")]
         [Route("CreateSkill", Name = "CreateSkill")]
@@ -107,6 +145,11 @@ namespace MvcApp.Controllers
             return View();
         }
 
+        /// <summary>
+        /// Returns skill editing page
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         [HttpGet]
         [Authorize(Roles = "Administrator")]
         [Route("EditSkill")]
@@ -121,6 +164,11 @@ namespace MvcApp.Controllers
             return View(skill);
         }
 
+        /// <summary>
+        /// Consists logic for skill editing
+        /// </summary>
+        /// <param name="skill"></param>
+        /// <returns></returns>
         [HttpPost]
         [Authorize(Roles = "Administrator")]
         [Route("EditSkill", Name = "EditSkill")]
@@ -134,6 +182,11 @@ namespace MvcApp.Controllers
             return View();
         }
 
+        /// <summary>
+        /// Consists logic for skill removing
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         [Authorize(Roles = "Administrator")]
         [Route("RemoveSkill", Name = "RemoveSkill")]
         public ActionResult RemoveSkill(int id)
@@ -145,6 +198,12 @@ namespace MvcApp.Controllers
             return RedirectToRoute("Skills");
         }
 
+        /// <summary>
+        /// The method for skills search
+        /// </summary>
+        /// <param name="skill"></param>
+        /// <param name="category"></param>
+        /// <returns></returns>
         private List<MvcCategory> FindSkills(string skill, string category)
         {
             var mvcCategories = CategoryMapper.Map(categories.GetAll());

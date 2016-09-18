@@ -70,6 +70,12 @@
     <None Include="App.config" />
     <None Include="packages.config" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\ICryptoService.Interface\CryptoService.Interface.csproj">
+      <Project>{e6d5e2b1-fa75-4518-9740-6306680bfdd0}</Project>
+      <Name>CryptoService.Interface</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

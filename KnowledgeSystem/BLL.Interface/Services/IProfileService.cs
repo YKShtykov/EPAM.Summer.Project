@@ -18,11 +18,13 @@ namespace BLL.Interface
         /// </summary>
         /// <param name="profile"></param>
         void Update(BllProfile profile);
+
         /// <summary>
         /// The method for BllProfiles search
         /// </summary>
-        /// <param name="model"></param>
-        /// <returns>BllProfile collection</returns>
+        /// <param name="stringKey"></param>
+        /// <param name="city"></param>
+        /// <returns></returns>
         IEnumerable<BllProfile> Find(string stringKey="", string city=null);
     }
 }
