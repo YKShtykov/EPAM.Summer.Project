@@ -13,4 +13,12 @@
             return false;
         }
     }
-</script>                            
+</script>     
+<script>
+    $('.rating-loading').rating({
+        step: 1,
+        defaultCaption: '.',
+        starCaptions: { 1: '', 2: '', 3: '', 4: '', 5: '' },
+        starCaptionClasses: function (val) { return 'text-success'; }
+    });
+</script>                       

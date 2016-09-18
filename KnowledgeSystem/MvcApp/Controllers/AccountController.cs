@@ -66,7 +66,7 @@ namespace MvcApp.Controllers
                     var user = UserMapper.Map(service.Login(loginModel.EmailOrLogin, loginModel.Password));
                     AddCookiesToResponce(user, loginModel.IsRemember);
 
-                    return RedirectToRoute("Home");
+                    return RedirectToRoute("User");
                 }
                 catch (AccountException e)
                 {

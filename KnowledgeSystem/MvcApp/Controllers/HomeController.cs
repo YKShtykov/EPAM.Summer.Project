@@ -15,7 +15,6 @@ namespace MvcApp.Controllers
         [Route("",Name ="Home")]
         public ActionResult Index()
         {
-            new Exception();
             return View();
         }        
     }

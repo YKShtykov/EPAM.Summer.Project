@@ -44,7 +44,14 @@ namespace MvcApp.Controllers
             var userSkills = CategoryMapper.Map(service.GetSortedUserSkills(id, true));
             var viewModel = new GenericPaginationModel<MvcCategory>(page, 2, userSkills);
 
-            return View(viewModel);
+            if (Request.IsAjaxRequest())
+            {
+                return PartialView("_Skills", viewModel);
+            }
+            else
+            {
+                return View(viewModel);
+            }
         }
 
 
@@ -57,24 +64,16 @@ namespace MvcApp.Controllers
         /// <returns></returns>
         [HttpPost]
         [Route("YourSkills", Name = "UserSkills")]
-        public ActionResult Index(List<MvcCategory> Entities,int? page, int currentPage)
+        public ActionResult Index(List<MvcCategory> Entities, int? page, int currentPage)
         {
             var id = ((CustomIdentity)User.Identity).Id;
-            if (ReferenceEquals(page,null))
+            if (ReferenceEquals(page, null))
             {
                 service.UpdateUserSkills(id, CategoryMapper.Map(Entities));
                 page = currentPage;
-            }            
-            if (Request.IsAjaxRequest())
-            {
-                var userSkills = CategoryMapper.Map(service.GetSortedUserSkills(id, true));
-                var viewModel = new GenericPaginationModel<MvcCategory>((int)page, 2, userSkills);
-                return PartialView("_Skills", viewModel);
             }
-            else
-            {
-                return Redirect("~/YourSkills/?page=" + page);
-            }
+
+            return Redirect("~/YourSkills/?page=" + page);
         }
 
         /// <summary>
